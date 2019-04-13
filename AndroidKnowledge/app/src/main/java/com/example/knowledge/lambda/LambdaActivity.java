@@ -1,4 +1,4 @@
-package com.example.androidknowledge;
+package com.example.knowledge;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,17 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.reactivestreams.Subscriber;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 
 public class LambdaActivity extends AppCompatActivity {
 

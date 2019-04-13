@@ -1,4 +1,4 @@
-package com.example.androidknowledge;
+package com.example.knowledge;
 
 import org.junit.Test;
 
