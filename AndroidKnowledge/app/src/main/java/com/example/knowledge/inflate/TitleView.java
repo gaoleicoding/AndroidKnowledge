@@ -21,7 +21,7 @@ public class TitleView extends FrameLayout {
         super(context, attrs);
        View view= LayoutInflater.from(context).inflate(R.layout.title, this,true);
         titleText = findViewById(R.id.title_text);
-        addView(view);
+//        addView(view);
     }
 
     public void setTitleText(String text) {
