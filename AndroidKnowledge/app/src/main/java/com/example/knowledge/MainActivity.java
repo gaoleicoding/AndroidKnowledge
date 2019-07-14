@@ -4,9 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import com.example.knowledge.inflate.DemoAdapter;
 
@@ -16,6 +13,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView article_recyclerview;
+    FirstFragment firstFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
 //        //获取子布局，并动态加载进父容器中
 //        View child = inflater.inflate(R.layout.title, parent, false);
 //        parent.addView(child);
-
+        firstFragment=new FirstFragment();
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.framelayout, firstFragment).commit();
 
 
     }

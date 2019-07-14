@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,5 +13,11 @@
         android:id="@+id/article_recyclerview"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
+        android:layout_below="@id/title_view"
         android:layout_height="match_parent"/>
-</LinearLayout>
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:background="#e5e5e5"
+        android:layout_height="match_parent"/>
+</RelativeLayout>
