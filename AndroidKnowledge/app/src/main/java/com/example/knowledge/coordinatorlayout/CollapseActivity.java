@@ -1,4 +1,4 @@
-package com.example.knowledge.newui;
+package com.example.knowledge.coordinatorlayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
