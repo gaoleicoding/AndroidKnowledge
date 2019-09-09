@@ -38,7 +38,6 @@
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             app:tabGravity="fill"
-
             app:tabIndicatorColor="@color/colorAccent"
             app:tabMaxWidth="80dp"
             app:tabMode="scrollable"

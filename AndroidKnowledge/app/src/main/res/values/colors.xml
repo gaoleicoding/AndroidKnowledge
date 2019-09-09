@@ -3,6 +3,5 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#8251DD</color>
-    <color name="transparent">#00000000</color>
-    <color name="gray_status_bar">@color/transparent</color>
+    <color name="gray_status_bar">#ebcccccc</color>
 </resources>

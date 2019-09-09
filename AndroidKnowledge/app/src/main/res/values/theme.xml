@@ -1,9 +1,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--ActionBar背景色-->
         <item name="colorPrimary">@color/white</item>
+        <!--状态栏颜色-->
         <item name="colorPrimaryDark">@color/gray_status_bar</item>
+        <!--控制各个控件被选中时的颜色-->
         <item name="colorAccent">@color/purple_assist_dark</item>
+        <!--页面背景色-->
         <item name="android:windowBackground">@color/white</item>
     </style>
 
@@ -17,6 +21,7 @@
 
     <!-- 状态栏白字侵入 -->
     <style name="TranslucentStatus" parent="AppTheme.Base">
+        <!--状态栏会显示成全透明的状态-->
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
