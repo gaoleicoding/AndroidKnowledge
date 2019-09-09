@@ -6,13 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 
+import com.example.knowledge.BaseActivity;
 import com.example.knowledge.R;
 
 
-public class CollapseViewPagerActivity extends AppCompatActivity {
+public class CollapseViewPagerActivity extends BaseActivity {
     private TabLayout tabLayout;
     private String[] title = {
             "头条",
@@ -30,10 +29,9 @@ public class CollapseViewPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_collapse_viewpager);
         final ViewPager viewPager = (ViewPager) findViewById(R.id.vp);
-        tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        tabLayout = (TabLayout) findViewById(R.id.tablayout);
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
         //1.TabLayout和Viewpager关联
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -47,7 +45,7 @@ public class CollapseViewPagerActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 // 被选中的时候回调
-                viewPager.setCurrentItem(tab.getPosition(),true);
+                viewPager.setCurrentItem(tab.getPosition(), true);
             }
 
             @Override
@@ -65,6 +63,7 @@ public class CollapseViewPagerActivity extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
     }
+
     class MyPagerAdapter extends FragmentPagerAdapter {
 
         public MyPagerAdapter(FragmentManager fm) {

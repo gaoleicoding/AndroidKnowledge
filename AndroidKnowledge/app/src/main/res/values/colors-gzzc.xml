@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--6.8.0.0-->
+    <color name="purple_accent">#753BDB</color>
+    <color name="purple_assist_light">#AD6DFF</color>
+    <color name="purple_assist_dark">#8251DD</color>
+    <color name="orange_dark_assist">#FF681F</color>
+
+    <color name="purple_trans_10">#198251DD</color>
+
+    <color name="grey_level_1">#4A4A4A</color><!--深色-->
+    <color name="grey_level_2">#797979</color><!--辅助内容-->
+    <color name="grey_level_3">#A6A6A6</color><!--输入框 若内容 为选中图标-->
+    <color name="grey_level_4">#D8D8D8</color><!--小文本图标-->
+    <color name="grey_level_5">#EEEEEE</color><!--部分文本操作区 域背景色 分割线-->
+    <color name="grey_level_6">#F5F5F5</color><!--背景色-->
+    <color name="grey_level_7">#FFFFFF</color><!--纯白-->
+
+    <color name="white">@color/grey_level_7</color>
+    <color name="black">#000000</color>
+
+
+    <!-- 5.0品牌升级的新UI规范 -->
+    <color name="startred">#ff4049</color>//小面积使用，用于特别需要强调和突出的文字，按钮和ICON,如立即租用，与价格相关的文字
+    <color name="startblue">#0a1b2b</color>//用于重要级文字信息、内页标题信息，如大板块标题，运营内容
+    <color name="startlabel_blue">#3d9cf5</color>
+    <color name="start_purple">#8251DD</color>
+
+    <!-- 4.6.0梦想车改版后的新UI规范 -->
+    <color name="pp_yellow">#ffcc33</color>
+
+    <!-- 字体颜色 黑色 -->
+    <color name="pp_font_color_b_01">#0a1b2b</color><!-- 100% opacity  title default-->
+
+    <!-- 默认文字颜色 -->
+    <color name="common_font_color_3">#0a1b2b</color>
+    <color name="common_font_color_6">#cccccc</color>
+    <color name="common_font_color_a">#ff4049</color>
+
+</resources>
