@@ -1,18 +1,20 @@
 package com.example.knowledge.design;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.knowledge.BaseActivity;
 import com.example.knowledge.R;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.tabs.TabLayout;
 
 
 public class CollapseViewPagerActivity extends BaseActivity {
@@ -39,7 +41,7 @@ public class CollapseViewPagerActivity extends BaseActivity {
         AppBarLayout mAppBarLayout = findViewById(R.id.app_bar_layout);
         ImageView head_layout =findViewById(R.id.image);
         CollapsingToolbarLayout mCollapsingToolbarLayout =  findViewById(R.id.collapsing_toolbar_layout);
-        mCollapsingToolbarLayout.setTitle("");
+//        mCollapsingToolbarLayout.setTitle("");
         for (String tab : titles) {
             tabLayout.addTab(tabLayout.newTab().setText(tab));
         }
