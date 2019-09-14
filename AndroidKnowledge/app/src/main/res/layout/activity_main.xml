@@ -5,21 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.knowledge.inflate.TitleView
-        android:id="@+id/title_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/article_recyclerview"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_below="@id/title_view"
-        android:layout_height="match_parent"/>
     <FrameLayout
-        android:visibility="gone"
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#e5e5e5"
-        android:layout_height="match_parent"/>
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#ffcccc"
+        android:gravity="center"
+        android:text="MainActivity"
+        android:textSize="30sp" />
+
 </RelativeLayout>

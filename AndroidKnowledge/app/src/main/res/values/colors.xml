@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#8251DD</color>
     <color name="gray_status_bar">#ebcccccc</color>
+    <color name="transparent">#00000000</color>
 </resources>

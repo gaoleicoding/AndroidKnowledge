@@ -1,4 +1,4 @@
-package com.example.knowledge.coordinatorlayout;
+package com.example.knowledge.design;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

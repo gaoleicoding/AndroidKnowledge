@@ -1,4 +1,4 @@
-package com.example.knowledge.coordinatorlayout;
+package com.example.knowledge.design;
 
 /**
  * Created by 路很长~ on 2018/4/10.
