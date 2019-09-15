@@ -12,4 +12,38 @@
     <style name="TitleTextSize" >
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <!-- Application theme. -->
+    <style name="CustomTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="customViewStyle">@style/custom_view_style</item>
+        <item name="attr5">attr5 from AppTheme</item>
+        <item name="attr6">attr6 from AppTheme</item>
+    </style>
+
+    <style name="text_style">
+        <item name="android:text">text from style</item>
+    </style>
+
+    <style name="default_view_style">
+        <item name="attr4">attr4 from default_view_style</item>
+        <item name="attr5">attr5 from default_view_style</item>
+    </style>
+
+    <style name="custom_view_style">
+        <item name="attr3">attr3 from custom_view_style</item>
+        <item name="attr4">attr4 from custom_view_style</item>
+    </style>
+
+    <style name="xml_style">
+        <item name="attr2">attr2 from xml_style</item>
+        <item name="attr3">attr3 from xml_style</item>
+    </style>
 </resources>
