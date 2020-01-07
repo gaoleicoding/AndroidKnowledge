@@ -5,17 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <!--AppBarLayout的大小其实就是那个大图的大小-->
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="240dp">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/main3_CollapsingToolbarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -41,7 +41,7 @@
                 <!--app:layout_collapseMode="parallax"//设置为这个模式时，在内容滚动时，CollapsingToolbarLayout中的View（比如ImageView)也可以同时滚动，实现视差滚动效果，通常和layout_collapseParallaxMultiplier(设置视差因子)搭配使用。
         app:layout_collapseParallaxMultiplier="0.7"//设置视差滚动因子，值为：0~1。
         -->
-                <android.support.v7.widget.Toolbar
+                <androidx.appcompat.widget.Toolbar
                     android:id="@+id/main3_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
@@ -50,9 +50,9 @@
                 <!--pin设置为这个模式时，当CollapsingToolbarLayout完全收缩后，Toolbar还可以保留在屏幕上。-->
 
 
-            </android.support.design.widget.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
             ScrollView 没有被设计成与 CoordinatorLayout 协同工作。你需要另一个 view：NestedScrollView，
             这个 NestedScrollView 设计出来的目的就是为了与 CoordinatorLayout 协同工作的。
     同样的原因，请注意了： ListView 类也是和 CoordinatorLayout 不能协同工作的。只有RecyclerView可以。-->
-            <android.support.v4.widget.NestedScrollView
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -76,8 +76,8 @@
                     android:textColor="#000000"
                     android:textSize="60sp" />
 
-            </android.support.v4.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

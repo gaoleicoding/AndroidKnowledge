@@ -5,20 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/framelayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#e5e5e5"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#ffcccc"
-        android:gravity="center"
-        android:text="MainActivity"
-        android:textSize="30sp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>
