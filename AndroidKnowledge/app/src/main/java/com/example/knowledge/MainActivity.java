@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.knowledge.adapter.ItemAdapter;
 import com.example.knowledge.decrypt.DecryptActivity;
+import com.example.knowledge.design.CollapseActivity;
+import com.example.knowledge.lambda.LambdaActivity;
+import com.example.knowledge.view.StyleActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         list.add("EncryptActivity（加解密）");
+        list.add("CollapseActivity（折叠布局）");
+        list.add("LambdaActivity（Lambda语法）");
+        list.add("StyleActivity（Style使用）");
 
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -37,13 +43,19 @@ public class MainActivity extends AppCompatActivity {
                 )
         );
 
-        itemAdapter.setOnItemClickLitener(new ItemAdapter.OnItemClickLitener() {
-            @Override
-            public void onItemClick(View v) {
-                int position = recyclerview.getChildAdapterPosition(v);
-                if(position==0){
-                    startActivity(new Intent(MainActivity.this, DecryptActivity.class));
-                }
+        itemAdapter.setOnItemClickLitener(v -> {
+            int position = recyclerview.getChildAdapterPosition(v);
+            if (position == 0) {
+                startActivity(new Intent(MainActivity.this, DecryptActivity.class));
+            }
+            if (position == 1) {
+                startActivity(new Intent(MainActivity.this, CollapseActivity.class));
+            }
+            if (position == 2) {
+                startActivity(new Intent(MainActivity.this, LambdaActivity.class));
+            }
+            if (position == 3) {
+                startActivity(new Intent(MainActivity.this, StyleActivity.class));
             }
         });
     }

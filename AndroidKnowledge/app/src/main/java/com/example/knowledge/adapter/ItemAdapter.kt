@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledge.R
@@ -32,7 +31,7 @@ class ItemAdapter(private val ctx: Context, private val list: List<String>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.tvContent.text = list.get(position)
         if (mOnItemClickLitener != null) {
-            holder.rootView.setOnClickListener(this);
+            holder.itemView.setOnClickListener(this);
         }
     }
 
@@ -44,11 +43,9 @@ class ItemAdapter(private val ctx: Context, private val list: List<String>) :
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val tvContent: TextView
-        val rootView: LinearLayout
 
         init {
             tvContent = itemView.findViewById(R.id.tv_content) as TextView
-            rootView = itemView.findViewById(R.id.root_view) as LinearLayout
         }
 
     }

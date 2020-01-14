@@ -18,14 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity">
-            <intent-filter>
-                <action android:name="com.example.second" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".decrypt.DecryptActivity" />
-
+        <activity android:name=".design.CollapseActivity" />
+        <activity android:name=".lambda.LambdaActivity" />
+        <activity android:name=".view.StyleActivity" />
     </application>
 
 </manifest>

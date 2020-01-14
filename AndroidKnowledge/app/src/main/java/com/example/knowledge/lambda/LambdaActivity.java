@@ -1,4 +1,4 @@
-package com.example.knowledge;
+package com.example.knowledge.lambda;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.knowledge.R;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,20 +17,13 @@ import java.util.List;
 
 public class LambdaActivity extends AppCompatActivity {
 
-    TextView textView;
     String TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        setContentView(R.layout.activity_lambda);
 
-            }
-        });
-        textView.setOnClickListener(v -> Toast.makeText(this, "this is lambda", Toast.LENGTH_SHORT).show());
 
         class ThreadOne extends Thread {
             @Override
