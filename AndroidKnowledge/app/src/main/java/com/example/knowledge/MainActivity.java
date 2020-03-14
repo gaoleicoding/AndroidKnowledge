@@ -2,7 +2,6 @@ package com.example.knowledge;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.knowledge.adapter.ItemAdapter;
+import com.example.knowledge.contentprovider.ProviderActivity;
 import com.example.knowledge.decrypt.DecryptActivity;
 import com.example.knowledge.design.CollapseActivity;
 import com.example.knowledge.lambda.LambdaActivity;
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     List<String> list = new ArrayList<>();
+    List<Class> activityList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         list.add("CollapseActivity（折叠布局）");
         list.add("LambdaActivity（Lambda语法）");
         list.add("StyleActivity（Style使用）");
+        list.add("ProviderActivity（ContentProvider使用）");
+        activityList.add(DecryptActivity.class);
+        activityList.add(CollapseActivity.class);
+        activityList.add(LambdaActivity.class);
+        activityList.add(StyleActivity.class);
+        activityList.add(ProviderActivity.class);
 
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -45,18 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         itemAdapter.setOnItemClickLitener(v -> {
             int position = recyclerview.getChildAdapterPosition(v);
-            if (position == 0) {
-                startActivity(new Intent(MainActivity.this, DecryptActivity.class));
-            }
-            if (position == 1) {
-                startActivity(new Intent(MainActivity.this, CollapseActivity.class));
-            }
-            if (position == 2) {
-                startActivity(new Intent(MainActivity.this, LambdaActivity.class));
-            }
-            if (position == 3) {
-                startActivity(new Intent(MainActivity.this, StyleActivity.class));
-            }
+            startActivity(new Intent(MainActivity.this, activityList.get(position)));
+
         });
     }
 
