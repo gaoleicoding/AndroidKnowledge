@@ -23,6 +23,7 @@
         <activity android:name=".lambda.LambdaActivity" />
         <activity android:name=".view.StyleActivity" />
         <activity android:name=".contentprovider.ProviderActivity" />
+        <activity android:name=".ninepatch.NinePatchActivity" />
         <provider
             android:name=".contentprovider.BookProvider"
             android:authorities="org.wangchenlong.book.provider"
