@@ -2,6 +2,7 @@ package com.example.knowledge;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         activityList.add(StyleActivity.class);
         activityList.add(ProviderActivity.class);
         activityList.add(NinePatchActivity.class);
-
+        Log.d("gaolei","111");
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(layoutManager);
