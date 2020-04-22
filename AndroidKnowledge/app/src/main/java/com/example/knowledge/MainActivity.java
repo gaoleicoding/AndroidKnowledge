@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<String> list = new ArrayList<>();
     List<Class> activityList = new ArrayList<>();
+    private int a=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
