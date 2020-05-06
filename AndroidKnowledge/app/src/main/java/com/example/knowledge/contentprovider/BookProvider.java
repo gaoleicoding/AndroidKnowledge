@@ -12,18 +12,14 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-/**
- * 书籍提供者
- * <p/>
- * Created by wangchenlong on 16/6/14.
- */
+
 public class BookProvider extends ContentProvider {
 
     private static final String TAG = "DEBUG-WCL: " + BookProvider.class.getSimpleName();
 
     public static final String AUTHORITY = "org.wangchenlong.book.provider"; // 与AndroidManifest保持一致
-    public static final Uri BOOK_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/book");
-    public static final Uri USER_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/user");
+    public static final Uri BOOK_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/"+DBHelper.BOOK_TABLE_NAME);
+    public static final Uri USER_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/"+DBHelper.USER_TABLE_NAME);
 
     public static final int BOOK_URI_CODE = 0;
     public static final int USER_URI_CODE = 1;
@@ -32,8 +28,8 @@ public class BookProvider extends ContentProvider {
 
     // 关联Uri和Uri_Code
     static {
-        sUriMatcher.addURI(AUTHORITY, "book", BOOK_URI_CODE);
-        sUriMatcher.addURI(AUTHORITY, "user", USER_URI_CODE);
+        sUriMatcher.addURI(AUTHORITY, DBHelper.BOOK_TABLE_NAME, BOOK_URI_CODE);
+        sUriMatcher.addURI(AUTHORITY, DBHelper.USER_TABLE_NAME, USER_URI_CODE);
     }
 
     private Context mContext;
@@ -50,14 +46,14 @@ public class BookProvider extends ContentProvider {
     }
 
     private void initProviderData() {
-        mDb = new DbOpenHelper(mContext).getWritableDatabase();
-        mDb.execSQL("delete from " + DbOpenHelper.BOOK_TABLE_NAME);
-        mDb.execSQL("delete from " + DbOpenHelper.USER_TABLE_NAME);
-        mDb.execSQL("insert into book values(3,'Android');");
-        mDb.execSQL("insert into book values(4, 'iOS');");
-        mDb.execSQL("insert into book values(5, 'HTML5');");
-        mDb.execSQL("insert into user values(1, 'Spike', 1);");
-        mDb.execSQL("insert into user values(2, 'Wang', 0);");
+        mDb = new DBHelper(mContext).getWritableDatabase();
+        mDb.execSQL("delete from " + DBHelper.BOOK_TABLE_NAME);
+        mDb.execSQL("delete from " + DBHelper.USER_TABLE_NAME);
+        mDb.execSQL("insert into " + DBHelper.BOOK_TABLE_NAME + " values(1,'Android');");
+        mDb.execSQL("insert into " + DBHelper.BOOK_TABLE_NAME + " values(2, 'iOS');");
+        mDb.execSQL("insert into " + DBHelper.BOOK_TABLE_NAME + " values(3, 'HTML5');");
+        mDb.execSQL("insert into " + DBHelper.USER_TABLE_NAME + " values(1, 'ZhaoYue', 1);");
+        mDb.execSQL("insert into " + DBHelper.USER_TABLE_NAME + " values(2, 'GaoLei', 0);");
     }
 
     @Nullable
@@ -71,7 +67,6 @@ public class BookProvider extends ContentProvider {
         return mDb.query(tableName, projection, selection, selectionArgs, null, null, sortOrder, null);
     }
 
-    @Nullable
     @Override
     public String getType(Uri uri) {
         showLogs("getType");
@@ -129,10 +124,10 @@ public class BookProvider extends ContentProvider {
         String tableName = null;
         switch (sUriMatcher.match(uri)) {
             case BOOK_URI_CODE:
-                tableName = DbOpenHelper.BOOK_TABLE_NAME;
+                tableName = DBHelper.BOOK_TABLE_NAME;
                 break;
             case USER_URI_CODE:
-                tableName = DbOpenHelper.USER_TABLE_NAME;
+                tableName = DBHelper.USER_TABLE_NAME;
                 break;
             default:
                 break;
@@ -141,6 +136,6 @@ public class BookProvider extends ContentProvider {
     }
 
     private void showLogs(String msg) {
-        Log.e(TAG, msg);
+        Log.d(TAG, msg);
     }
 }

@@ -46,4 +46,12 @@
         <item name="attr2">attr2 from xml_style</item>
         <item name="attr3">attr3 from xml_style</item>
     </style>
+
+    <style name="progressBar_custom_drawable" parent="@android:style/Widget.ProgressBar.Small">
+        <item name="android:indeterminateDrawable">@mipmap/ecgnc_icon_chat_sending</item>
+        <item name="android:minWidth">25dp</item>
+        <item name="android:minHeight">25dp</item>
+        <item name="android:maxWidth">60dp</item>
+        <item name="android:maxHeight">60dp</item>
+    </style>
 </resources>

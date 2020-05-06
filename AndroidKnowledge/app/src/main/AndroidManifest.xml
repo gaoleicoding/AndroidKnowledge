@@ -26,9 +26,7 @@
         <activity android:name=".ninepatch.NinePatchActivity" />
         <provider
             android:name=".contentprovider.BookProvider"
-            android:authorities="org.wangchenlong.book.provider"
-            android:permission="org.wangchenlong.BOOK_PROVIDER"
-            android:process=":provider"/>
+            android:authorities="org.wangchenlong.book.provider"/>
 
     </application>
 

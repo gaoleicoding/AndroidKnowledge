@@ -6,24 +6,28 @@
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/bt_add_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="addBooks"
         android:text="添加书籍" />
 
     <Button
+        android:id="@+id/bt_update_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="updateBooks"
         android:text="更新书籍" />
 
     <Button
+        android:id="@+id/bt_del_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="deleteBooks"
         android:text="删除书籍" />
 
     <Button
+        android:id="@+id/bt_show_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showBooks"
@@ -37,6 +41,7 @@
         tools:text="数据" />
 
     <Button
+        android:id="@+id/bt_show_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showUsers"
