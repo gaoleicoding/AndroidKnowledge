@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        list.add("SecondActivity（测试）");
         list.add("EncryptActivity（加解密）");
         list.add("CollapseActivity（折叠布局）");
         list.add("LambdaActivity（Lambda语法）");
         list.add("StyleActivity（Style使用）");
         list.add("ProviderActivity（ContentProvider使用）");
         list.add("NinePatchActivity（.9图片的使用）");
+        activityList.add(SecondActivity.class);
         activityList.add(DecryptActivity.class);
         activityList.add(CollapseActivity.class);
         activityList.add(LambdaActivity.class);
