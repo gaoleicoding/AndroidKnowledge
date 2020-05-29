@@ -14,6 +14,7 @@ import com.example.knowledge.decrypt.DecryptActivity;
 import com.example.knowledge.design.CollapseActivity;
 import com.example.knowledge.lambda.LambdaActivity;
 import com.example.knowledge.ninepatch.NinePatchActivity;
+import com.example.knowledge.recyclerview.RecyclerActivity;
 import com.example.knowledge.view.StyleActivity;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<String> list = new ArrayList<>();
     List<Class> activityList = new ArrayList<>();
-    private int a=0;
+    private int a = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("StyleActivity（Style使用）");
         list.add("ProviderActivity（ContentProvider使用）");
         list.add("NinePatchActivity（.9图片的使用）");
+        list.add("RecyclerViewActivity（RecyclerView的使用）");
         activityList.add(SecondActivity.class);
         activityList.add(DecryptActivity.class);
         activityList.add(CollapseActivity.class);
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         activityList.add(StyleActivity.class);
         activityList.add(ProviderActivity.class);
         activityList.add(NinePatchActivity.class);
+        activityList.add(RecyclerActivity.class);
 
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

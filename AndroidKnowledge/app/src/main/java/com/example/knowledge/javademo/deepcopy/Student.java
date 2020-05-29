@@ -1,4 +1,4 @@
-package com.example.knowledge.javatest.deepcopy;
+package com.example.knowledge.javademo.deepcopy;
 
 import java.io.Serializable;
 import java.util.List;
