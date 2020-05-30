@@ -5,14 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.example.knowledge.recyclerview.TestBean;
+import com.example.knowledge.recyclerview.Book;
+
 import java.util.List;
 
 
 public class DiffCallBack extends DiffUtil.Callback {
-    private List<TestBean> mOldDatas, mNewDatas;//看名字
+    private List<Book> mOldDatas, mNewDatas;//看名字
 
-    public DiffCallBack(List<TestBean> mOldDatas, List<TestBean> mNewDatas) {
+    public DiffCallBack(List<Book> mOldDatas, List<Book> mNewDatas) {
         this.mOldDatas = mOldDatas;
         this.mNewDatas = mNewDatas;
     }
@@ -69,13 +70,15 @@ public class DiffCallBack extends DiffUtil.Callback {
      */
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        TestBean beanOld = mOldDatas.get(oldItemPosition);
-        TestBean beanNew = mNewDatas.get(newItemPosition);
+        Book beanOld = mOldDatas.get(oldItemPosition);
+        Book beanNew = mNewDatas.get(newItemPosition);
+
+        //如果有内容不同，就返回false
         if (!beanOld.getDesc().equals(beanNew.getDesc())) {
-            return false;//如果有内容不同，就返回false
+            return false;
         }
         if (beanOld.getPic() != beanNew.getPic()) {
-            return false;//如果有内容不同，就返回false
+            return false;
         }
         return true; //默认两个data内容是相同的
     }
@@ -108,23 +111,25 @@ public class DiffCallBack extends DiffUtil.Callback {
     @Override
     public Object getChangePayload(int oldItemPosition, int newItemPosition) {
         //实现这个方法 就能成为文艺青年中的文艺青年
-        // 定向刷新中的部分更新
-        // 效率最高
-        //只是没有了ItemChange的白光一闪动画，（反正我也觉得不太重要）
-        TestBean oldBean = mOldDatas.get(oldItemPosition);
-        TestBean newBean = mNewDatas.get(newItemPosition);
+        // 定向刷新中的部分更新， 效率最高
+        //没有了ItemChange的白光一闪动画
+        Book oldBean = mOldDatas.get(oldItemPosition);
+        Book newBean = mNewDatas.get(newItemPosition);
 
         //这里就不用比较核心字段了,一定相等
-        Bundle payload = new Bundle();
+        Bundle payloadBundle = new Bundle();
+        if (!oldBean.getName().equals(newBean.getName())) {
+            payloadBundle.putString("KEY_NAME", newBean.getName());
+        }
         if (!oldBean.getDesc().equals(newBean.getDesc())) {
-            payload.putString("KEY_DESC", newBean.getDesc());
+            payloadBundle.putString("KEY_DESC", newBean.getDesc());
         }
         if (oldBean.getPic() != newBean.getPic()) {
-            payload.putInt("KEY_PIC", newBean.getPic());
+            payloadBundle.putInt("KEY_PIC", newBean.getPic());
         }
-
-        if (payload.size() == 0)//如果没有变化 就传空
+        //如果没有变化 就传空
+        if (payloadBundle.size() == 0)
             return null;
-        return payload;//
+        return payloadBundle;
     }
 }
