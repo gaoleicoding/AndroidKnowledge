@@ -54,21 +54,6 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         //绑定到recyclerView上面
         itemTouchHelper.attachToRecyclerView(recyclerView);
-//        itemTouchHelper.startSwipe(mAdapter.viewHolder);
-
-        recyclerView.addOnItemTouchListener(new OnItemTouchListener(recyclerView) {
-            @Override
-            public void onItemClick(RecyclerView.ViewHolder vh) {
-
-            }
-
-            @Override
-            public void onItemLongPressClick(RecyclerView.ViewHolder vh) {
-                if (vh.getAdapterPosition() != 0) {
-                    itemTouchHelper.startDrag(vh);
-                }
-            }
-        });
 
     }
 
