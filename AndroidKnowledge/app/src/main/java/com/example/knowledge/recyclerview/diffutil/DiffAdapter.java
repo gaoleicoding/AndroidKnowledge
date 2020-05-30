@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
     private final static String TAG = "DiffAdapter";
     private List<Book> mDatas;
     private LayoutInflater mInflater;
+    public DiffViewHolder viewHolder;
 
     public DiffAdapter(Context mContext) {
         mInflater = LayoutInflater.from(mContext);
@@ -39,7 +41,7 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
 
     @Override
     public DiffViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new DiffViewHolder(mInflater.inflate(R.layout.item_book, parent, false));
+        return viewHolder = new DiffViewHolder(mInflater.inflate(R.layout.item_book, parent, false));
     }
 
     @Override
@@ -55,6 +57,16 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
                 bean.setSelected(!cb.isChecked());
             }
         });
+
+        //通过为条目设置点击事件触发回调
+        if (mOnItemClickLitener != null) {
+            holder.itemLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickLitener.onItemClick(view, position);
+                }
+            });
+        }
     }
 
     @Override
@@ -121,9 +133,11 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
         TextView tvTitle, tvDesc;
         ImageView ivBook;
         CheckBox checkBox;
+        RelativeLayout itemLayout;
 
         DiffViewHolder(View itemView) {
             super(itemView);
+            itemLayout = itemView.findViewById(R.id.item_layout);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvDesc = itemView.findViewById(R.id.tv_desc);
             ivBook = itemView.findViewById(R.id.iv_book);
@@ -173,4 +187,15 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
             }
         }
     };
+    private OnItemClickLitener mOnItemClickLitener;
+
+    //设置回调接口
+    public interface OnItemClickLitener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+        this.mOnItemClickLitener = mOnItemClickLitener;
+    }
+
 }

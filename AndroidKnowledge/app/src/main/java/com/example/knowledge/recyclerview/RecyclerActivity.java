@@ -3,8 +3,10 @@ package com.example.knowledge.recyclerview;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -31,14 +33,42 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         btnAdd.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
-
+        initData();
         recyclerView = findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new DiffAdapter(this);
         recyclerView.setAdapter(mAdapter);
+        mAdapter.setNewData(mDatas);
+        mAdapter.setOnItemClickLitener(new DiffAdapter.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (position < mDatas.size()) {
+                    Toast.makeText(RecyclerActivity.this, "position:" + position + " , name:" + mDatas.get(position).getName(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        ItemHelperCallBack callback = new ItemHelperCallBack();
+        callback.setmDatas(mDatas);
+        callback.setmAdapter(mAdapter);
+        //创建item helper
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        //绑定到recyclerView上面
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+//        itemTouchHelper.startSwipe(mAdapter.viewHolder);
 
-//        closeDefaultAnimator(recyclerView);
-        initData();
+        recyclerView.addOnItemTouchListener(new OnItemTouchListener(recyclerView) {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder vh) {
+
+            }
+
+            @Override
+            public void onItemLongPressClick(RecyclerView.ViewHolder vh) {
+                if (vh.getAdapterPosition() != 0) {
+                    itemTouchHelper.startDrag(vh);
+                }
+            }
+        });
 
     }
 
@@ -49,7 +79,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         mDatas.add(new Book("JAVA", "java", R.drawable.java));
         mDatas.add(new Book("C", "c", R.drawable.c));
         mDatas.add(new Book("Python", "python", R.drawable.python));
-        mAdapter.setNewData(mDatas);
+
 //        mDatas.add(new TestBean("H5", "h5", R.drawable.h5));
 //        mDatas.add(new TestBean("Game", "game", R.drawable.game));
 //        mDatas.add(new TestBean("AI", "ai", R.drawable.ai));
@@ -207,4 +237,6 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         mRvCustomer.getItemAnimator().setRemoveDuration(0);
         ((SimpleItemAnimator) mRvCustomer.getItemAnimator()).setSupportsChangeAnimations(false);
     }
+
+
 }
