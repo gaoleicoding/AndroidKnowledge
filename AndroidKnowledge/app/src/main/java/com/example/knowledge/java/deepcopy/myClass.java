@@ -1,4 +1,4 @@
-package com.example.knowledge.javademo.deepcopy;
+package com.example.knowledge.java.deepcopy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -1,4 +1,4 @@
-package com.example.knowledge.javademo.deepcopy;
+package com.example.knowledge.java.deepcopy;
 
 public class Address{
  
