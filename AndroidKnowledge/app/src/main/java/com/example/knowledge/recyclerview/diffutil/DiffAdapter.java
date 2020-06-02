@@ -15,17 +15,22 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.knowledge.R;
 import com.example.knowledge.recyclerview.Book;
 
 import java.util.List;
 
-public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder> {
+public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
     private final static String TAG = "DiffAdapter";
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_CONTENT = 1;
+    private static final int TYPE_FOOTER = 2;
     private List<Book> mDatas;
     private LayoutInflater mInflater;
-    public DiffViewHolder viewHolder;
+    private View mHeaderView;
+    private View mFooterView;
 
     public DiffAdapter(Context mContext) {
         mInflater = LayoutInflater.from(mContext);
@@ -39,61 +44,129 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
         return mDatas;
     }
 
-    @Override
-    public DiffViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return viewHolder = new DiffViewHolder(mInflater.inflate(R.layout.item_book, parent, false));
+    public View getHeaderView() {
+        return mHeaderView;
+    }
+
+    public void setHeaderView(View headerView) {
+        mHeaderView = headerView;
+    }
+
+    public View getFooterView() {
+        return mFooterView;
+    }
+
+    public void setFooterView(View footerView) {
+        mFooterView = footerView;
     }
 
     @Override
-    public void onBindViewHolder(final DiffViewHolder holder, final int position) {
-        Book bean = mDatas.get(position);
-        holder.tvTitle.setText(bean.getName());
-        holder.tvDesc.setText(bean.getDesc());
-        holder.ivBook.setImageResource(bean.getPic());
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CheckBox cb = (CheckBox) v;
-                bean.setSelected(!cb.isChecked());
-            }
-        });
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ViewHolder viewHolder = null;
+        switch (viewType) {
+            case TYPE_HEADER:
+                viewHolder = new HeaderViewHolder(mHeaderView);
+                break;
+            case TYPE_FOOTER:
+                viewHolder = new FooterViewHolder(mFooterView);
+                break;
+            case TYPE_CONTENT:
+                viewHolder = new ContentViewHolder(mInflater.inflate(R.layout.item_content, parent, false));
+                break;
+        }
+        return viewHolder;
+    }
 
-        //通过为条目设置点击事件触发回调
-        if (mOnItemClickLitener != null) {
-            holder.itemLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mOnItemClickLitener.onItemClick(view, position);
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        switch (holder.getItemViewType()) {
+            case TYPE_HEADER:
+                HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
+                headerViewHolder.ivHeader.setImageResource(R.drawable.header);
+                break;
+            case TYPE_FOOTER:
+                FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
+                footerViewHolder.tvFooter.setText(R.string.loading);
+                break;
+            case TYPE_CONTENT:
+                ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
+                Book bean = mDatas.get(mHeaderView != null ? position - 1 : position);
+                contentViewHolder.tvTitle.setText(bean.getName());
+                contentViewHolder.tvDesc.setText(bean.getDesc());
+                contentViewHolder.ivBook.setImageResource(bean.getPic());
+                contentViewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CheckBox cb = (CheckBox) v;
+                        bean.setSelected(!cb.isChecked());
+                    }
+                });
+
+                //通过为条目设置点击事件触发回调
+                if (mOnItemClickLitener != null) {
+                    contentViewHolder.itemLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mOnItemClickLitener.onItemClick(view, position);
+                        }
+                    });
                 }
-            });
+                break;
+        }
+
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
+        switch (holder.getItemViewType()) {
+            case TYPE_HEADER:
+                if (payloads.isEmpty()) {
+                    onBindViewHolder(holder, position);
+                }
+                break;
+            case TYPE_FOOTER:
+                if (payloads.isEmpty()) {
+                    onBindViewHolder(holder, position);
+                }
+                break;
+            case TYPE_CONTENT:
+                ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
+                if (payloads.isEmpty()) {
+                    onBindViewHolder(holder, position);
+                } else {
+                    //文艺青年中的文青
+                    //取出我们在DiffCallBack的getChangePayload() 或者 mAdapter.notifyItemChanged(position, payloadBundle)中的payloadBundle;
+                    Bundle payload = (Bundle) payloads.get(0);
+                    Book bean = mDatas.get(position);
+                    for (String key : payload.keySet()) {
+                        switch (key) {
+                            case "KEY_NAME":
+                                contentViewHolder.tvTitle.setText(bean.getName());
+                                break;
+                            case "KEY_DESC":
+                                contentViewHolder.tvDesc.setText(bean.getDesc());
+                                break;
+                            case "KEY_PIC":
+                                contentViewHolder.ivBook.setImageResource(payload.getInt(key));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                break;
         }
     }
 
     @Override
-    public void onBindViewHolder(DiffViewHolder holder, int position, List<Object> payloads) {
-        if (payloads.isEmpty()) {
-            onBindViewHolder(holder, position);
-        } else {
-            //文艺青年中的文青
-            //取出我们在DiffCallBack的getChangePayload() 或者 mAdapter.notifyItemChanged(position, payloadBundle)中的payloadBundle;
-            Bundle payload = (Bundle) payloads.get(0);
-            Book bean = mDatas.get(position);
-            for (String key : payload.keySet()) {
-                switch (key) {
-                    case "KEY_NAME":
-                        holder.tvTitle.setText(bean.getName());
-                        break;
-                    case "KEY_DESC":
-                        holder.tvDesc.setText(bean.getDesc());
-                        break;
-                    case "KEY_PIC":
-                        holder.ivBook.setImageResource(payload.getInt(key));
-                        break;
-                    default:
-                        break;
-                }
-            }
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return TYPE_HEADER;
         }
+        if (position == getItemCount() - 1) {
+            return TYPE_FOOTER;
+        }
+        return TYPE_CONTENT;
     }
 
     public void setNewData(@Nullable List<Book> datas) {
@@ -110,6 +183,7 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
 //        diffResult.dispatchUpdatesTo(this);
 //        mDatas = mNewDatas;
 
+        //子线程中计算diffResult，避免耗时操作影响主线程
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -126,22 +200,50 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
 
     @Override
     public int getItemCount() {
-        return mDatas != null ? mDatas.size() : 0;
+        if (mHeaderView != null && mFooterView != null) {
+            return mDatas.size() + 2;
+        } else if (mHeaderView != null) {
+            return mDatas.size() + 1;
+        } else if (mFooterView != null) {
+            return mDatas.size() + 1;
+        }
+        return mDatas.size();
+
     }
 
-    static class DiffViewHolder extends RecyclerView.ViewHolder {
+    static class ContentViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvDesc;
         ImageView ivBook;
         CheckBox checkBox;
         RelativeLayout itemLayout;
 
-        DiffViewHolder(View itemView) {
+        ContentViewHolder(View itemView) {
             super(itemView);
             itemLayout = itemView.findViewById(R.id.item_layout);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvDesc = itemView.findViewById(R.id.tv_desc);
             ivBook = itemView.findViewById(R.id.iv_book);
             checkBox = itemView.findViewById(R.id.checkbox);
+        }
+    }
+
+    static class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView ivHeader;
+
+        HeaderViewHolder(View itemView) {
+            super(itemView);
+            ivHeader = itemView.findViewById(R.id.iv_header);
+        }
+    }
+
+    static class FooterViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tvFooter;
+
+        FooterViewHolder(View itemView) {
+            super(itemView);
+            tvFooter = itemView.findViewById(R.id.tv_footer);
         }
     }
 
@@ -192,6 +294,7 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffViewHolder
     //设置回调接口
     public interface OnItemClickLitener {
         void onItemClick(View view, int position);
+
     }
 
     public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {

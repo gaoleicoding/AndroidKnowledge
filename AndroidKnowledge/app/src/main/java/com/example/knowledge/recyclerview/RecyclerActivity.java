@@ -1,6 +1,7 @@
 package com.example.knowledge.recyclerview;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -37,6 +38,9 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         recyclerView = findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new DiffAdapter(this);
+        //为RecyclerView添加HeaderView和FooterView
+        setHeaderView(recyclerView);
+        setFooterView(recyclerView);
         recyclerView.setAdapter(mAdapter);
         mAdapter.setNewData(mDatas);
         mAdapter.setOnItemClickLitener(new DiffAdapter.OnItemClickLitener() {
@@ -57,6 +61,16 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    private void setHeaderView(RecyclerView view) {
+        View header = LayoutInflater.from(this).inflate(R.layout.item_header, view, false);
+        mAdapter.setHeaderView(header);
+    }
+
+    private void setFooterView(RecyclerView view) {
+        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, view, false);
+        mAdapter.setFooterView(footer);
+    }
+
     private void initData() {
         mDatas = new ArrayList<>();
         mDatas.add(new Book("Android", "android", R.drawable.android));
@@ -75,18 +89,18 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add:
-                addData(mDatas.size() - 1);
-//                addByDiffUtil(mDatas.size());
+//                addData(mDatas.size() - 1);
+                addDataByDiffUtil(mDatas.size() - 1);
                 break;
             case R.id.delete:
-                removeData(mDatas.size() - 2);
-//                deleteByDiffUtil();
+//                removeData(mDatas.size() - 2);
+                removeDataByDiffUtil(mDatas.size() - 2);
                 break;
             case R.id.update:
                 updateData(0);
                 //updateDataByPayload(0);
 //                updateByDiffUtil(0);
-//                updateByDiffUtilAndPayload(0);
+                updateDataByDiffUtilAndPayload(0);
                 break;
         }
     }
@@ -114,6 +128,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         if (position < 0 || position >= mDatas.size()) return;
         mDatas.remove(position);
         mAdapter.notifyItemRemoved(position);
+        //将改动的position刷新一遍，从而再次取值时，不会再出现错乱现象。
+        mAdapter.notifyItemRangeChanged(position, mDatas.size() - 1);
     }
 
     int count = 1;
@@ -143,7 +159,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    public void addByDiffUtil(int position) {
+    public void addDataByDiffUtil(int position) {
         if (position < 0 || position >= mDatas.size()) return;
         try {
             List<Book> mNewDatas = new ArrayList<>();
@@ -153,13 +169,14 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
             Book testBean = new Book("PHP" + ++count, "php" + ++count, R.drawable.php);
             mNewDatas.add(position, testBean);
             mAdapter.setNewDiffData(mNewDatas);
+
             mDatas = mNewDatas;
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteByDiffUtil(int position) {
+    public void removeDataByDiffUtil(int position) {
         if (position < 0 || position >= mDatas.size()) return;
         try {
             List<Book> mNewDatas = new ArrayList<>();
@@ -174,7 +191,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void updateByDiffUtil(int position) {
+    public void updateDataByDiffUtil(int position) {
         if (position < 0 || position >= mDatas.size()) return;
         try {
             List<Book> mNewDatas = new ArrayList<>();
@@ -193,7 +210,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void updateByDiffUtilAndPayload(int position) {
+    public void updateDataByDiffUtilAndPayload(int position) {
         if (position < 0 || position >= mDatas.size()) return;
         try {
             List<Book> mNewDatas = new ArrayList<>();
