@@ -89,8 +89,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add:
-//                addData(mDatas.size() - 1);
-                addDataByDiffUtil(mDatas.size() - 1);
+                addData(mDatas.size() - 1);
+//                addDataByDiffUtil(mDatas.size() - 1);
                 break;
             case R.id.delete:
 //                removeData(mDatas.size() - 2);
