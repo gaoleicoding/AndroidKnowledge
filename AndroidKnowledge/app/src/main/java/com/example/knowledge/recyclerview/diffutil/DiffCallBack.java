@@ -56,7 +56,7 @@ public class DiffCallBack extends DiffUtil.Callback {
      * so that you can change its behavior depending on your UI.
      * 所以你可以根据你的UI去改变它的返回值
      * For example, if you are using DiffUtil with a
-     * {@link android.support.v7.widget.RecyclerView.Adapter RecyclerView.Adapter}, you should
+     * {@link androidx.recyclerview.widget.RecyclerView.Adapter RecyclerView.Adapter}, you should
      * return whether the items' visual representations are the same.
      * 例如，如果你用RecyclerView.Adapter 配合DiffUtil使用，你需要返回Item的视觉表现是否相同。
      * This method is called only if {@link #areItemsTheSame(int, int)} returns
@@ -91,13 +91,13 @@ public class DiffCallBack extends DiffUtil.Callback {
      * 当{@link #areItemsTheSame(int, int)} 返回true，且{@link #areContentsTheSame(int, int)} 返回false时，DiffUtils会回调此方法，
      * 去得到这个Item（有哪些）改变的payload。
      * <p>
-     * For example, if you are using DiffUtil with {@link RecyclerView}, you can return the
+     * For example, if you are using DiffUtil with {@link androidx.recyclerview.widget.RecyclerView}, you can return the
      * particular field that changed in the item and your
-     * {@link android.support.v7.widget.RecyclerView.ItemAnimator ItemAnimator} can use that
+     * {@link androidx.recyclerview.widget.RecyclerView.ItemAnimator ItemAnimator} can use that
      * information to run the correct animation.
      * <p>
      * 例如，如果你用RecyclerView配合DiffUtils，你可以返回  这个Item改变的那些字段，
-     * {@link android.support.v7.widget.RecyclerView.ItemAnimator ItemAnimator} 可以用那些信息去执行正确的动画
+     * {@link androidx.recyclerview.widget.RecyclerView.ItemAnimator ItemAnimator} 可以用那些信息去执行正确的动画
      * <p>
      * Default implementation returns {@code null}.\
      * 默认的实现是返回null

@@ -1,5 +1,6 @@
 package com.example.knowledge.recyclerview;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,9 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     private List<Book> mDatas;
     private DiffAdapter mAdapter;
     private Button btnAdd, btnDelete, btnUpdate;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private String[] bookArray, bookDesArray;
+    private int[] resIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemClick(View view, int position) {
                 if (position < mDatas.size()) {
-                    Toast.makeText(RecyclerActivity.this, "position:" + position + " , name:" + mDatas.get(position).getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecyclerActivity.this, "position:" + position + " , name:"
+                            + mDatas.get(position - mAdapter.getHeaderCount()).getName(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -63,25 +67,27 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
     private void setHeaderView(RecyclerView view) {
         View header = LayoutInflater.from(this).inflate(R.layout.item_header, view, false);
-        mAdapter.setHeaderView(header);
+        mAdapter.addHeaderView(header);
     }
 
     private void setFooterView(RecyclerView view) {
         View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, view, false);
-        mAdapter.setFooterView(footer);
+        mAdapter.addFooterView(footer);
     }
 
     private void initData() {
         mDatas = new ArrayList<>();
-        mDatas.add(new Book("Android", "android", R.drawable.android));
-        mDatas.add(new Book("IOS", "ios", R.drawable.ios));
-        mDatas.add(new Book("JAVA", "java", R.drawable.java));
-        mDatas.add(new Book("C", "c", R.drawable.c));
-        mDatas.add(new Book("Python", "python", R.drawable.python));
-
-//        mDatas.add(new TestBean("H5", "h5", R.drawable.h5));
-//        mDatas.add(new TestBean("Game", "game", R.drawable.game));
-//        mDatas.add(new TestBean("AI", "ai", R.drawable.ai));
+        bookArray = getResources().getStringArray(R.array.array_book);
+        bookDesArray = getResources().getStringArray(R.array.array_book_des);
+        TypedArray ar = getResources().obtainTypedArray(R.array.array_book_icon);
+        int len = ar.length();
+        resIds = new int[len];
+        for (int i = 0; i < len; i++) {
+            resIds[i] = ar.getResourceId(i, 0);//资源的id
+        }
+        for (int i = 0; i < 5; i++) {
+            mDatas.add(new Book(bookArray[i], bookDesArray[i], resIds[i]));
+        }
     }
 
 
@@ -89,25 +95,25 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add:
-                addData(mDatas.size() - 1);
-//                addDataByDiffUtil(mDatas.size() - 1);
+//                addData(mDatas.size() - 1);
+                addDataByDiffUtil(mDatas.size() - 1);
                 break;
             case R.id.delete:
 //                removeData(mDatas.size() - 2);
                 removeDataByDiffUtil(mDatas.size() - 2);
                 break;
             case R.id.update:
-                updateData(0);
-                //updateDataByPayload(0);
-//                updateByDiffUtil(0);
-                updateDataByDiffUtilAndPayload(0);
+//                updateData(1);
+//                updateDataByPayload(1);
+                updateDataByDiffUtil(1);
+//                updateDataByDiffUtilAndPayload(1);
                 break;
         }
     }
 
     public void addData(int position) {
         if (position < 0 || position >= mDatas.size()) return;
-        Book testBean = new Book("Unity" + ++count, "unity" + ++count, R.drawable.unity);
+        Book testBean = new Book(bookArray[6] + ++count, bookDesArray[6] + ++count, resIds[6]);
         mDatas.add(position, testBean);
         //通知演示插入动画
         mAdapter.notifyItemInserted(position);
@@ -120,8 +126,6 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
         //解决 如果数据确实添加了，就是没有将添加在position 位置的数据显示出来的问题
         //recyclerView.scrollToPosition(position);
-
-
     }
 
     public void removeData(int position) {
@@ -136,9 +140,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
     public void updateData(int position) {
         if (position < 0 || position >= mDatas.size()) return;
-        mDatas.get(position).setName("Game" + ++count);
-        mDatas.get(position).setDesc("game" + ++count);
-        mDatas.get(position).setPic(R.drawable.game);
+        Book book = mDatas.get(position);
+        book.setDesc("android_updateData" + ++count);
         //更新整个item
         mAdapter.notifyItemChanged(position);
 
@@ -151,7 +154,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
         Book book = mDatas.get(position);
         //模拟更新book的desc
-        book.setDesc("android_payload");
+        book.setDesc("android_updateDataByPayload" + ++count);
         //把更新放到Bundle中，可以不止一处
         Bundle payloadBundle = new Bundle();
         payloadBundle.putString("KEY_DESC", "android_updateDataByPayload");
@@ -166,7 +169,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
             for (Book bean : mDatas) {
                 mNewDatas.add(bean.clone());//clone一遍旧数据
             }
-            Book testBean = new Book("PHP" + ++count, "php" + ++count, R.drawable.php);
+            Book testBean = new Book(bookArray[7] + ++count, bookDesArray[7] + ++count, resIds[7]);
             mNewDatas.add(position, testBean);
             mAdapter.setNewDiffData(mNewDatas);
 
@@ -181,7 +184,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         try {
             List<Book> mNewDatas = new ArrayList<>();
             for (Book bean : mDatas) {
-                mNewDatas.add(bean.clone());//clone一遍旧数据
+                //深clone一遍旧数据
+                mNewDatas.add(bean.clone());
             }
             mNewDatas.remove(position);
             mAdapter.setNewDiffData(mNewDatas);
@@ -200,9 +204,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
                 mNewDatas.add(bean.clone());
             }
             Book testBean = mNewDatas.get(position);
-            testBean.setName("H5" + ++count);
-            testBean.setDesc("h5" + ++count);
-            testBean.setPic(R.drawable.h5);//模拟修改数据
+            //模拟修改数据
+            testBean.setDesc("android_updateDataByDiffUtil" + ++count);
             mAdapter.setNewDiffData(mNewDatas);
             mDatas = mNewDatas;
         } catch (Exception e) {
@@ -219,8 +222,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
                 mNewDatas.add(bean.clone());
             }
             Book testBean = mNewDatas.get(position);
-            testBean.setDesc("android_updateByDiffUtilAndPayload");//模拟修改数据
-//            testBean.setPic(R.drawable.wechat);
+            //模拟修改数据
+            testBean.setDesc("android_updateByDiffUtilAndPayload" + ++count);
             mAdapter.setNewDiffData(mNewDatas);
             mDatas = mNewDatas;
         } catch (Exception e) {

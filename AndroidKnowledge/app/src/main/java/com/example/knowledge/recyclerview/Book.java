@@ -1,5 +1,7 @@
 package com.example.knowledge.recyclerview;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * 介绍：一个普通的JavaBean，但是实现了clone方法，仅仅用于写Demo时，模拟刷新从网络获取数据用，
  * 因为使用DiffUtils比较新老数据集差异时，会遍历新老数据集的每个data，要确保他们的内存地址（指针）不一样，否则比较的是新老data是同一个，就一定相同，

@@ -26,6 +26,7 @@
         <activity android:name=".contentprovider.ProviderActivity" />
         <activity android:name=".ninepatch.NinePatchActivity" />
         <activity android:name=".recyclerview.RecyclerActivity" />
+        <activity android:name=".asynctask.AsyncActivity" />
 
         <provider
             android:name=".contentprovider.BookProvider"

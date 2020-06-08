@@ -5,4 +5,9 @@
     <color name="colorAccent">#8251DD</color>
     <color name="gray_status_bar">#ebcccccc</color>
     <color name="transparent">#00000000</color>
+    <color name="ecg_chatui_chat_message_time_tip_background">#9d9581</color>
+    <color name="ecg_chatui_chat_message_new_message_tip_text_color">#8b8576</color>
+    <color name="ecg_chatui_chat_message_send_text_color">#274214</color>
+    <color name="ecg_chatui_chat_message_receive_text_color">#4c442c</color>
+
 </resources>

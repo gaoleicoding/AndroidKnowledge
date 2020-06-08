@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.knowledge.adapter.ItemAdapter;
+import com.example.knowledge.asynctask.AsyncActivity;
 import com.example.knowledge.contentprovider.ProviderActivity;
 import com.example.knowledge.decrypt.DecryptActivity;
 import com.example.knowledge.design.CollapseActivity;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("ProviderActivity（ContentProvider使用）");
         list.add("NinePatchActivity（.9图片的使用）");
         list.add("RecyclerViewActivity（RecyclerView的使用）");
+        list.add("AsyncActivity（AsyncTask的使用）");
         activityList.add(SecondActivity.class);
         activityList.add(DecryptActivity.class);
         activityList.add(CollapseActivity.class);
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         activityList.add(ProviderActivity.class);
         activityList.add(NinePatchActivity.class);
         activityList.add(RecyclerActivity.class);
+        activityList.add(AsyncActivity.class);
 
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

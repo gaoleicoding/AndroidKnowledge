@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ecg_chatui_chat_new_message_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ecg_chatui_chat_message_time_margin_top"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/ecg_chatui_message_send_item_share_padding_right"
+        android:paddingRight="@dimen/ecg_chatui_message_send_item_share_padding_right"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ecg_chatui_new_message_line" />
+
+        <TextView
+            android:id="@+id/ecg_chatui_chat_new_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/ecg_chatui_chat_message_new_message_tip_text_color"
+            android:textSize="12sp"
+            tools:text="below are new message" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ecg_chatui_new_message_line" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ecg_chatui_chat_message_time_tip"
+        style="@style/EcgChatUiChatMessageTimeTipStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/ecg_chatui_chat_message_time_margin_top"
+        android:visibility="gone"
+        tools:text="24:00"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ecg_chatui_chat_message_margin"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/ecg_chatui_message_receive_item_padding_left"
+        android:paddingRight="@dimen/ecg_chatui_message_receive_item_padding_right">
+
+        <include layout="@layout/ecg_chatui_avatar_layout" />
+
+        <LinearLayout
+            android:id="@+id/ecg_chatui_chat_message_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/ecg_chatui_message_content_padding">
+
+            <include
+                android:id="@+id/ecg_chatui_chat_message_title"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="@dimen/ecg_chatui_chat_user_name_paddingTop"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ecg_chatui_message_item_title_margin" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ecg_chatui_message_content_padding_top"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ecg_chatui_chat_message_content_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ecgnc_background_chat_bubble_left"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ecg_chatui_chat_message_content"
+                        style="@style/EcgChatUiChatMessageReceiveContentStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ecg_chatui_chat_message_receive_content_paddingLeft"
+                        android:layout_marginTop="@dimen/ecg_chatui_chat_message_receive_content_paddingTop"
+                        android:layout_marginRight="@dimen/ecg_chatui_chat_message_receive_content_paddingRight"
+                        android:layout_marginBottom="@dimen/ecg_chatui_chat_message_receive_content_paddingBottom"
+                        android:autoLink="none"
+                        android:duplicateParentState="true"
+                        tools:text="12345678900987654321234567890" />
+
+                    <TextView
+                        android:id="@+id/ecg_chatui_chat_message_content_tip"
+                        android:textSize="@dimen/ecg_chatui_chat_message_error_tip_text_size"
+                        android:textColor="@color/ecg_chatui_chat_message_time_tip_background"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:maxLines="1"
+                        android:layout_marginLeft="@dimen/ecg_chatui_chat_message_receive_content_paddingRight"
+                        android:layout_marginRight="@dimen/ecg_chatui_chat_message_receive_content_paddingRight"
+                        android:layout_marginBottom="@dimen/ecg_chatui_chat_message_receive_content_paddingBottom"
+                        android:autoLink="none"
+                        android:duplicateParentState="true"
+                        android:paddingTop="3dp"
+                        android:visibility="gone"
+                        tools:text="translated from chinese"
+                        tools:visibility="visible" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ecg_chatui_chat_message_translate"
+                    android:layout_width="@dimen/ecg_chatui_chat_message_state_size"
+                    android:layout_height="@dimen/ecg_chatui_chat_message_state_size"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/ecg_chatui_chat_adapter_translate_img_margin_left"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ecgnc_icon_translate_animation_btn"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

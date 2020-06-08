@@ -31,6 +31,8 @@ public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
     private LayoutInflater mInflater;
     private View mHeaderView;
     private View mFooterView;
+    private int headerCount = 0;
+    private int footerCount = 0;
 
     public DiffAdapter(Context mContext) {
         mInflater = LayoutInflater.from(mContext);
@@ -48,16 +50,22 @@ public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
         return mHeaderView;
     }
 
-    public void setHeaderView(View headerView) {
-        mHeaderView = headerView;
+    public void addHeaderView(View headerView) {
+        if (headerView != null) {
+            mHeaderView = headerView;
+            headerCount++;
+        }
     }
 
-    public View getFooterView() {
-        return mFooterView;
+    public void addFooterView(View footerView) {
+        if (footerView != null) {
+            mFooterView = footerView;
+            footerCount++;
+        }
     }
 
-    public void setFooterView(View footerView) {
-        mFooterView = footerView;
+    public int getHeaderCount() {
+        return headerCount;
     }
 
     @Override
@@ -257,6 +265,7 @@ public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
                     DiffUtil.DiffResult diffResult = (DiffUtil.DiffResult) msg.obj;
                     //利用DiffUtil.DiffResult对象的dispatchUpdatesTo（）方法，传入RecyclerView的Adapter，轻松成为文艺青年
                     diffResult.dispatchUpdatesTo(DiffAdapter.this);
+//                    diffResult.dispatchUpdatesTo(new BaseQuickAdapterListUpdateCallback(DiffAdapter.this));
 
                     //这种方法可以fix add 0 不滑动
                     /*diffResult.dispatchUpdatesTo(new ListUpdateCallback() {
