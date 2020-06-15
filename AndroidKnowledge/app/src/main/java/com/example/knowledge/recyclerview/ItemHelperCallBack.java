@@ -59,17 +59,17 @@ public class ItemHelperCallBack extends ItemTouchHelper.Callback {
         //拿到当前拖拽到的item的viewHolder
         int toPosition = target.getAdapterPosition();
         if (fromPosition < toPosition) {
-            for (int i = fromPosition; i < toPosition; i++) {
+            for (int i = fromPosition-mAdapter.getHeaderCount(); i < toPosition-mAdapter.getHeaderCount(); i++) {
                 Collections.swap(mDatas, i, i + 1);
             }
         } else {
-            for (int i = fromPosition; i > toPosition; i--) {
+            for (int i = fromPosition-mAdapter.getHeaderCount(); i > toPosition-mAdapter.getHeaderCount(); i--) {
                 Collections.swap(mDatas, i, i - 1);
             }
         }
         mAdapter.notifyItemMoved(fromPosition, toPosition);
         //将改动的position刷新一遍，从而再次取值时，不会再出现错乱现象。
-        mAdapter.notifyItemRangeChanged(Math.min(fromPosition, toPosition), Math.abs(fromPosition - toPosition) + 1);
+        mAdapter.notifyItemRangeChanged(Math.min(fromPosition, toPosition), mAdapter.getItemCount() - Math.min(fromPosition, toPosition) - mAdapter.getFooterCount());
         return true;
     }
 
@@ -80,11 +80,14 @@ public class ItemHelperCallBack extends ItemTouchHelper.Callback {
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         //这个主要是做左右滑动的回调
+
         int position = viewHolder.getAdapterPosition();
-        mAdapter.notifyItemRemoved(position);
-        mDatas.remove(position);
-        //将改动的position刷新一遍，从而再次取值时，不会再出现错乱现象。
-        mAdapter.notifyItemRangeChanged(position, mDatas.size() - 1);
+        if (position > mAdapter.getHeaderCount() - 1) {
+            mAdapter.notifyItemRemoved(position);
+            mDatas.remove(position - mAdapter.getHeaderCount());
+            //将改动的position刷新一遍，从而再次取值时，不会再出现错乱现象。
+            mAdapter.notifyItemRangeChanged(position, mAdapter.getItemCount() - position - mAdapter.getFooterCount());
+        }
     }
 
     /**

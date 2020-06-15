@@ -68,6 +68,10 @@ public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
         return headerCount;
     }
 
+    public int getFooterCount() {
+        return footerCount;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ViewHolder viewHolder = null;

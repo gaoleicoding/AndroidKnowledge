@@ -49,7 +49,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         mAdapter.setOnItemClickLitener(new DiffAdapter.OnItemClickLitener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (position < mDatas.size()) {
+                if (position - mAdapter.getHeaderCount() >= 0) {
                     Toast.makeText(RecyclerActivity.this, "position:" + position + " , name:"
                             + mDatas.get(position - mAdapter.getHeaderCount()).getName(), Toast.LENGTH_SHORT).show();
                 }
@@ -78,7 +78,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     private void initData() {
         mDatas = new ArrayList<>();
         bookArray = getResources().getStringArray(R.array.array_book);
-        bookDesArray = getResources().getStringArray(R.array.array_book_des);
+        bookDesArray = getResources().getStringArray(R.array.array_book_des_short);
         TypedArray ar = getResources().obtainTypedArray(R.array.array_book_icon);
         int len = ar.length();
         resIds = new int[len];
@@ -118,7 +118,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         //通知演示插入动画
         mAdapter.notifyItemInserted(position);
         //通知某一范围内的数据与界面重新绑定
-        mAdapter.notifyItemRangeChanged(position, mDatas.size() - position);
+        mAdapter.notifyItemRangeChanged(position, mDatas.size() - position - mAdapter.getFooterCount());
         //通知重新绑定所有数据与界面
         //mAdapter.notifyDataSetChanged();
         //通知重新绑定某一个Item的数据与界面
@@ -133,7 +133,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         mDatas.remove(position);
         mAdapter.notifyItemRemoved(position);
         //将改动的position刷新一遍，从而再次取值时，不会再出现错乱现象。
-        mAdapter.notifyItemRangeChanged(position, mDatas.size() - 1);
+        mAdapter.notifyItemRangeChanged(position, mDatas.size() - position - mAdapter.getFooterCount());
     }
 
     int count = 1;
