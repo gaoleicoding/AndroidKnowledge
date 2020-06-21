@@ -4,7 +4,9 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.example.knowledge.R;
+import com.example.knowledge.recyclerview.animator.FadeItemAnimator;
+import com.example.knowledge.recyclerview.animator.RotateItemAnimator;
+import com.example.knowledge.recyclerview.animator.ScaleItemAnimator;
+import com.example.knowledge.recyclerview.animator.SlideItemAnimator;
 import com.example.knowledge.recyclerview.diffutil.DiffAdapter;
 
 import java.util.ArrayList;
@@ -26,6 +32,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView recyclerView;
     private String[] bookArray, bookDesArray;
     private int[] resIds;
+    private Spinner mSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         btnAdd = findViewById(R.id.add);
         btnDelete = findViewById(R.id.delete);
         btnUpdate = findViewById(R.id.update);
+        mSpinner= findViewById(R.id.spinner);
+
         btnAdd.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
@@ -63,6 +72,30 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         //绑定到recyclerView上面
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        recyclerView.setItemAnimator(new FadeItemAnimator());
+                        break;
+                    case 1:
+                        recyclerView.setItemAnimator(new SlideItemAnimator());
+                        break;
+                    case 2:
+                        recyclerView.setItemAnimator(new RotateItemAnimator());
+                        break;
+                    case 3:
+                        recyclerView.setItemAnimator(new ScaleItemAnimator());
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void setHeaderView(RecyclerView view) {

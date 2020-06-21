@@ -66,4 +66,11 @@
         <item>@drawable/unity</item>
         <item>@drawable/php</item>
     </array>
+
+    <string-array name="anim_type">
+        <item>fade</item>
+        <item>slide </item>
+        <item>rotate</item>
+        <item>scale</item>
+    </string-array>
 </resources>
