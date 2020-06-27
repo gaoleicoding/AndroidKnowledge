@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
+import com.example.knowledge.recyclerview.itemdecoration.RVItemDecorationActivity;
 import com.example.knowledge.recyclerview.stagger.RVStaggerActivity;
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -23,6 +24,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     public void toRVStaggerActivity(View view) {
         startActivity(new Intent(this, RVStaggerActivity.class));
+    }
+
+    public void toRVItemDecorationActivity(View view) {
+        startActivity(new Intent(this, RVItemDecorationActivity.class));
     }
 
 }

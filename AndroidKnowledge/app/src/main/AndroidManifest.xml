@@ -31,8 +31,14 @@
         <activity android:name=".recyclerview.RVCrudActivity" />
         <activity android:name=".recyclerview.RecyclerViewActivity" />
         <activity android:name=".recyclerview.stagger.RVStaggerActivity" />
-        <activity android:name=".recyclerview.RVItemDecorationActivity" />
+        <activity android:name=".recyclerview.itemdecoration.RVItemDecorationActivity" />
         <activity android:name=".asynctask.AsyncActivity" />
+        <activity android:name=".recyclerview.itemdecoration.DividerActivity"></activity>
+        <activity android:name=".recyclerview.itemdecoration.ColorDividerActivity"></activity>
+        <activity android:name=".recyclerview.itemdecoration.TimelineActivity"></activity>
+        <activity android:name=".recyclerview.itemdecoration.BookRankActivity"></activity>
+        <activity android:name=".recyclerview.itemdecoration.HeaderActivity"></activity>
+        <activity android:name=".recyclerview.itemdecoration.StickyHeaderActivity"></activity>
 
         <provider
             android:name=".contentprovider.BookProvider"
