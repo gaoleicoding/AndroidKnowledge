@@ -1,50 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_main"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_operation"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f1f5f4">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <LinearLayout
-        android:id="@+id/ll_operation"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:onClick="toRVCrudActivity"
+        android:text="RVCrudActivity"
+        android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/add"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add" />
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toRVStaggerActivity"
+        android:text="RVStaggerActivity"
+        android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Delete" />
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RVItemDecorationActivity"
+        android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/update"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
 
-            android:layout_weight="1"
-            android:text="Update" />
+</LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:entries="@array/anim_type" />
-    </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/ll_operation" />
-
-</RelativeLayout>

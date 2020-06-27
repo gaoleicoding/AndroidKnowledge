@@ -25,7 +25,7 @@ import com.example.knowledge.recyclerview.diffutil.DiffAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerActivity extends AppCompatActivity implements View.OnClickListener {
+public class RVCrudActivity extends AppCompatActivity implements View.OnClickListener {
     private List<Book> mDatas;
     private DiffAdapter mAdapter;
     private Button btnAdd, btnDelete, btnUpdate;
@@ -37,17 +37,17 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler);
+        setContentView(R.layout.activity_rv_crud);
         btnAdd = findViewById(R.id.add);
         btnDelete = findViewById(R.id.delete);
         btnUpdate = findViewById(R.id.update);
-        mSpinner= findViewById(R.id.spinner);
+        mSpinner = findViewById(R.id.spinner);
 
         btnAdd.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
         initData();
-        recyclerView = findViewById(R.id.rv);
+        recyclerView = findViewById(R.id.rv_crud);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new DiffAdapter(this);
         //为RecyclerView添加HeaderView和FooterView
@@ -59,7 +59,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemClick(View view, int position) {
                 if (position - mAdapter.getHeaderCount() >= 0) {
-                    Toast.makeText(RecyclerActivity.this, "position:" + position + " , name:"
+                    Toast.makeText(RVCrudActivity.this, "position:" + position + " , name:"
                             + mDatas.get(position - mAdapter.getHeaderCount()).getName(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -275,6 +275,5 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         mRvCustomer.getItemAnimator().setRemoveDuration(0);
         ((SimpleItemAnimator) mRvCustomer.getItemAnimator()).setSupportsChangeAnimations(false);
     }
-
 
 }

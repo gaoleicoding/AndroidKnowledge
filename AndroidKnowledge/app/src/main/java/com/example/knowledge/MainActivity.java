@@ -15,7 +15,8 @@ import com.example.knowledge.decrypt.DecryptActivity;
 import com.example.knowledge.design.CollapseActivity;
 import com.example.knowledge.lambda.LambdaActivity;
 import com.example.knowledge.ninepatch.NinePatchActivity;
-import com.example.knowledge.recyclerview.RecyclerActivity;
+import com.example.knowledge.recyclerview.RVCrudActivity;
+import com.example.knowledge.recyclerview.RecyclerViewActivity;
 import com.example.knowledge.view.StyleActivity;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         activityList.add(StyleActivity.class);
         activityList.add(ProviderActivity.class);
         activityList.add(NinePatchActivity.class);
-        activityList.add(RecyclerActivity.class);
+        activityList.add(RecyclerViewActivity.class);
         activityList.add(AsyncActivity.class);
 
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
