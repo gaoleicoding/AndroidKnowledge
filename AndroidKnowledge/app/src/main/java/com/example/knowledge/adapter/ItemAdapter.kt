@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledge.R
 
 
-class ItemAdapter(private val ctx: Context, private val list: List<String>) :
+class ItemAdapter(private val ctx: Context, private val items: Array<String>) :
     RecyclerView.Adapter<ItemAdapter.MyViewHolder>(), View.OnClickListener {
 
     override fun onClick(v: View) {
@@ -29,7 +29,7 @@ class ItemAdapter(private val ctx: Context, private val list: List<String>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvContent.text = list.get(position)
+        holder.tvContent.text = items[position]
         if (mOnItemClickLitener != null) {
             holder.itemView.setOnClickListener(this);
         }
@@ -37,7 +37,7 @@ class ItemAdapter(private val ctx: Context, private val list: List<String>) :
 
 
     override fun getItemCount(): Int {
-        return list.size
+        return items.size
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

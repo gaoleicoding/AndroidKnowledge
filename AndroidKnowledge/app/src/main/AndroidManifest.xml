@@ -25,7 +25,6 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".design.CollapseActivity" />
         <activity android:name=".lambda.LambdaActivity" />
-        <activity android:name=".view.StyleActivity" />
         <activity android:name=".contentprovider.ProviderActivity" />
         <activity android:name=".ninepatch.NinePatchActivity" />
         <activity android:name=".recyclerview.RVCrudActivity" />

@@ -15,47 +15,35 @@ import com.example.knowledge.decrypt.DecryptActivity;
 import com.example.knowledge.design.CollapseActivity;
 import com.example.knowledge.lambda.LambdaActivity;
 import com.example.knowledge.ninepatch.NinePatchActivity;
-import com.example.knowledge.recyclerview.RVCrudActivity;
 import com.example.knowledge.recyclerview.RecyclerViewActivity;
-import com.example.knowledge.view.StyleActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    List<String> list = new ArrayList<>();
-    List<Class> activityList = new ArrayList<>();
+    String[] items = {
+            "SecondActivity（测试)",
+            "EncryptActivity（加解密）",
+            "CollapseActivity（折叠布局）",
+            "LambdaActivity（Lambda语法）",
+            "ProviderActivity（ContentProvider使用）",
+            "NinePatchActivity（.9图片的使用）",
+            "RecyclerViewActivity（RecyclerView的使用）",
+            "AsyncActivity（AsyncTask的使用）"
+    };
+    Class[] activities = {SecondActivity.class, DecryptActivity.class, CollapseActivity.class, LambdaActivity.class,
+            ProviderActivity.class, NinePatchActivity.class, RecyclerViewActivity.class, AsyncActivity.class};
     private int a = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        list.add("SecondActivity（测试）");
-        list.add("EncryptActivity（加解密）");
-        list.add("CollapseActivity（折叠布局）");
-        list.add("LambdaActivity（Lambda语法）");
-        list.add("StyleActivity（Style使用）");
-        list.add("ProviderActivity（ContentProvider使用）");
-        list.add("NinePatchActivity（.9图片的使用）");
-        list.add("RecyclerViewActivity（RecyclerView的使用）");
-        list.add("AsyncActivity（AsyncTask的使用）");
-        activityList.add(SecondActivity.class);
-        activityList.add(DecryptActivity.class);
-        activityList.add(CollapseActivity.class);
-        activityList.add(LambdaActivity.class);
-        activityList.add(StyleActivity.class);
-        activityList.add(ProviderActivity.class);
-        activityList.add(NinePatchActivity.class);
-        activityList.add(RecyclerViewActivity.class);
-        activityList.add(AsyncActivity.class);
+
 
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(layoutManager);
-        ItemAdapter itemAdapter = new ItemAdapter(this, list);
+        ItemAdapter itemAdapter = new ItemAdapter(this, items);
         recyclerview.setAdapter(itemAdapter);
         recyclerview.addItemDecoration(
                 new DividerItemDecoration(MainActivity.this,
@@ -65,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         itemAdapter.setOnItemClickLitener(v -> {
             int position = recyclerview.getChildAdapterPosition(v);
-            startActivity(new Intent(MainActivity.this, activityList.get(position)));
+            startActivity(new Intent(MainActivity.this, activities[position]));
 
         });
     }
