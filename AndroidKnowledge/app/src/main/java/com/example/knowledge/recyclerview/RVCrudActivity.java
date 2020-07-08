@@ -129,7 +129,7 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.add:
 //                addData(mDatas.size()-1 );
-                addDataByDiffUtil(mDatas.size());
+                addDataByDiffUtil(mDatas.size()-1);
                 break;
             case R.id.delete:
 //                removeData(mDatas.size() - 1);
