@@ -1,6 +1,7 @@
 package com.example.knowledge.contentprovider;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.UriMatcher;
@@ -18,8 +19,8 @@ public class BookProvider extends ContentProvider {
     private static final String TAG = "DEBUG-WCL: " + BookProvider.class.getSimpleName();
 
     public static final String AUTHORITY = "org.wangchenlong.book.provider"; // 与AndroidManifest保持一致
-    public static final Uri BOOK_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/"+DBHelper.BOOK_TABLE_NAME);
-    public static final Uri USER_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/"+DBHelper.USER_TABLE_NAME);
+    public static final Uri BOOK_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + DBHelper.BOOK_TABLE_NAME);
+    public static final Uri USER_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + DBHelper.USER_TABLE_NAME);
 
     public static final int BOOK_URI_CODE = 0;
     public static final int USER_URI_CODE = 1;
@@ -81,11 +82,16 @@ public class BookProvider extends ContentProvider {
         if (TextUtils.isEmpty(table)) {
             throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
-        mDb.insert(table, null, values);
-
-        // 插入数据后通知改变
-        mContext.getContentResolver().notifyChange(uri, null);
-        return null;
+        long id = -1;
+        id = mDb.insert(table, null, values);
+        Log.d(TAG, "insert - uri :" + uri.getPath() + "  id: " + id);
+        if (id >= 0) {
+            // 插入数据后通知改变
+            mContext.getContentResolver().notifyChange(uri, null);
+            return uri;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -116,7 +122,8 @@ public class BookProvider extends ContentProvider {
         if (row > 0) {
             mContext.getContentResolver().notifyChange(uri, null);
         }
-
+        Log.d(TAG, "update - uri :" + uri.getPath() + "  row: " + row);
+        Log.d(TAG, "update - uri :" + uri.getPath() + "  selection: " + selection);
         return row; // 返回更新的行数
     }
 

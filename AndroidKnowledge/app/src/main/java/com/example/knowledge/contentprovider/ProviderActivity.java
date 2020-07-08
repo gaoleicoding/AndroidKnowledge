@@ -36,10 +36,10 @@ public class ProviderActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_add_book:
-                DBManager.getInstance().addBooks();
+                DBManager.getInstance().batchAddBooks();
                 break;
             case R.id.bt_update_book:
-                DBManager.getInstance().updateBooks();
+                DBManager.getInstance().batchUpdateBooks();
                 break;
             case R.id.bt_del_book:
                 DBManager.getInstance().deleteBooks();

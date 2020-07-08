@@ -102,7 +102,7 @@ public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
                 break;
             case TYPE_CONTENT:
                 ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
-                Book bean = mDatas.get(mHeaderView != null ? position - 1 : position);
+                Book bean = mDatas.get(mHeaderView != null ? position - getHeaderCount() : position);
                 contentViewHolder.tvTitle.setText(bean.getName());
                 contentViewHolder.tvDesc.setText(bean.getDesc());
                 contentViewHolder.ivBook.setImageResource(bean.getPic());
@@ -149,7 +149,7 @@ public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
                     //文艺青年中的文青
                     //取出我们在DiffCallBack的getChangePayload() 或者 mAdapter.notifyItemChanged(position, payloadBundle)中的payloadBundle;
                     Bundle payload = (Bundle) payloads.get(0);
-                    Book bean = mDatas.get(position);
+                    Book bean = mDatas.get(position-getHeaderCount());
                     for (String key : payload.keySet()) {
                         switch (key) {
                             case "KEY_NAME":
@@ -268,8 +268,8 @@ public class DiffAdapter extends RecyclerView.Adapter<ViewHolder> {
                     //取出Result
                     DiffUtil.DiffResult diffResult = (DiffUtil.DiffResult) msg.obj;
                     //利用DiffUtil.DiffResult对象的dispatchUpdatesTo（）方法，传入RecyclerView的Adapter，轻松成为文艺青年
-                    diffResult.dispatchUpdatesTo(DiffAdapter.this);
-//                    diffResult.dispatchUpdatesTo(new BaseQuickAdapterListUpdateCallback(DiffAdapter.this));
+                    //            diffResult.dispatchUpdatesTo(DiffAdapter.this);
+                   diffResult.dispatchUpdatesTo(new BaseQuickAdapterListUpdateCallback(DiffAdapter.this));
 
                     //这种方法可以fix add 0 不滑动
                     /*diffResult.dispatchUpdatesTo(new ListUpdateCallback() {

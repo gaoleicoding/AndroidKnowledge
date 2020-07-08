@@ -1,11 +1,14 @@
 package com.example.knowledge.contentprovider;
 
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class DBManager {
@@ -43,6 +46,49 @@ public class DBManager {
             context.getContentResolver().insert(bookUri, values);
         } catch (Exception e) {
             Log.e(TAG, "addBooks-e:" + e);
+        }
+    }
+
+    public void batchAddBooks() {
+        try {
+            Uri bookUri = BookProvider.BOOK_CONTENT_URI;
+
+            ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+            for (int i = 4; i < 7; i++) {
+                ContentValues values = new ContentValues();
+                values.put("_id", i);
+                values.put("name", "batchAdd书籍 " + i);
+                ops.add(ContentProviderOperation.newInsert(bookUri)
+                        .withValues(values).build());
+            }
+            ContentProviderResult rs[] = context.getContentResolver().applyBatch(BookProvider.AUTHORITY, ops);
+            for (ContentProviderResult s : rs) {
+                Log.d(TAG, "batchAddBooks-s:" + s);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "batchAddBooks-e:" + e);
+        }
+    }
+
+    public void batchUpdateBooks() {
+        try {
+            Uri bookUri = BookProvider.BOOK_CONTENT_URI;
+
+            ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+            for (int i = 4; i < 7; i++) {
+                ContentValues values = new ContentValues();
+                values.put("name", "batchUpdate书籍 " + i);
+                ops.add(ContentProviderOperation.newUpdate(bookUri)
+                        .withSelection("_id=?",
+                                new String[]{i + ""})
+                        .withValues(values).build());
+            }
+            ContentProviderResult rs[] = context.getContentResolver().applyBatch(BookProvider.AUTHORITY, ops);
+            for (ContentProviderResult s : rs) {
+                Log.d(TAG, "batchUpdateBooks-s:" + s);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "batchUpdateBooks-e:" + e);
         }
     }
 

@@ -33,6 +33,7 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
     private String[] bookArray, bookDesArray;
     private int[] resIds;
     private Spinner mSpinner;
+    ItemHelperCallBack callback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
-        ItemHelperCallBack callback = new ItemHelperCallBack();
+        callback = new ItemHelperCallBack();
         callback.setmDatas(mDatas);
         callback.setmAdapter(mAdapter);
         //创建item helper
@@ -123,23 +124,22 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add:
-//                addData(mDatas.size() - 1);
-                addDataByDiffUtil(mDatas.size() - 1);
+//                addData(mDatas.size()-1 );
+                addDataByDiffUtil(mDatas.size());
                 break;
             case R.id.delete:
-//                removeData(mDatas.size() - 2);
-                removeDataByDiffUtil(mDatas.size() - 2);
+//                removeData(mDatas.size() - 1);
+                removeDataByDiffUtil(mDatas.size() - 1);
                 break;
             case R.id.update:
-//                updateData(1);
+//                updateData(0);
 //                updateDataByPayload(1);
-                updateDataByDiffUtil(1);
-//                updateDataByDiffUtilAndPayload(1);
+//                updateDataByDiffUtil(1);
+                updateDataByDiffUtilAndPayload(0);
                 break;
         }
     }
@@ -149,9 +149,9 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
         Book testBean = new Book(bookArray[6] + ++count, bookDesArray[6] + ++count, resIds[6]);
         mDatas.add(position, testBean);
         //通知演示插入动画
-        mAdapter.notifyItemInserted(position);
+        mAdapter.notifyItemInserted(position + mAdapter.getHeaderCount());
         //通知某一范围内的数据与界面重新绑定
-        mAdapter.notifyItemRangeChanged(position, mDatas.size() - position - mAdapter.getFooterCount());
+        mAdapter.notifyItemRangeChanged(position + mAdapter.getHeaderCount(), mDatas.size() - position);
         //通知重新绑定所有数据与界面
         //mAdapter.notifyDataSetChanged();
         //通知重新绑定某一个Item的数据与界面
@@ -166,7 +166,7 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
         mDatas.remove(position);
         mAdapter.notifyItemRemoved(position);
         //将改动的position刷新一遍，从而再次取值时，不会再出现错乱现象。
-        mAdapter.notifyItemRangeChanged(position, mDatas.size() - position - mAdapter.getFooterCount());
+        mAdapter.notifyItemRangeChanged(position + mAdapter.getHeaderCount(), mDatas.size() - position);
     }
 
     int count = 1;
@@ -176,23 +176,7 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
         Book book = mDatas.get(position);
         book.setDesc("android_updateData" + ++count);
         //更新整个item
-        mAdapter.notifyItemChanged(position);
-
-    }
-
-    public void updateDataByPayload(int position) {
-        if (position < 0 || position >= mDatas.size()) return;
-        //RecyclerView 可以去掉item刷新动画
-        //((DefaultItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-
-        Book book = mDatas.get(position);
-        //模拟更新book的desc
-        book.setDesc("android_updateDataByPayload" + ++count);
-        //把更新放到Bundle中，可以不止一处
-        Bundle payloadBundle = new Bundle();
-        payloadBundle.putString("KEY_DESC", "android_updateDataByPayload");
-        mAdapter.notifyItemChanged(position, payloadBundle);
-
+        mAdapter.notifyItemChanged(position + mAdapter.getHeaderCount());
     }
 
     public void addDataByDiffUtil(int position) {
@@ -202,11 +186,12 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
             for (Book bean : mDatas) {
                 mNewDatas.add(bean.clone());//clone一遍旧数据
             }
-            Book testBean = new Book(bookArray[7] + ++count, bookDesArray[7] + ++count, resIds[7]);
+            Book testBean = new Book(bookArray[5] + ++count, bookDesArray[5] + ++count, resIds[5]);
             mNewDatas.add(position, testBean);
             mAdapter.setNewDiffData(mNewDatas);
-
             mDatas = mNewDatas;
+            //这个一定要重新设置，因为又重新创建一个List<Book>
+            callback.setmDatas(mDatas);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -223,6 +208,8 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
             mNewDatas.remove(position);
             mAdapter.setNewDiffData(mNewDatas);
             mDatas = mNewDatas;
+            //这个一定要重新设置，因为又重新创建一个List<Book>
+            callback.setmDatas(mDatas);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -244,6 +231,22 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void updateDataByPayload(int position) {
+        if (position < 0 || position >= mDatas.size()) return;
+        //RecyclerView 可以去掉item刷新动画
+        //((DefaultItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+
+        Book book = mDatas.get(position);
+        //模拟更新book的desc
+        book.setDesc("android_updateDataByPayload" + ++count);
+        //把更新放到Bundle中，可以不止一处
+        Bundle payloadBundle = new Bundle();
+        payloadBundle.putString("KEY_DESC", "android_updateDataByPayload");
+        mAdapter.notifyItemChanged(position, payloadBundle);
+
     }
 
     public void updateDataByDiffUtilAndPayload(int position) {
