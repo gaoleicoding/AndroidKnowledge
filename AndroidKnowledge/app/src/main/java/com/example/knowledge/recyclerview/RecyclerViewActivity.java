@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
+import com.example.knowledge.recyclerview.flowlayout.ProductActivity;
 import com.example.knowledge.recyclerview.itemdecoration.RVItemDecorationActivity;
 import com.example.knowledge.recyclerview.stagger.RVStaggerActivity;
 
@@ -28,6 +29,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     public void toRVItemDecorationActivity(View view) {
         startActivity(new Intent(this, RVItemDecorationActivity.class));
+    }
+
+    public void toFlowLayoutActivity(View view) {
+        startActivity(new Intent(this, ProductActivity.class));
     }
 
 }
