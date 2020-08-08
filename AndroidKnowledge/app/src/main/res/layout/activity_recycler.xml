@@ -36,6 +36,20 @@
         android:text="FlowLayoutActivity"
         android:textAllCaps="false" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toSnapHelperActivity"
+        android:text="SnapHelperActivity"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toCardActivity"
+        android:text="CardActivity"
+        android:textAllCaps="false" />
+
 
 </LinearLayout>
 

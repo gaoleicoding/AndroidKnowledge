@@ -40,6 +40,8 @@
         <activity android:name=".recyclerview.itemdecoration.HeaderActivity" />
         <activity android:name=".recyclerview.itemdecoration.StickyHeaderActivity"/>
         <activity android:name=".recyclerview.flowlayout.ProductActivity"/>
+        <activity android:name=".recyclerview.snaphelper.SnapHelperActivity"/>
+        <activity android:name=".recyclerview.layoutmanager.CardActivity"/>
 
         <provider
             android:name=".contentprovider.BookProvider"

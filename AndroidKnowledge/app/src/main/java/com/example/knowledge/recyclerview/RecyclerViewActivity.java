@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.knowledge.R;
 import com.example.knowledge.recyclerview.flowlayout.ProductActivity;
 import com.example.knowledge.recyclerview.itemdecoration.RVItemDecorationActivity;
+import com.example.knowledge.recyclerview.layoutmanager.CardActivity;
+import com.example.knowledge.recyclerview.snaphelper.SnapHelperActivity;
 import com.example.knowledge.recyclerview.stagger.RVStaggerActivity;
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -33,6 +35,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     public void toFlowLayoutActivity(View view) {
         startActivity(new Intent(this, ProductActivity.class));
+    }
+
+    public void toSnapHelperActivity(View view) {
+        startActivity(new Intent(this, SnapHelperActivity.class));
+    }
+
+    public void toCardActivity(View view) {
+        startActivity(new Intent(this, CardActivity.class));
     }
 
 }
