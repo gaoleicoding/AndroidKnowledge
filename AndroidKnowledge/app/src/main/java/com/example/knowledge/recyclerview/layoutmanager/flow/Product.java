@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.flowlayout;
+package com.example.knowledge.recyclerview.layoutmanager.flow;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class Product {
     public List<Classify> classify;
 
-    static public class Classify {
+    public static  class Classify {
         public String title;
         List<Des> des;
 

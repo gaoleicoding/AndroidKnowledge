@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.flowlayout;
+package com.example.knowledge.recyclerview.layoutmanager.flow;
 
 import android.graphics.Rect;
 import android.util.Log;
@@ -35,7 +35,7 @@ public class FlowLayoutManager extends RecyclerView.LayoutManager {
     //计算显示的内容的高度
     protected int totalHeight = 0;
     private Row row = new Row();
-    private List<Row> lineRows = new ArrayList<>();
+    public List<Row> lineRows = new ArrayList<>();
 
     //保存所有的Item的上下左右的偏移量信息
     private SparseArray<Rect> allItemFrames = new SparseArray<>();

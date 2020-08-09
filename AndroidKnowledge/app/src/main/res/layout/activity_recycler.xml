@@ -50,6 +50,13 @@
         android:text="CardActivity"
         android:textAllCaps="false" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toPathActivity"
+        android:text="PathActivity"
+        android:textAllCaps="false" />
+
 
 </LinearLayout>
 

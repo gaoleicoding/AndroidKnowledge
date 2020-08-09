@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.layoutmanager;
+package com.example.knowledge.recyclerview.layoutmanager.card;
 
 import android.graphics.Canvas;
 import android.view.View;

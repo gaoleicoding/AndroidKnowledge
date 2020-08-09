@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.layoutmanager;
+package com.example.knowledge.recyclerview.layoutmanager.card;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -92,7 +92,7 @@ public class CardActivity extends AppCompatActivity {
     private class MyAdapter extends RecyclerView.Adapter {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_card_item, parent, false);
             return new MyViewHolder(view);
         }
 

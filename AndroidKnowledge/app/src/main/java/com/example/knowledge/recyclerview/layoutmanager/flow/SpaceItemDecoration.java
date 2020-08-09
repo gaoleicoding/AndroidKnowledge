@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.flowlayout;
+package com.example.knowledge.recyclerview.layoutmanager.flow;
 
 import android.graphics.Rect;
 import android.view.View;

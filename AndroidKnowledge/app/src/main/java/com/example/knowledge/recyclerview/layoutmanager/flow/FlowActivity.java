@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.flowlayout;
+package com.example.knowledge.recyclerview.layoutmanager.flow;
 
 import android.os.Bundle;
 
@@ -17,8 +17,8 @@ import java.util.List;
  * Created by xiangcheng on 17/9/26.
  */
 
-public class ProductActivity extends AppCompatActivity {
-    private static final String TAG = ProductActivity.class.getSimpleName();
+public class FlowActivity extends AppCompatActivity {
+    private static final String TAG = FlowActivity.class.getSimpleName();
     //    private TextView suspension;
     protected RecyclerView productView;
     protected List<Product.Classify> classifies = new ArrayList<>();

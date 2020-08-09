@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.flowlayout;
+package com.example.knowledge.recyclerview.layoutmanager.flow;
 
 import android.content.Context;
 import android.util.TypedValue;
@@ -78,7 +78,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyHolder(View.inflate(context, R.layout.flow_item, null));
+            return new MyHolder(View.inflate(context, R.layout.adapter_flow_item, null));
         }
 
         @Override
