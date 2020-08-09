@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CardActivity extends AppCompatActivity {
+public class CardLayoutManagerActivity extends AppCompatActivity {
 
     private List<Integer> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card);
+        setContentView(R.layout.activity_card_layout);
         initView();
         initData();
     }
@@ -57,12 +57,12 @@ public class CardActivity extends AppCompatActivity {
                 viewHolder.itemView.setAlpha(1f);
                 myHolder.dislikeImageView.setAlpha(0f);
                 myHolder.likeImageView.setAlpha(0f);
-                Toast.makeText(CardActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CardLayoutManagerActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSwipedClear() {
-                Toast.makeText(CardActivity.this, "data clear", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CardLayoutManagerActivity.this, "data clear", Toast.LENGTH_SHORT).show();
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {

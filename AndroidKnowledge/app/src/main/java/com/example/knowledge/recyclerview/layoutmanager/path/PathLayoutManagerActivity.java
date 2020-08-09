@@ -27,7 +27,7 @@ import java.util.Locale;
 /**
  * Created by wuyr on 18-5-21 下午11:25.
  */
-public class PathActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
+public class PathLayoutManagerActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
     private PathLayoutManager mPathLayoutManager;
     private CanvasView mTrackView, mCanvasView;
@@ -41,7 +41,7 @@ public class PathActivity extends AppCompatActivity implements CompoundButton.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_path);
+        setContentView(R.layout.activity_path_layout);
         initView();
     }
 

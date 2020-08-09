@@ -17,8 +17,8 @@ import java.util.List;
  * Created by xiangcheng on 17/9/26.
  */
 
-public class FlowActivity extends AppCompatActivity {
-    private static final String TAG = FlowActivity.class.getSimpleName();
+public class FlowLayoutManagerActivity extends AppCompatActivity {
+    private static final String TAG = FlowLayoutManagerActivity.class.getSimpleName();
     //    private TextView suspension;
     protected RecyclerView productView;
     protected List<Product.Classify> classifies = new ArrayList<>();
@@ -26,7 +26,7 @@ public class FlowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_flow_layout);
         productView = (RecyclerView) findViewById(R.id.product_view);
         productView.setLayoutManager(new LinearLayoutManager(this));
         productView.addItemDecoration(new SuspensionDecoration(this, classifies));

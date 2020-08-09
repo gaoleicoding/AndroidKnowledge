@@ -10,4 +10,8 @@
     <color name="ecg_chatui_chat_message_send_text_color">#274214</color>
     <color name="ecg_chatui_chat_message_receive_text_color">#4c442c</color>
 
+    <color name="load_success">#03a44e</color>
+    <color name="load_failure">#de0e26</color>
+    <color name="load">#f506d9</color>
+
 </resources>

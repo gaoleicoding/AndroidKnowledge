@@ -15,6 +15,8 @@ import com.example.knowledge.decrypt.DecryptActivity;
 import com.example.knowledge.design.CollapseActivity;
 import com.example.knowledge.lambda.LambdaActivity;
 import com.example.knowledge.ninepatch.NinePatchActivity;
+import com.example.knowledge.path.PathActivity;
+import com.example.knowledge.path.flower.PathMeasureFlowerActivity;
 import com.example.knowledge.recyclerview.RecyclerViewActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
             "ProviderActivity（ContentProvider使用）",
             "NinePatchActivity（.9图片的使用）",
             "RecyclerViewActivity（RecyclerView的使用）",
-            "AsyncActivity（AsyncTask的使用）"
+            "AsyncActivity（AsyncTask的使用）",
+            "Path（Path的使用）",
     };
     Class[] activities = {SecondActivity.class, DecryptActivity.class, CollapseActivity.class, LambdaActivity.class,
-            ProviderActivity.class, NinePatchActivity.class, RecyclerViewActivity.class, AsyncActivity.class};
+            ProviderActivity.class, NinePatchActivity.class, RecyclerViewActivity.class, AsyncActivity.class, PathActivity.class};
     private int a = 0;
 
     @Override
