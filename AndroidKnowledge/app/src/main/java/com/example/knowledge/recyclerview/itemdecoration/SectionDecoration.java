@@ -1,6 +1,8 @@
 package com.example.knowledge.recyclerview.itemdecoration;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -30,6 +32,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
     private Paint.FontMetrics mFontMetrics;
 
     private float mTextOffsetX;
+    private Bitmap bitmap;
 
     public SectionDecoration( Context context,GroupInfoCallback callback) {
         this.mCallback = callback;
@@ -47,7 +50,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.YELLOW);
-
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ecg_chatui_friend_at_divider);
     }
 
     @Override
@@ -88,10 +91,11 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
                     int right = parent.getWidth() - parent.getPaddingRight();
                     int bottom = view.getTop();
                     //绘制Header
-                    c.drawRect(left,top,right,bottom,mPaint);
-
+//                    c.drawRect(left,top,right,bottom,mPaint);
+                    Rect srcRect = new Rect(left, top, right, bottom);
+                    c.drawBitmap(bitmap, null, srcRect, null);
                     float titleX =  left + mTextOffsetX;
-                    float titleY =  bottom - mFontMetrics.descent;
+                    float titleY =  bottom - (bottom-top)/2-mFontMetrics.descent;
                     //绘制Title
                     c.drawText(groupinfo.getTitle(),titleX,titleY,mTextPaint);
                 }
