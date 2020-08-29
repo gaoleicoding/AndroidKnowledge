@@ -1,4 +1,4 @@
-package com.example.knowledge.path.status;
+package com.example.knowledge.path.progress;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
@@ -20,7 +20,7 @@ import com.example.knowledge.R;
  *
  */
 
-public class CustomStatusView extends View {
+public class ProgressView extends View {
 
     private int progressColor;    //进度颜色
     private int loadSuccessColor;    //成功的颜色
@@ -52,22 +52,22 @@ public class CustomStatusView extends View {
     private float failValueRight;
     private float failValueLeft;
 
-    public CustomStatusView(Context context) {
+    public ProgressView(Context context) {
         this(context, null);
     }
 
-    public CustomStatusView(Context context, AttributeSet attrs) {
+    public ProgressView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CustomStatusView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CustomStatusView, defStyleAttr, 0);
-        progressColor = array.getColor(R.styleable.CustomStatusView_progress_color, ContextCompat.getColor(context, R.color.colorPrimary));
-        loadSuccessColor = array.getColor(R.styleable.CustomStatusView_load_success_color, ContextCompat.getColor(context, R.color.load_success));
-        loadFailureColor = array.getColor(R.styleable.CustomStatusView_load_failure_color, ContextCompat.getColor(context, R.color.load_failure));
-        progressWidth = array.getDimension(R.styleable.CustomStatusView_progress_width, 6);
-        progressRadius = array.getDimension(R.styleable.CustomStatusView_progress_radius, 100);
+        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ProgressView, defStyleAttr, 0);
+        progressColor = array.getColor(R.styleable.ProgressView_progress_color, ContextCompat.getColor(context, R.color.colorPrimary));
+        loadSuccessColor = array.getColor(R.styleable.ProgressView_load_success_color, ContextCompat.getColor(context, R.color.load_success));
+        loadFailureColor = array.getColor(R.styleable.ProgressView_load_failure_color, ContextCompat.getColor(context, R.color.load_failure));
+        progressWidth = array.getDimension(R.styleable.ProgressView_progress_width, 6);
+        progressRadius = array.getDimension(R.styleable.ProgressView_progress_radius, 100);
         array.recycle();
 
         initPaint();

@@ -1,4 +1,4 @@
-package com.example.knowledge.path.status;
+package com.example.knowledge.path.progress;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.widget.Button;
 
 import com.example.knowledge.R;
 
-public class PathMeasureStatusActivity extends Activity implements View.OnClickListener {
+public class PathMeasureProgressActivity extends Activity implements View.OnClickListener {
 
-    private CustomStatusView customStatusView;
+    private ProgressView customStatusView;
 
     private Button btnSuccess;
     private Button btnFailure;
@@ -18,7 +18,7 @@ public class PathMeasureStatusActivity extends Activity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path_status);
-        customStatusView = (CustomStatusView) findViewById(R.id.as_status);
+        customStatusView = (ProgressView) findViewById(R.id.as_status);
         btnSuccess = (Button) findViewById(R.id.as_btn_success);
         btnFailure = (Button) findViewById(R.id.as_btn_failure);
 

@@ -1,4 +1,4 @@
-package com.example.knowledge.path.status;
+package com.example.knowledge.path.progress;
 
 /**
  *

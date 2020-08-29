@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
 import com.example.knowledge.recyclerview.itemdecoration.RVItemDecorationActivity;
+import com.example.knowledge.recyclerview.layoutmanager.LayoutManagerActivity;
 import com.example.knowledge.recyclerview.layoutmanager.card.CardLayoutManagerActivity;
 import com.example.knowledge.recyclerview.layoutmanager.flow.FlowLayoutManagerActivity;
 import com.example.knowledge.recyclerview.layoutmanager.path.PathLayoutManagerActivity;
@@ -34,20 +35,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
         startActivity(new Intent(this, RVItemDecorationActivity.class));
     }
 
-    public void toFlowLayoutActivity(View view) {
-        startActivity(new Intent(this, FlowLayoutManagerActivity.class));
-    }
-
     public void toSnapHelperActivity(View view) {
         startActivity(new Intent(this, SnapHelperActivity.class));
     }
 
-    public void toCardActivity(View view) {
-        startActivity(new Intent(this, CardLayoutManagerActivity.class));
+    public void toLayoutManagerActivity(View view) {
+        startActivity(new Intent(this, LayoutManagerActivity.class));
     }
 
-    public void toPathActivity(View view) {
-        startActivity(new Intent(this, PathLayoutManagerActivity.class));
-    }
 
 }

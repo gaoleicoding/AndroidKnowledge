@@ -15,7 +15,7 @@
         <attr name="radius" format="reference|dimension" />
     </declare-styleable>
     resources>
-    <declare-styleable name="CustomStatusView">
+    <declare-styleable name="ProgressView">
         <attr name="progress_color" format="color" />
         <attr name="progress_width" format="dimension" />
         <attr name="progress_radius" format="dimension" />

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
 import com.example.knowledge.path.flower.PathMeasureFlowerActivity;
-import com.example.knowledge.path.status.PathMeasureStatusActivity;
+import com.example.knowledge.path.progress.PathMeasureProgressActivity;
 import com.example.knowledge.path.waterwave.PathWaterWaveActivity;
 
 public class PathActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class PathActivity extends AppCompatActivity {
     }
 
     public void toPathStatusActivity(View view) {
-        startActivity(new Intent(this, PathMeasureStatusActivity.class));
+        startActivity(new Intent(this, PathMeasureProgressActivity.class));
     }
 
     public void toWaterWaveActivity(View view) {

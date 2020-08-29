@@ -39,13 +39,14 @@
         <activity android:name=".recyclerview.itemdecoration.BookRankActivity" />
         <activity android:name=".recyclerview.itemdecoration.HeaderActivity" />
         <activity android:name=".recyclerview.itemdecoration.StickyHeaderActivity" />
-        <activity android:name=".recyclerview.layoutmanager.flow.FlowLayoutManagerActivity" />
         <activity android:name=".recyclerview.snaphelper.SnapHelperActivity" />
+        <activity android:name=".recyclerview.layoutmanager.LayoutManagerActivity" />
         <activity android:name=".recyclerview.layoutmanager.card.CardLayoutManagerActivity" />
+        <activity android:name=".recyclerview.layoutmanager.flow.FlowLayoutManagerActivity" />
         <activity android:name=".recyclerview.layoutmanager.path.PathLayoutManagerActivity" />
         <activity android:name=".path.PathActivity" />
         <activity android:name=".path.flower.PathMeasureFlowerActivity" />
-        <activity android:name=".path.status.PathMeasureStatusActivity" />
+        <activity android:name=".path.progress.PathMeasureProgressActivity" />
         <activity android:name=".path.waterwave.PathWaterWaveActivity" />
 
         <provider
