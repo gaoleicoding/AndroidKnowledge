@@ -58,4 +58,13 @@ public class Book implements Cloneable {
         }
         return bean;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

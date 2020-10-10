@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.itemdecoration;
+package com.example.knowledge.recyclerview.decoration;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import com.example.knowledge.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorDividerActivity extends AppCompatActivity {
+public class DividerActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     List<String> data;
     TestAdapter mAdapter;
@@ -26,7 +26,7 @@ public class ColorDividerActivity extends AppCompatActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         layoutmanager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutmanager);
-        mRecyclerView.addItemDecoration(new ColorDividerItemDecoration());
+        mRecyclerView.addItemDecoration(new TestDividerItemDecoration());
     }
 
     private void initDatas() {

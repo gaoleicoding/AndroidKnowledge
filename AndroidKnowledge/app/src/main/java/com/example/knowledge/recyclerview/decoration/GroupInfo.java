@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.itemdecoration;
+package com.example.knowledge.recyclerview.decoration;
 
 /**
  * Created by frank on 2017/4/14.

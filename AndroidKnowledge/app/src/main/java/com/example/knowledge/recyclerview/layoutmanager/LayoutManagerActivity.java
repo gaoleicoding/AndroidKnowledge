@@ -7,13 +7,9 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
-import com.example.knowledge.recyclerview.RVCrudActivity;
-import com.example.knowledge.recyclerview.itemdecoration.RVItemDecorationActivity;
 import com.example.knowledge.recyclerview.layoutmanager.card.CardLayoutManagerActivity;
 import com.example.knowledge.recyclerview.layoutmanager.flow.FlowLayoutManagerActivity;
 import com.example.knowledge.recyclerview.layoutmanager.path.PathLayoutManagerActivity;
-import com.example.knowledge.recyclerview.snaphelper.SnapHelperActivity;
-import com.example.knowledge.recyclerview.stagger.RVStaggerActivity;
 
 public class LayoutManagerActivity extends AppCompatActivity {
 

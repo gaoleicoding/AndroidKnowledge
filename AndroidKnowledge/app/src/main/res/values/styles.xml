@@ -56,4 +56,8 @@
         <item name="android:maxHeight">60dp</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/popup_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_fade_out</item>
+    </style>
 </resources>

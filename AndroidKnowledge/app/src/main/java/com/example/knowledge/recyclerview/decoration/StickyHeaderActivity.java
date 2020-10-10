@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.itemdecoration;
+package com.example.knowledge.recyclerview.decoration;
 
 import android.os.Bundle;
 
@@ -11,15 +11,15 @@ import com.example.knowledge.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeaderActivity extends AppCompatActivity {
+public class StickyHeaderActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     List<String> data;
     TestAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_header);
-        mRecyclerView = (RecyclerView) findViewById(R.id.header_recyclerview);
+        setContentView(R.layout.activity_stickyheader);
+        mRecyclerView = (RecyclerView) findViewById(R.id.stickyheader_recyclerview);
 
         initDatas();
 
@@ -28,7 +28,7 @@ public class HeaderActivity extends AppCompatActivity {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         layoutmanager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutmanager);
-        SectionDecoration.GroupInfoCallback callback = new SectionDecoration.GroupInfoCallback() {
+        StickySectionDecoration.GroupInfoCallback callback = new StickySectionDecoration.GroupInfoCallback() {
             @Override
             public GroupInfo getGroupInfo(int position) {
 
@@ -39,11 +39,12 @@ public class HeaderActivity extends AppCompatActivity {
                 int groupId = position / 5;
                 int index = position % 5;
                 GroupInfo groupInfo = new GroupInfo(groupId,groupId+"");
+                groupInfo.setGroupLength(5);
                 groupInfo.setPosition(index);
                 return groupInfo;
             }
         };
-        mRecyclerView.addItemDecoration(new SectionDecoration(this,callback));
+        mRecyclerView.addItemDecoration(new StickySectionDecoration(this,callback));
     }
 
     /**初始化测试数据*/

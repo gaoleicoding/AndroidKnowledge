@@ -7,11 +7,9 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
-import com.example.knowledge.recyclerview.itemdecoration.RVItemDecorationActivity;
+import com.example.knowledge.recyclerview.decoration.RVItemDecorationActivity;
+import com.example.knowledge.recyclerview.horizontal.HorizontalRvActivity;
 import com.example.knowledge.recyclerview.layoutmanager.LayoutManagerActivity;
-import com.example.knowledge.recyclerview.layoutmanager.card.CardLayoutManagerActivity;
-import com.example.knowledge.recyclerview.layoutmanager.flow.FlowLayoutManagerActivity;
-import com.example.knowledge.recyclerview.layoutmanager.path.PathLayoutManagerActivity;
 import com.example.knowledge.recyclerview.snaphelper.SnapHelperActivity;
 import com.example.knowledge.recyclerview.stagger.RVStaggerActivity;
 
@@ -41,6 +39,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     public void toLayoutManagerActivity(View view) {
         startActivity(new Intent(this, LayoutManagerActivity.class));
+    }
+
+    public void toHorizontalRvActivity(View view) {
+        startActivity(new Intent(this, HorizontalRvActivity.class));
     }
 
 

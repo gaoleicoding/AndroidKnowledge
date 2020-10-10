@@ -9,7 +9,6 @@ public class SecondActivity extends AppCompatActivity {
 
     private String TAG = "SecondActivity";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +20,5 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-
-
 }

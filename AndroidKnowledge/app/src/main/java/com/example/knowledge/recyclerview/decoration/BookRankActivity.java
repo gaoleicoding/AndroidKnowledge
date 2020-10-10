@@ -1,4 +1,4 @@
-package com.example.knowledge.recyclerview.itemdecoration;
+package com.example.knowledge.recyclerview.decoration;
 
 import android.os.Bundle;
 

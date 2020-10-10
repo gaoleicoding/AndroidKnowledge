@@ -4,17 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledge.R
 
 
 class ItemAdapter(private val ctx: Context, private val items: Array<String>) :
-    RecyclerView.Adapter<ItemAdapter.MyViewHolder>(), View.OnClickListener {
-
-    override fun onClick(v: View) {
-        mOnItemClickLitener?.onItemClick(v)
-    }
+        RecyclerView.Adapter<ItemAdapter.MyViewHolder>() {
 
     fun setOnItemClickLitener(mOnItemClickLitener: OnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener
@@ -30,24 +27,24 @@ class ItemAdapter(private val ctx: Context, private val items: Array<String>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.tvContent.text = items[position]
-        if (mOnItemClickLitener != null) {
-            holder.itemView.setOnClickListener(this);
-        }
     }
-
 
     override fun getItemCount(): Int {
         return items.size
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val tvContent: TextView
+        var rootView: LinearLayout
 
         init {
             tvContent = itemView.findViewById(R.id.tv_content) as TextView
+            rootView = itemView.findViewById(R.id.root_view) as LinearLayout
+            rootView.setOnClickListener {
+                mOnItemClickLitener?.onItemClick(rootView)
+            };
         }
-
     }
 
     interface OnItemClickLitener {
