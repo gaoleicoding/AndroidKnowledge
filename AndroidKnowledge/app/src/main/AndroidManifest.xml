@@ -50,6 +50,9 @@
         <activity android:name=".path.progress.PathMeasureProgressActivity" />
         <activity android:name=".path.waterwave.PathWaterWaveActivity" />
         <activity android:name=".popupwindow.PopupActivity" />
+        <activity android:name=".optimize.OptimizeActivity" />
+        <activity android:name=".optimize.LeakActivity" />
+        <activity android:name=".optimize.BlockActivity" />
 
         <provider
             android:name=".contentprovider.BookProvider"
