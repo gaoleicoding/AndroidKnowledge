@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledge.adapter.ItemAdapter
+import com.example.knowledge.annotation.AnnotationActivity
 import com.example.knowledge.asynctask.AsyncActivity
 import com.example.knowledge.contentprovider.ProviderActivity
 import com.example.knowledge.decrypt.DecryptActivity
@@ -31,10 +32,12 @@ class MainActivity : AppCompatActivity() {
             "AsyncActivity",
             "PathActivity",
             "PopupActivity",
-            "OptimizeActivity")
+            "OptimizeActivity",
+            "AnnotationActivity"
+    )
     var activities = arrayOf<Class<*>>(SecondActivity::class.java, DecryptActivity::class.java, CollapseActivity::class.java, LambdaActivity::class.java,
             ProviderActivity::class.java, NinePatchActivity::class.java, RecyclerViewActivity::class.java, AsyncActivity::class.java, PathActivity::class.java,
-            PopupActivity::class.java,OptimizeActivity::class.java)
+            PopupActivity::class.java,OptimizeActivity::class.java, AnnotationActivity::class.java)
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

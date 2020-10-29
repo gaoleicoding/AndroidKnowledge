@@ -19,5 +19,8 @@ public class EqualDemo {
 
         System.out.println("isEqual:" + isEqual);
         System.out.println("isContain:" + isContain);
+
+        String content3 = "一二三四五六七八九十{0} 1234567890{2}，你被盟主升级到等级{1}";
+
     }
 }

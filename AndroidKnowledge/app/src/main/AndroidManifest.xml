@@ -53,6 +53,7 @@
         <activity android:name=".optimize.OptimizeActivity" />
         <activity android:name=".optimize.LeakActivity" />
         <activity android:name=".optimize.BlockActivity" />
+        <activity android:name=".annotation.AnnotationActivity" />
 
         <provider
             android:name=".contentprovider.BookProvider"
