@@ -22,8 +22,6 @@
     <string name="item_offset">item间距</string>
     <string name="auto_select_fraction">自动选中的落点</string>
     <string name="fixing_animation_duration">自动选中的动画时长</string>
-    <string name="cache_count_default_10">item缓存个数 (默认: 10个)(谨慎修改)</string>
-    <string name="apply">确定</string>
     <string name="scale_ratios_hint">平滑缩放(如:0.2,0.5(在路径50%处把item缩放到20%))</string>
     <string name="apply_scale_ratios">更新平滑缩放</string>
     <string name="path_not_set">请先设置路径！</string>

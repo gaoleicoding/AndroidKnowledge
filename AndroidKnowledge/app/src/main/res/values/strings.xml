@@ -24,37 +24,6 @@
         <item>php</item>
     </string-array>
 
-    <string-array name="array_book_des">
-        <item>
-            Android是一种基于Linux内核（不包含GNU组件）的自由及开放源代码的操作系统。主要使用于移动设备，如智能手机和平板电脑，由美国Google公司和开放手机联盟领导及开发。Android操作系统最初由Andy
-            Rubin开发，主要支持手机
-        </item>
-        <item>iOS是由苹果公司开发的移动操作系统 [1] 。苹果公司最早于2007年1月9日的Macworld大会上公布这个系统，最初是设计给iPhone使用的，后来陆续套用到iPod
-            touch、iPad上。iOS与苹果的macOS操作系统一样，属于类Unix的商业操作系统。原本这个系统名为iPhone OS，因为iPad，iPhone，iPod
-            touch都使用iPhone OS
-        </item>
-        <item>
-            Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程
-        </item>
-        <item>
-            C语言是一门面向过程的、抽象化的通用程序设计语言，广泛应用于底层开发。C语言能以简易的方式编译、处理低级存储器。C语言是仅产生少量的机器语言以及不需要任何运行环境支持便能运行的高效率程序设计语言。
-        </item>
-        <item>Python是一种跨平台的计算机程序设计语言。
-            是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。最初被设计用于编写自动化脚本(shell)，随着版本的不断更新和语言新功能的添加，越多被用于独立的、大型项目的开发。
-        </item>
-        <item>
-            HTML5是构建Web内容的一种语言描述方式。HTML5是互联网的下一代标准，是构建以及呈现互联网内容的一种语言方式．被认为是互联网的核心技术之一。HTML产生于1990年，1997年HTML4成为互联网标准，并广泛应用于互联网应用的开发。
-        </item>
-        <item>人工智能（Artificial Intelligence），英文缩写为AI。它是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学。
-        </item>
-        <item>Unity是由Unity
-            Technologies开发的一个让玩家轻松创建诸如三维视频游戏、建筑可视化、实时三维动画等类型互动内容的多平台的综合型游戏开发工具，是一个全面整合的专业游戏引擎。Unity类似于Director,Blender
-            game engine, Virtools 或 Torque Game Builder等利用交互的图型化开发环境为首要方式的软件。
-        </item>
-        <item>PHP即“超文本预处理器”，是一种通用开源脚本语言。PHP是在服务器端执行的脚本语言，与C语言类似，是常用的网站编程语言。PHP独特的语法混合了C、Java、Perl以及
-            PHP 自创的语法。利于学习，使用广泛，主要适用于Web开发领域。
-        </item>
-    </string-array>
     <array name="array_book_icon">
         <item>@drawable/android</item>
         <item>@drawable/ios</item>
@@ -95,8 +64,6 @@
     <string name="item_offset">item offset</string>
     <string name="auto_select_fraction">auto select fraction</string>
     <string name="fixing_animation_duration">fixing animation duration</string>
-    <string name="cache_count_default_10">cache count (default: 10)</string>
-    <string name="apply">apply</string>
     <string name="scale_ratios_hint">scale ratios (example: 0,0.5)</string>
     <string name="apply_scale_ratios">apply scale ratios</string>
     <string name="path_not_set">Path not set yet!</string>

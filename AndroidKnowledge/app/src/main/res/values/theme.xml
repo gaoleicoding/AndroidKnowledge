@@ -15,21 +15,9 @@
     <style name="AppThemeDefault" parent="AppTheme.Base" />
 
     <!-- 状态栏黑底白字 -->
-    <style name="AppThemeDark" parent="AppTheme.Base">
-        <item name="colorPrimaryDark">@color/startblue</item>
-    </style>
 
     <!-- 状态栏白字侵入 -->
-    <style name="TranslucentStatus" parent="AppTheme.Base">
-        <!--状态栏会显示成全透明的状态-->
-        <item name="android:windowTranslucentStatus">true</item>
-    </style>
 
     <!-- 5.0及以上6.0以下状态栏白字侵入；6.0及以上状态栏黑字侵入 -->
-    <style name="TranslucentLightStatus" parent="TranslucentStatus" />
-
-    <style name="FullScreen" parent="AppThemeDefault">
-        <item name="android:windowFullscreen">true</item>
-    </style>
 
 </resources>

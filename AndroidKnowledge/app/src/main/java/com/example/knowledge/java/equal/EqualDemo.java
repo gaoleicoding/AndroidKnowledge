@@ -2,8 +2,11 @@ package com.example.knowledge.java.equal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class EqualDemo {
+    private final static Map<Integer, String> lastMessageCache = new ConcurrentHashMap<>();
 
     public static void main(String args[]) {
         List<Book> bookList = new ArrayList<>();
@@ -21,6 +24,11 @@ public class EqualDemo {
         System.out.println("isContain:" + isContain);
 
         String content3 = "一二三四五六七八九十{0} 1234567890{2}，你被盟主升级到等级{1}";
+        putValue();
+    }
 
+    public static void putValue() {
+        lastMessageCache.put(1, "1");
+        System.out.println("lastMessageCache: "+lastMessageCache.toString());
     }
 }

@@ -7,8 +7,4 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="TranslucentLightStatus" parent="TranslucentStatus">
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
-
 </resources>
