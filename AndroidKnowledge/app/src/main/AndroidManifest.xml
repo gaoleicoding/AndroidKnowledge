@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".decrypt.DecryptActivity" />
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".SecondActivity"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".ThirdActivity" />
         <activity android:name=".design.CollapseActivity" />
         <activity android:name=".lambda.LambdaActivity" />
         <activity android:name=".contentprovider.ProviderActivity" />
@@ -50,9 +53,6 @@
         <activity android:name=".path.progress.PathMeasureProgressActivity" />
         <activity android:name=".path.waterwave.PathWaterWaveActivity" />
         <activity android:name=".popupwindow.PopupActivity" />
-        <activity android:name=".optimize.OptimizeActivity" />
-        <activity android:name=".optimize.LeakActivity" />
-        <activity android:name=".optimize.BlockActivity" />
         <activity android:name=".annotation.AnnotationActivity" />
 
         <provider

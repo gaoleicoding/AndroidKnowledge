@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:background="#ffcccc"
         android:gravity="center"
-        android:text="SecondActivity"
+        android:text="ThirdActivity"
         android:textSize="30sp" />
 
 

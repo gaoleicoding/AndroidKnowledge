@@ -2,6 +2,7 @@ package com.example.knowledge
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -37,10 +38,11 @@ class MainActivity : AppCompatActivity() {
     )
     var activities = arrayOf<Class<*>>(SecondActivity::class.java, DecryptActivity::class.java, CollapseActivity::class.java, LambdaActivity::class.java,
             ProviderActivity::class.java, NinePatchActivity::class.java, RecyclerViewActivity::class.java, AsyncActivity::class.java, PathActivity::class.java,
-            PopupActivity::class.java,OptimizeActivity::class.java, AnnotationActivity::class.java)
+            PopupActivity::class.java, OptimizeActivity::class.java, AnnotationActivity::class.java)
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("info", "MainActivity--onCreate()")
         setContentView(R.layout.activity_main)
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
         val layoutManager = LinearLayoutManager(this)
@@ -58,5 +60,39 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, activities[position]))
             }
         })
+    }
+
+    fun onSkip(view: View) {
+        startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("info", "MainActivity--onStart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("info", "MainActivity--onResumed()")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("info", "MainActivity--onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("info", "MainActivity--onStop()")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.i("info", "MainActivity--onRestart()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("info", "MainActivity--onDestroy()")
     }
 }

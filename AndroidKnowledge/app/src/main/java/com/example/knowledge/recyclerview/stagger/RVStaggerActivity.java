@@ -30,7 +30,6 @@ public class RVStaggerActivity extends AppCompatActivity {
         initData();
     }
 
-
     protected void initData() {
         recyclerView = findViewById(R.id.rv_stagger);
         recyclerAdapter = new StaggerAdapter(getData(), this);

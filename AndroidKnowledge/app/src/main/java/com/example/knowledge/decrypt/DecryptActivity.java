@@ -75,19 +75,6 @@ public class DecryptActivity extends BaseActivity {
         }
     }
 
-    private void decryptText() {
-        try {
-            tvDecryptedText.setText(decryptor
-                    .decryptData(SAMPLE_ALIAS, encryptor.getEncryption(), encryptor.getIv()));
-        } catch (UnrecoverableEntryException | NoSuchAlgorithmException |
-                KeyStoreException | NoSuchPaddingException |
-                IOException | InvalidKeyException e) {
-            Log.e(TAG, "decryptData() called with: " + e.getMessage(), e);
-        } catch (IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void encryptText() {
 
         try {
@@ -102,5 +89,19 @@ public class DecryptActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
+
+    private void decryptText() {
+        try {
+            tvDecryptedText.setText(decryptor
+                    .decryptData(SAMPLE_ALIAS, encryptor.getEncryption(), encryptor.getIv()));
+        } catch (UnrecoverableEntryException | NoSuchAlgorithmException |
+                KeyStoreException | NoSuchPaddingException |
+                IOException | InvalidKeyException e) {
+            Log.e(TAG, "decryptData() called with: " + e.getMessage(), e);
+        } catch (IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

@@ -23,6 +23,7 @@ import com.example.knowledge.recyclerview.animator.SlideItemAnimator;
 import com.example.knowledge.recyclerview.diffutil.DiffAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class RVCrudActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,11 +40,11 @@ public class RVCrudActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv_crud);
+
         btnAdd = findViewById(R.id.add);
         btnDelete = findViewById(R.id.delete);
         btnUpdate = findViewById(R.id.update);
         mSpinner = findViewById(R.id.spinner);
-
         btnAdd.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
