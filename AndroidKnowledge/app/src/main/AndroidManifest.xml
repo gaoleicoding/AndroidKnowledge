@@ -15,6 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeDefault"
         tools:ignore="GoogleAppIndexingWarning">
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.example.knowledge.utils.StartUpInitializer"
+                android:value="androidx.startup" />
+        </provider>
+        <provider
+            android:name=".utils.ContextProvider"
+            android:authorities="MyContentProvider"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".decrypt.DecryptActivity" />
+        <activity android:name=".cryptography.CryptoActivity" />
         <activity android:name=".SecondActivity"
             android:launchMode="singleTask"/>
         <activity

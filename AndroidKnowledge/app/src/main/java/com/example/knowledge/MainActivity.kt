@@ -12,11 +12,10 @@ import com.example.knowledge.adapter.ItemAdapter
 import com.example.knowledge.annotation.AnnotationActivity
 import com.example.knowledge.asynctask.AsyncActivity
 import com.example.knowledge.contentprovider.ProviderActivity
-import com.example.knowledge.decrypt.DecryptActivity
+import com.example.knowledge.cryptography.CryptoActivity
 import com.example.knowledge.design.CollapseActivity
 import com.example.knowledge.lambda.LambdaActivity
 import com.example.knowledge.ninepatch.NinePatchActivity
-import com.example.knowledge.optimize.OptimizeActivity
 import com.example.knowledge.path.PathActivity
 import com.example.knowledge.popupwindow.PopupActivity
 import com.example.knowledge.recyclerview.RecyclerViewActivity
@@ -33,12 +32,11 @@ class MainActivity : AppCompatActivity() {
             "AsyncActivity",
             "PathActivity",
             "PopupActivity",
-            "OptimizeActivity",
             "AnnotationActivity"
     )
-    var activities = arrayOf<Class<*>>(SecondActivity::class.java, DecryptActivity::class.java, CollapseActivity::class.java, LambdaActivity::class.java,
+    var activities = arrayOf<Class<*>>(SecondActivity::class.java, CryptoActivity::class.java, CollapseActivity::class.java, LambdaActivity::class.java,
             ProviderActivity::class.java, NinePatchActivity::class.java, RecyclerViewActivity::class.java, AsyncActivity::class.java, PathActivity::class.java,
-            PopupActivity::class.java, OptimizeActivity::class.java, AnnotationActivity::class.java)
+            PopupActivity::class.java,  AnnotationActivity::class.java)
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,37 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <EditText
         android:id="@+id/ed_text_to_encrypt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/tv_encrypted_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        tools:text="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_encrypt_aes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AES加密" />
+
+        <Button
+            android:id="@+id/btn_encrypt_rsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RSA加密" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_decrypt_aes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AES解密" />
+
+        <Button
+            android:id="@+id/btn_decrypt_rsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RSA解密" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_decrypted_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/btn_encrypt"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="加密"/>
-
-    <Button
-        android:id="@+id/btn_decrypt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="解密"/>
-
-
+        tools:text="2" />
 
 </LinearLayout>
