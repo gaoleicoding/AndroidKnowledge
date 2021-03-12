@@ -26,9 +26,9 @@
         </provider>
         <provider
             android:name=".utils.ContextProvider"
-            android:authorities="MyContentProvider"
+            android:authorities="${applicationId}.ContextProvider"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -38,11 +38,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".cryptography.CryptoActivity" />
-        <activity android:name=".SecondActivity"
-            android:launchMode="singleTask"/>
         <activity
-            android:name=".ThirdActivity" />
-        <activity android:name=".design.CollapseActivity" />
+            android:name=".SecondActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".ThirdActivity" />
         <activity android:name=".lambda.LambdaActivity" />
         <activity android:name=".contentprovider.ProviderActivity" />
         <activity android:name=".ninepatch.NinePatchActivity" />
@@ -63,16 +62,13 @@
         <activity android:name=".recyclerview.layoutmanager.flow.FlowLayoutManagerActivity" />
         <activity android:name=".recyclerview.layoutmanager.path.PathLayoutManagerActivity" />
         <activity android:name=".recyclerview.horizontal.HorizontalRvActivity" />
-        <activity android:name=".path.PathActivity" />
-        <activity android:name=".path.flower.PathMeasureFlowerActivity" />
-        <activity android:name=".path.progress.PathMeasureProgressActivity" />
-        <activity android:name=".path.waterwave.PathWaterWaveActivity" />
+
         <activity android:name=".popupwindow.PopupActivity" />
         <activity android:name=".annotation.AnnotationActivity" />
 
         <provider
             android:name=".contentprovider.BookProvider"
-            android:authorities="org.wangchenlong.book.provider" />
+            android:authorities="${applicationId}.BookProvider" />
 
     </application>
 

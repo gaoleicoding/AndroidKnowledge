@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.startup.Initializer;
 
+import com.tencent.mmkv.MMKV;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class StartUpInitializer implements Initializer<String> {
     public String create(@NonNull Context context) {
 
         this.context = context;
+        MMKV.initialize(context);
         return "StartUpInitializer";
     }
 

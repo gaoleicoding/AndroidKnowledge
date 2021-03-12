@@ -3,9 +3,12 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorAccent">#8251DD</color>
     <color name="gray_status_bar">#ebcccccc</color>
+    <color name="purple_assist_dark">#8251DD</color>
 
-    <color name="load_success">#03a44e</color>
-    <color name="load_failure">#de0e26</color>
-    <color name="load">#f506d9</color>
+    <color name="grey_level_1">#4A4A4A</color><!--深色-->
+
+    <color name="grey_level_7">#FFFFFF</color><!--纯白-->
+
+    <color name="white">@color/grey_level_7</color>
 
 </resources>

@@ -23,7 +23,7 @@ public class ContextProvider extends ContentProvider {
      */
     private static Context context;
 
-    public static Context getApplicationContext() {
+    public static Context getAppContext() {
         return context;
     }
 

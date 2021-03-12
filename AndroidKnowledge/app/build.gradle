@@ -60,6 +60,8 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.android.support:cardview-v7:30+'
     implementation 'com.wuyr:pathlayoutmanager:1.0.3'
+    implementation 'com.tencent:mmkv-static:1.2.6'
+
 }
 repositories {
     mavenCentral()
