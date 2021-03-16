@@ -20,7 +20,7 @@
             android:layout_weight="7"
             android:scaleType="fitXY"
             android:id="@+id/img"
-            android:background="@mipmap/a1"
+            android:background="@drawable/a1"
             android:layout_height="0dp" />
         <TextView
             android:layout_width="match_parent"

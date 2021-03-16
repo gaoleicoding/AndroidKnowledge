@@ -1,4 +1,5 @@
 <resources>
+    <string name="loading">loading...</string>
     <string name="app_name">安卓知识</string>
     <string name="success">成功</string>
     <string name="start_draw">画</string>

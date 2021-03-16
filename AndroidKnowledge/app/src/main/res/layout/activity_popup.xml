@@ -15,6 +15,6 @@
             android:layout_alignParentRight="true"
             android:paddingLeft="15dp"
             android:paddingRight="5dp"
-            android:src="@mipmap/actionbar_more_icon" />
+            android:src="@drawable/actionbar_more_icon" />
     </RelativeLayout>
 </RelativeLayout>

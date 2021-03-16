@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class SnapHelperActivity extends AppCompatActivity {
     private RecyclerView mRecycleview;
     private ArrayList<TestBean> mDatas;
-    private int[] imgs = {R.mipmap.a1, R.mipmap.a2, R.mipmap.a3, R.mipmap.a4, R.mipmap.a5, R.mipmap.a6};
+    private int[] imgs = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4, R.drawable.a5, R.drawable.a6};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

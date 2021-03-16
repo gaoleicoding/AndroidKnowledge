@@ -10,17 +10,20 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:onClick="onBack"
-        android:src="@mipmap/icon_back" />
+        android:src="@drawable/icon_back" />
 
     <TextView
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
-        android:background="#ffcccc"
         android:gravity="center"
         android:text="SecondActivity"
         android:textSize="30sp" />
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/title_text"
+        android:background="@color/color_d1d1d1" />
 </RelativeLayout>

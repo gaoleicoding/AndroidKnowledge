@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.knowledge.protobuf.ProtoBufActivity
 import com.example.knowledge.adapter.ItemAdapter
 import com.example.knowledge.annotation.AnnotationActivity
 import com.example.knowledge.asynctask.AsyncActivity
@@ -28,11 +29,12 @@ class MainActivity : AppCompatActivity() {
             "RecyclerViewActivity",
             "AsyncActivity",
             "PopupActivity",
-            "AnnotationActivity"
+            "AnnotationActivity",
+            "ProtoBufActivity"
     )
     var activities = arrayOf<Class<*>>(SecondActivity::class.java, CryptoActivity::class.java,  LambdaActivity::class.java,
             ProviderActivity::class.java, NinePatchActivity::class.java, RecyclerViewActivity::class.java, AsyncActivity::class.java,
-            PopupActivity::class.java, AnnotationActivity::class.java)
+            PopupActivity::class.java, AnnotationActivity::class.java, ProtoBufActivity::class.java)
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +58,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun onSkip(view: View) {
-        startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-    }
 
     override fun onStart() {
         super.onStart()

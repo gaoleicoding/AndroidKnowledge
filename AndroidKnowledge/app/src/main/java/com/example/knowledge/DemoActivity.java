@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import com.tencent.mmkv.MMKV;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -33,4 +35,5 @@ class DemoActivity extends Activity {
 //        int i=new Integer(0);
 
 //    }
+
 }

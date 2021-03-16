@@ -6,9 +6,6 @@
     <color name="purple_assist_dark">#8251DD</color>
 
     <color name="grey_level_1">#4A4A4A</color><!--深色-->
-
-    <color name="grey_level_7">#FFFFFF</color><!--纯白-->
-
-    <color name="white">@color/grey_level_7</color>
+    <color name="color_d1d1d1">#d1d1d1</color><!--深色-->
 
 </resources>

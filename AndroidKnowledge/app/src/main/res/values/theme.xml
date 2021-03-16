@@ -2,13 +2,13 @@
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <!--ActionBar背景色-->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@android:color/white</item>
         <!--状态栏颜色-->
         <item name="colorPrimaryDark">@color/gray_status_bar</item>
         <!--控制各个控件被选中时的颜色-->
         <item name="colorAccent">@color/purple_assist_dark</item>
         <!--页面背景色-->
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
     <!-- 5.0及以上6.0以下状态栏灰底白字；6.0及以上状态栏白底黑字 -->
