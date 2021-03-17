@@ -62,7 +62,7 @@ public class RSAEncryptUtil implements IEncrypt {
                     end.add(Calendar.YEAR, 1);
                     KeyPairGeneratorSpec spec = null;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        spec = new KeyPairGeneratorSpec.Builder(ContextProvider.getAppContext())
+                        spec = new KeyPairGeneratorSpec.Builder(ContextProvider.Companion.getAppContext())
                                 .setAlias(alias)
                                 .setSubject(new X500Principal("CN=Sample Name, O=Android Authority"))
                                 .setSerialNumber(BigInteger.ONE)

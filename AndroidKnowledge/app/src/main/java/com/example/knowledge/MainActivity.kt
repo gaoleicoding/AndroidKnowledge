@@ -8,16 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.knowledge.protobuf.ProtoBufActivity
 import com.example.knowledge.adapter.ItemAdapter
 import com.example.knowledge.annotation.AnnotationActivity
 import com.example.knowledge.asynctask.AsyncActivity
 import com.example.knowledge.contentprovider.ProviderActivity
 import com.example.knowledge.cryptography.CryptoActivity
+import com.example.knowledge.datastore.DataStoreActivity
 import com.example.knowledge.lambda.LambdaActivity
 import com.example.knowledge.ninepatch.NinePatchActivity
 import com.example.knowledge.popupwindow.PopupActivity
 import com.example.knowledge.recyclerview.RecyclerViewActivity
+import com.tencent.mmkv.MMKV
+
 
 class MainActivity : AppCompatActivity() {
     var items = arrayOf(
@@ -30,11 +32,11 @@ class MainActivity : AppCompatActivity() {
             "AsyncActivity",
             "PopupActivity",
             "AnnotationActivity",
-            "ProtoBufActivity"
+            "DataStoreActivity"
     )
-    var activities = arrayOf<Class<*>>(SecondActivity::class.java, CryptoActivity::class.java,  LambdaActivity::class.java,
+    var activities = arrayOf<Class<*>>(SecondActivity::class.java, CryptoActivity::class.java, LambdaActivity::class.java,
             ProviderActivity::class.java, NinePatchActivity::class.java, RecyclerViewActivity::class.java, AsyncActivity::class.java,
-            PopupActivity::class.java, AnnotationActivity::class.java, ProtoBufActivity::class.java)
+            PopupActivity::class.java, AnnotationActivity::class.java, DataStoreActivity::class.java)
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +58,16 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, activities[position]))
             }
         })
+
+        testMMKV()
     }
 
+
+    fun testMMKV() {
+        val mmkv = MMKV.mmkvWithID("TEST")
+        mmkv.encode("bool", true)
+        Log.i(TAG, "testMMKV--bool: " + mmkv.decodeBool("bool"))
+    }
 
     override fun onStart() {
         super.onStart()
@@ -87,5 +97,10 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i("info", "MainActivity--onDestroy()")
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
+
     }
 }

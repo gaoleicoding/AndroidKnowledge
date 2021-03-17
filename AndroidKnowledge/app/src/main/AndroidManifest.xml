@@ -62,7 +62,7 @@
         <activity android:name=".recyclerview.layoutmanager.flow.FlowLayoutManagerActivity" />
         <activity android:name=".recyclerview.layoutmanager.path.PathLayoutManagerActivity" />
         <activity android:name=".recyclerview.horizontal.HorizontalRvActivity" />
-        <activity android:name=".protobuf.ProtoBufActivity" />
+        <activity android:name=".datastore.DataStoreActivity" />
 
         <activity android:name=".popupwindow.PopupActivity" />
         <activity android:name=".annotation.AnnotationActivity" />

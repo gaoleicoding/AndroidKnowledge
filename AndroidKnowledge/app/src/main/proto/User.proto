@@ -1,7 +1,0 @@
-syntax = "proto2";
-option java_package = "com.example.knowledge";
-option java_outer_classname="UserProto";
-message User {
-    required int32 age  = 2; //年龄
-    required string name = 1;//姓名
-}
