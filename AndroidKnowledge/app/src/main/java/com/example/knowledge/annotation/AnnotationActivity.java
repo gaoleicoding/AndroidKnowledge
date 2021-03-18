@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
-import com.example.knowledge.java.deepcopy.Student;
+import com.gl.java.deepcopy.Student;
 
 /*
        @Nullable和NonNull(NotNull)
