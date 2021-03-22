@@ -163,7 +163,7 @@ public class DBManager {
                     User user = new User();
                     user.userId = cursor.getInt(0);
                     user.userName = cursor.getString(1);
-                    user.isMale = cursor.getInt(2) == 1;
+                    user.gender = cursor.getInt(2);
                     content.append(user.toString()).append("\n");
                     Log.d(TAG, "query user:" + user.toString());
                 }

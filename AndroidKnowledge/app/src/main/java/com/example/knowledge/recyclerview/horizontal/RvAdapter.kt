@@ -4,21 +4,24 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledge.R
-import kotlinx.android.synthetic.main.item_horizontal_rv.view.*
 
-class RvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RvAdapter : RecyclerView.Adapter<RvAdapter.MyViewHolder>() {
     private var mDataList = mutableListOf<String>()
     private lateinit var mContext: Context
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = mDataList[position]
-        holder.itemView.textView.text = data
+        holder.name.text = data
         holder.itemView.setOnClickListener {
             setOnItemClickListener(data)
         }
     }
+
 
     fun setData(dataList: List<String>) {
         mDataList.clear()
@@ -28,16 +31,22 @@ class RvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = mDataList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         mContext = parent.context
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_horizontal_rv, parent, false)
-        return ViewHolder(view)
+        return MyViewHolder(view)
     }
 
     private fun setOnItemClickListener(data: String) {
         Toast.makeText(mContext, data, Toast.LENGTH_SHORT).show()
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!)
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var name: TextView
+
+        init {
+            name = itemView.findViewById(R.id.name)
+        }
+    }
 
 }

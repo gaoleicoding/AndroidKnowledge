@@ -6,16 +6,16 @@ import android.os.Parcelable;
 public class User implements Parcelable {
     public int userId;
     public String userName;
-    public boolean isMale;
+    public int gender;
     public Book book;
 
     public User() {
     }
 
-    public User(int userId, String userName, boolean isMale) {
+    public User(int userId, String userName, int gender) {
         this.userId = userId;
         this.userName = userName;
-        this.isMale = isMale;
+        this.gender = gender;
     }
 
     public int describeContents() {
@@ -25,7 +25,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel out, int flags) {
         out.writeInt(userId);
         out.writeString(userName);
-        out.writeInt(isMale ? 1 : 0);
+        out.writeInt(gender);
         out.writeParcelable(book, 0);
     }
 
@@ -42,7 +42,7 @@ public class User implements Parcelable {
     private User(Parcel in) {
         userId = in.readInt();
         userName = in.readString();
-        isMale = in.readInt() == 1;
+        gender = in.readInt();
         book = in
                 .readParcelable(Thread.currentThread().getContextClassLoader());
     }
@@ -50,8 +50,8 @@ public class User implements Parcelable {
     @Override
     public String toString() {
         return String.format(
-                "[userId:%s, userName:%s, isMale:%s, book:{%s}]",
-                userId, userName, isMale, book);
+                "[userId:%s, userName:%s, gender:%s, book:{%s}]",
+                userId, userName, gender, book);
     }
 
 }

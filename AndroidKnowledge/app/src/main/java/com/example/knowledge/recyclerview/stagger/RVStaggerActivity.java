@@ -15,13 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.BindView;
 
 public class RVStaggerActivity extends AppCompatActivity {
-
-    RecyclerView recyclerView;
-
-    private StaggerAdapter recyclerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,8 +26,8 @@ public class RVStaggerActivity extends AppCompatActivity {
     }
 
     protected void initData() {
-        recyclerView = findViewById(R.id.rv_stagger);
-        recyclerAdapter = new StaggerAdapter(getData(), this);
+        RecyclerView recyclerView = findViewById(R.id.rv_stagger);
+        StaggerAdapter recyclerAdapter = new StaggerAdapter(getData(), this);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         //防止item交换位置
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);

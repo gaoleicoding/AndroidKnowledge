@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
-import com.gl.java.deepcopy.Student;
+import com.example.knowledge.contentprovider.User;
 
 /*
        @Nullable和NonNull(NotNull)
@@ -29,11 +29,11 @@ public class AnnotationActivity extends AppCompatActivity {
         get("gaolei");
     }
 
-    private void set(@NonNull Student student) {
+    private void set(@NonNull User student) {
         tvAnnotation.setText("gaolei");
     }
 
-    private @NonNull Student get( String name) {
+    private @NonNull User get( String name) {
         return null;
     }
 }

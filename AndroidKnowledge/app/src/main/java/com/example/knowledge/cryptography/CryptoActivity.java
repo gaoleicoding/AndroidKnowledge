@@ -10,21 +10,14 @@ import com.example.knowledge.MainActivity;
 import com.example.knowledge.R;
 import com.example.knowledge.cryptography.rsa.RSAEncryptUtil;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class CryptoActivity extends BaseActivity {
+public class CryptoActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    @BindView(R.id.ed_text_to_encrypt)
     EditText edTextToEncrypt;
 
-    @BindView(R.id.tv_encrypted_text)
     TextView tvEncryptedText;
 
-    @BindView(R.id.tv_decrypted_text)
     TextView tvDecryptedText;
 
     private CryptoFactory cryptoFactory;
@@ -33,13 +26,21 @@ public class CryptoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decrypt);
-        ButterKnife.bind(this);
+        edTextToEncrypt = findViewById(R.id.ed_text_to_encrypt);
+        tvEncryptedText = findViewById(R.id.tv_encrypted_text);
+        tvDecryptedText = findViewById(R.id.tv_decrypted_text);
+
+        findViewById(R.id.btn_encrypt_aes).setOnClickListener(this);
+        findViewById(R.id.btn_decrypt_aes).setOnClickListener(this);
+        findViewById(R.id.btn_encrypt_rsa).setOnClickListener(this);
+        findViewById(R.id.btn_decrypt_rsa).setOnClickListener(this);
+
         cryptoFactory = new CryptoFactory();
         IEncrypt iEncrypt = new RSAEncryptUtil();
         cryptoFactory.setStrategy(iEncrypt);
     }
 
-    @OnClick({R.id.btn_encrypt_aes, R.id.btn_decrypt_aes, R.id.btn_encrypt_rsa, R.id.btn_decrypt_rsa})
+    @Override
     public void onClick(final View view) {
 
         final int id = view.getId();
