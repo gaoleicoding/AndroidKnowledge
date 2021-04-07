@@ -8,4 +8,5 @@ internal class DemoActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rv_crud)
     }
+
 }
