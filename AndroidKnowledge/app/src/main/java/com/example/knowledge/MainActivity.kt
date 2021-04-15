@@ -1,6 +1,8 @@
 package com.example.knowledge
 
+import android.app.ActivityManager
 import android.content.Intent
+import android.os.Binder
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i("info", "MainActivity--onCreate()")
         setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main)
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
         val layoutManager = LinearLayoutManager(this)
         recyclerview.layoutManager = layoutManager
@@ -59,9 +62,26 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        testMMKV()
+        testBinder()
+//        testMMKV()
     }
 
+    fun testBinder() {
+        Log.d(TAG, "getCallingPid: " + Binder.getCallingPid())
+        Log.d(TAG, "getCallingUid: " + Binder.getCallingUid())
+        Log.d(TAG, "getProcessNanmeByPid: " + getProcessNanmeByPid(Binder.getCallingPid()))
+    }
+
+    fun getProcessNanmeByPid(pid: Int): String? {
+        val mActivityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        for (appProcess in mActivityManager
+                .runningAppProcesses) {
+            if (appProcess.pid == pid) {
+                return appProcess.processName
+            }
+        }
+        return null
+    }
 
     fun testMMKV() {
         val mmkv = MMKV.mmkvWithID("TEST")

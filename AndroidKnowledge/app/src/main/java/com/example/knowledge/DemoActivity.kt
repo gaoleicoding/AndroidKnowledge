@@ -6,7 +6,7 @@ import android.os.Bundle
 internal class DemoActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rv_crud)
+        setContentView(R.layout.activity_main)
     }
 
 }
