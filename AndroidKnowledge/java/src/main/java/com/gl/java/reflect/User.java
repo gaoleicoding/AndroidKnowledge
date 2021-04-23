@@ -1,13 +1,36 @@
 package com.gl.java.reflect;
 
-import java.util.Arrays;
-
 class User {
-    public static void method(String... strings) {
-        System.out.println(Arrays.toString(strings));
+
+    private String name;
+    private int age;
+
+    public User() {
+
     }
 
-    private void method(int... ints) {
-        System.out.println(Arrays.toString(ints));
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    private User(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
