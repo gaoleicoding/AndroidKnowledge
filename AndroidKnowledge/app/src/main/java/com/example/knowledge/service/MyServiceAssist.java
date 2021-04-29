@@ -9,8 +9,10 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-public class Myservice1 extends Service {
-    @Nullable
+public class MyServiceAssist extends Service {
+
+    private final String TAG = "MyServiceAssist";
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -20,13 +22,13 @@ public class Myservice1 extends Service {
     public void onCreate() {
         super.onCreate();
         startForeground(ServiceNotificationManager.NOTIFICATION_FOREGROUND_ID, ServiceNotificationManager.getNotification(this));
-        Log.d("Myservice1=======", "onCreate1");
+        Log.d(TAG, "onCreate1");
         stopSelf();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("Myservice1=======", "onStartCommand1");
+        Log.d(TAG, "onStartCommand1");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -38,6 +40,6 @@ public class Myservice1 extends Service {
         // 所以还要调用ServiceNotificationManager.removeNotification();
         ServiceNotificationManager.removeNotification();
         stopForeground(true);
-        Log.d("Myservice1=======", "onDestroy1");
+        Log.d(TAG, "onDestroy1");
     }
 }

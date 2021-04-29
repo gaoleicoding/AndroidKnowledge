@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!--service前台服务-->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -18,22 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeDefault"
         tools:ignore="GoogleAppIndexingWarning">
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            android:exported="false"
-            tools:node="merge">
-            <meta-data
-                android:name="com.example.knowledge.utils.StartUpInitializer"
-                android:value="androidx.startup" />
-        </provider>
-        <provider
-            android:name=".utils.ContextProvider"
-            android:authorities="${applicationId}.ContextProvider"
-            android:enabled="true"
-            android:exported="false" />
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,16 +55,32 @@
         <activity android:name=".recyclerview.horizontal.HorizontalRvActivity" />
         <activity android:name=".datastore.DataStoreActivity" />
         <activity android:name=".service.ServiceActivity" />
+        <activity android:name=".process.ProcessAliveActivity" />
 
         <activity android:name=".popupwindow.PopupActivity" />
         <activity android:name=".annotation.AnnotationActivity" />
 
         <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.example.knowledge.utils.StartUpInitializer"
+                android:value="androidx.startup" />
+        </provider>
+        <provider
+            android:name=".utils.ContextProvider"
+            android:authorities="${applicationId}.ContextProvider"
+            android:enabled="true"
+            android:exported="false" />
+        <provider
             android:name=".contentprovider.BookProvider"
-            android:authorities="${applicationId}.BookProvider" />
+            android:authorities="${applicationId}.BookProvider"
+            android:exported="false" />
 
-        <service android:name=".service.Myservice" />
-        <service android:name=".service.Myservice1" />
+        <service android:name=".service.MyService" />
+        <service android:name=".service.MyServiceAssist" />
     </application>
 
 </manifest>

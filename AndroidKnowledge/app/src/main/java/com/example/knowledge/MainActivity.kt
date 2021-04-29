@@ -19,6 +19,7 @@ import com.example.knowledge.datastore.DataStoreActivity
 import com.example.knowledge.lambda.LambdaActivity
 import com.example.knowledge.ninepatch.NinePatchActivity
 import com.example.knowledge.popupwindow.PopupActivity
+import com.example.knowledge.process.ProcessAliveActivity
 import com.example.knowledge.recyclerview.RecyclerViewActivity
 import com.example.knowledge.service.ServiceActivity
 import com.tencent.mmkv.MMKV
@@ -36,11 +37,13 @@ class MainActivity : AppCompatActivity() {
             "PopupActivity",
             "AnnotationActivity",
             "DataStoreActivity",
-            "ServiceActivity"
+            "ServiceActivity",
+            "ProcessAliveActivity"
     )
     var activities = arrayOf<Class<*>>(SecondActivity::class.java, CryptoActivity::class.java, LambdaActivity::class.java,
             ProviderActivity::class.java, NinePatchActivity::class.java, RecyclerViewActivity::class.java, AsyncActivity::class.java,
-            PopupActivity::class.java, AnnotationActivity::class.java, DataStoreActivity::class.java, ServiceActivity::class.java)
+            PopupActivity::class.java, AnnotationActivity::class.java, DataStoreActivity::class.java, ServiceActivity::class.java,
+            ProcessAliveActivity::class.java)
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
