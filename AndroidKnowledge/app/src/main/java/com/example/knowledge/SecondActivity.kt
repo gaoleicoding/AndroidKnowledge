@@ -12,7 +12,7 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(TAG, "SecondActivity--onCreate()")
         setContentView(R.layout.activity_second)
-        findViewById<View>(R.id.title_text).setOnClickListener {
+        findViewById<View>(R.id.tv_to_third).setOnClickListener {
             startActivity(Intent(this@SecondActivity, ThirdActivity::class.java))
         }
     }
@@ -41,7 +41,7 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.i(TAG, "SecondActivity--onResumed()")
+        Log.i(TAG, "SecondActivity--onResume()")
     }
 
     override fun onPause() {
@@ -51,7 +51,7 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        Log.i(TAG, "Activity--onStop()")
+        Log.i(TAG, "SecondActivity--onStop()")
     }
 
     override fun onRestart() {

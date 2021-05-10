@@ -12,8 +12,11 @@ class ThirdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(TAG, "ThirdActivity--onCreate()")
         setContentView(R.layout.activity_third)
-        findViewById<View>(R.id.title_text).setOnClickListener {
+        findViewById<View>(R.id.tv_to_second).setOnClickListener {
             startActivity(Intent(this@ThirdActivity, SecondActivity::class.java))
+        }
+        findViewById < View >(R.id.tv_to_third).setOnClickListener {
+            startActivity(Intent(this@ThirdActivity, ThirdActivity::class.java))
         }
     }
 
@@ -28,7 +31,7 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.i(TAG, "ThirdActivity--onResumed()")
+        Log.i(TAG, "ThirdActivity--onResume()")
     }
 
     override fun onPause() {

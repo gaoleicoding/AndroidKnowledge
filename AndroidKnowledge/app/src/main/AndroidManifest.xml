@@ -31,8 +31,11 @@
         <activity android:name=".cryptography.CryptoActivity" />
         <activity
             android:name=".SecondActivity"
+            android:taskAffinity="com.example.task2"
             android:launchMode="singleTask" />
-        <activity android:name=".ThirdActivity" />
+        <activity
+            android:name=".ThirdActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".lambda.LambdaActivity" />
         <activity android:name=".contentprovider.ProviderActivity" />
         <activity android:name=".ninepatch.NinePatchActivity" />

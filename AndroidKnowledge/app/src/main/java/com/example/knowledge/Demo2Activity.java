@@ -17,6 +17,5 @@ public class Demo2Activity extends AppCompatActivity {
         Set<String> routerMap = null;
 
         getSharedPreferences("AROUTER_SP_CACHE_KEY", Context.MODE_PRIVATE).edit().putStringSet("AROUTER_SP_KEY_MAP", routerMap).apply();
-
     }
 }
