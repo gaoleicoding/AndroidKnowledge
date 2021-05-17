@@ -1,8 +1,9 @@
 package com.gl.java.sync;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.locks.StampedLock;
 
-public class ThreadLocalExample {
+public class ThreadLocalDemo {
 
     public static class MyRunnable implements Runnable {
 
@@ -13,7 +14,7 @@ public class ThreadLocalExample {
         public void run() {
             threadLocal.set((int) (Math.random() * 100D));
             try {
-            Thread.sleep(2000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
 
             }
@@ -22,11 +23,10 @@ public class ThreadLocalExample {
     }
 
     public static void main(String[] args) {
-         MyRunnable sharedRunnableInstance = new MyRunnable();
-         Thread thread1 = new Thread(sharedRunnableInstance);
-         Thread thread2 = new Thread(sharedRunnableInstance);
-         thread1.start();
-         thread2.start();
+        MyRunnable sharedRunnableInstance = new MyRunnable();
+        Thread thread1 = new Thread(sharedRunnableInstance);
+        Thread thread2 = new Thread(sharedRunnableInstance);
+        thread1.start();
+        thread2.start();
     }
-
 }
