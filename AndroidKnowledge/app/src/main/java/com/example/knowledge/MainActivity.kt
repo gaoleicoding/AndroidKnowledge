@@ -14,6 +14,7 @@ import com.example.knowledge.asynctask.AsyncActivity
 import com.example.knowledge.contentprovider.ProviderActivity
 import com.example.knowledge.cryptography.CryptoActivity
 import com.example.knowledge.datastore.DataStoreActivity
+import com.example.knowledge.image.ImageActivity
 import com.example.knowledge.lambda.LambdaActivity
 import com.example.knowledge.ninepatch.NinePatchActivity
 import com.example.knowledge.popupwindow.PopupActivity
@@ -25,23 +26,35 @@ import com.tencent.mmkv.MMKV
 
 class MainActivity : AppCompatActivity() {
     var items = arrayOf(
-            "SecondActivity",
-            "EncryptActivity",
-            "LambdaActivity",
-            "ProviderActivity",
-            "NinePatchActivity",
-            "RecyclerViewActivity",
-            "AsyncActivity",
-            "PopupActivity",
-            "AnnotationActivity",
-            "DataStoreActivity",
-            "ServiceActivity",
-            "ProcessAliveActivity"
+        "SecondActivity",
+        "EncryptActivity",
+        "LambdaActivity",
+        "ProviderActivity",
+        "NinePatchActivity",
+        "RecyclerViewActivity",
+        "AsyncActivity",
+        "PopupActivity",
+        "AnnotationActivity",
+        "DataStoreActivity",
+        "ServiceActivity",
+        "ProcessAliveActivity",
+        "ImageActivity",
     )
-    var activities = arrayOf<Class<*>>(SecondActivity::class.java, CryptoActivity::class.java, LambdaActivity::class.java,
-            ProviderActivity::class.java, NinePatchActivity::class.java, RecyclerViewActivity::class.java, AsyncActivity::class.java,
-            PopupActivity::class.java, AnnotationActivity::class.java, DataStoreActivity::class.java, ServiceActivity::class.java,
-            ProcessAliveActivity::class.java)
+    var activities = arrayOf<Class<*>>(
+        SecondActivity::class.java,
+        CryptoActivity::class.java,
+        LambdaActivity::class.java,
+        ProviderActivity::class.java,
+        NinePatchActivity::class.java,
+        RecyclerViewActivity::class.java,
+        AsyncActivity::class.java,
+        PopupActivity::class.java,
+        AnnotationActivity::class.java,
+        DataStoreActivity::class.java,
+        ServiceActivity::class.java,
+        ProcessAliveActivity::class.java,
+        ImageActivity::class.java
+    )
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +67,10 @@ class MainActivity : AppCompatActivity() {
         val itemAdapter = ItemAdapter(this, items)
         recyclerview.adapter = itemAdapter
         recyclerview.addItemDecoration(
-                DividerItemDecoration(this@MainActivity,
-                        DividerItemDecoration.VERTICAL
-                )
+            DividerItemDecoration(
+                this@MainActivity,
+                DividerItemDecoration.VERTICAL
+            )
         )
         itemAdapter.setOnItemClickLitener(object : ItemAdapter.OnItemClickLitener {
             override fun onItemClick(v: View) {
@@ -68,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
 //        testMMKV()
     }
-
 
 
     fun testMMKV() {

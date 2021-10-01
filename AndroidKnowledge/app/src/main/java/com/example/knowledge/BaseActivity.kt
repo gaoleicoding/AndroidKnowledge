@@ -32,4 +32,8 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    fun onBack(view: View) {
+        finish()
+    }
+
 }

@@ -31,8 +31,8 @@
         <activity android:name=".cryptography.CryptoActivity" />
         <activity
             android:name=".SecondActivity"
-            android:taskAffinity="com.example.task2"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:taskAffinity="com.example.task2" />
         <activity
             android:name=".ThirdActivity"
             android:launchMode="singleTop" />
@@ -59,9 +59,14 @@
         <activity android:name=".datastore.DataStoreActivity" />
         <activity android:name=".service.ServiceActivity" />
         <activity android:name=".process.ProcessAliveActivity" />
-
         <activity android:name=".popupwindow.PopupActivity" />
         <activity android:name=".annotation.AnnotationActivity" />
+        <activity android:name=".image.ImageActivity" />
+        <activity android:name=".image.ColorMatrixActivity" />
+        <activity android:name=".image.ColorFilterActivity" />
+        <activity android:name=".image.ColorHueActivity" />
+        <activity android:name=".image.MatrixBaseActivity" />
+        <activity android:name=".image.MatrixDistortionActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
