@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
+import com.example.knowledge.image.beautify.SlimFaceActivity;
 import com.example.knowledge.image.matrix.ColorFilterActivity;
 import com.example.knowledge.image.matrix.ColorHueActivity;
 import com.example.knowledge.image.matrix.ColorMatrixActivity;
@@ -24,6 +25,7 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.bt_color_matrix).setOnClickListener(this);
         findViewById(R.id.bt_color_hue).setOnClickListener(this);
         findViewById(R.id.bt_color_filter).setOnClickListener(this);
+        findViewById(R.id.bt_slim_face).setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +47,9 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.bt_color_filter:
                 intent.setClass(ImageActivity.this, ColorFilterActivity.class);
+                break;
+            case R.id.bt_slim_face:
+                intent.setClass(ImageActivity.this, SlimFaceActivity.class);
                 break;
         }
         ImageActivity.this.startActivity(intent);

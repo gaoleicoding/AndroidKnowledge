@@ -67,6 +67,7 @@
         <activity android:name=".image.matrix.ColorHueActivity" />
         <activity android:name=".image.matrix.MatrixBaseActivity" />
         <activity android:name=".image.matrix.MatrixDistortionActivity" />
+        <activity android:name=".image.beautify.SlimFaceActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
