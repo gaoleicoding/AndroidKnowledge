@@ -1,4 +1,4 @@
-package com.example.knowledge.image;
+package com.example.knowledge.image.matrix;
 
 import android.os.Bundle;
 

@@ -37,6 +37,7 @@
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.2346014492753623" />
         <entry key="app/src/main/res/layout/activity_third.xml" value="0.3038949275362319" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.15625" />
+        <entry key="app/src/main/res/layout/matrix_list_item.xml" value="0.1" />
       </map>
     </option>
   </component>

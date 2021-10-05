@@ -1,4 +1,4 @@
-package com.example.knowledge.image;
+package com.example.knowledge.image.matrix;
 
 import android.os.Bundle;
 
@@ -25,7 +25,7 @@ public class ColorFilterActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
         inItFilters();
         filtersAdapter = new FiltersAdapter(Glide.with(this), getLayoutInflater(), filters);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(filtersAdapter);
     }
