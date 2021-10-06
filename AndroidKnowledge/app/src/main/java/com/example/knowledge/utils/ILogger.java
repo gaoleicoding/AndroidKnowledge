@@ -5,7 +5,7 @@ public interface ILogger {
 
     boolean isShowLog = false;
     boolean isShowStackTrace = false;
-    String defaultTag = Consts.TAG;
+    String defaultTag = Constants.TAG;
 
     void showLog(boolean isShowLog);
 

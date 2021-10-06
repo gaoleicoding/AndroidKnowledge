@@ -58,4 +58,13 @@
         android:layout_marginTop="5dp"
         android:text="SlimFaceActivity"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt_mask_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="MaskFilterActivity"
+        android:textAllCaps="false" />
 </LinearLayout>
