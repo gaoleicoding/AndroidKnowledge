@@ -68,7 +68,6 @@
         <activity android:name=".image.matrix.MatrixBaseActivity" />
         <activity android:name=".image.matrix.MatrixDistortionActivity" />
         <activity android:name=".image.beautify.SlimFaceActivity" />
-        <activity android:name=".image.maskfilter.MaskFilterActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
