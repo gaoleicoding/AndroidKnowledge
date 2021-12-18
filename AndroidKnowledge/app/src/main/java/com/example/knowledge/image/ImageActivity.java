@@ -2,6 +2,7 @@ package com.example.knowledge.image;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,12 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.bt_color_hue).setOnClickListener(this);
         findViewById(R.id.bt_color_filter).setOnClickListener(this);
         findViewById(R.id.bt_slim_face).setOnClickListener(this);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        builder.penaltyDeath();
+        builder.detectNonSdkApiUsage();
+        StrictMode.setVmPolicy(builder.build());
+
+
     }
 
     @Override
