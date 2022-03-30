@@ -16,6 +16,7 @@ import com.example.knowledge.cryptography.CryptoActivity
 import com.example.knowledge.datastore.DataStoreActivity
 import com.example.knowledge.image.ImageActivity
 import com.example.knowledge.lambda.LambdaActivity
+import com.example.knowledge.lbs.LocationActivity
 import com.example.knowledge.ninepatch.NinePatchActivity
 import com.example.knowledge.popupwindow.PopupActivity
 import com.example.knowledge.process.ProcessAliveActivity
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         "ServiceActivity",
         "ProcessAliveActivity",
         "ImageActivity",
+        "LocationActivity",
     )
     var activities = arrayOf<Class<*>>(
         SecondActivity::class.java,
@@ -53,7 +55,8 @@ class MainActivity : AppCompatActivity() {
         DataStoreActivity::class.java,
         ServiceActivity::class.java,
         ProcessAliveActivity::class.java,
-        ImageActivity::class.java
+        ImageActivity::class.java,
+        LocationActivity::class.java,
     )
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {

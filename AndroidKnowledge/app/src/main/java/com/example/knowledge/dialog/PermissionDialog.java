@@ -13,25 +13,24 @@ import android.os.Build;
  */
 
 public class PermissionDialog {
-   private static AlertDialog.Builder builder;
-   private  static Context mContext;
+    private static AlertDialog.Builder builder;
+    private static Context mContext;
 
     /**
-     *
      * @param context
-     * @param isExit 是否退出系统 （闪屏页点击退出退出应用）
+     * @param isExit  是否退出系统 （闪屏页点击退出退出应用）
      */
-    public static void showPermissionDialog(final Context context, final boolean isExit) {
-        mContext=context;
+    public static void showPermissionDialog(final Context context, String permmision, final boolean isExit) {
+        mContext = context;
         builder = new AlertDialog.Builder(mContext);
         builder.setTitle("权限提示");
-        builder.setMessage("您有重要权限尚未授权，将影响您的正常使用，请检查权限是否已经开启！");
+        builder.setMessage(permmision + "权限尚未授权，将影响您的正常使用，请检查权限是否已经开启！");
 
         //退出
         builder.setNegativeButton("退出", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (isExit){
+                if (isExit) {
                     System.exit(0);
                 }
             }
@@ -44,7 +43,7 @@ public class PermissionDialog {
             }
         });
         builder.setCancelable(false);
-        if (mContext!=null){
+        if (mContext != null) {
             builder.show();
         }
     }

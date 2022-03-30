@@ -8,6 +8,7 @@
     <!--service前台服务-->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--位置-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -73,6 +74,7 @@
         <activity android:name=".image.matrix.MatrixBaseActivity" />
         <activity android:name=".image.matrix.MatrixDistortionActivity" />
         <activity android:name=".image.beautify.SlimFaceActivity" />
+        <activity android:name=".lbs.LocationActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
