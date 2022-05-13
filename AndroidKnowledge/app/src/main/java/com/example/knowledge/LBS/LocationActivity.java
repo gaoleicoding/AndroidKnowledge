@@ -1,4 +1,4 @@
-package com.example.knowledge.lbs;
+package com.example.knowledge.LBS;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

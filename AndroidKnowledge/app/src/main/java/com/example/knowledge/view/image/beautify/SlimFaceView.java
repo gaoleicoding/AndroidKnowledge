@@ -1,4 +1,4 @@
-package com.example.knowledge.image.beautify;
+package com.example.knowledge.view.image.beautify;
 
 import android.content.Context;
 import android.graphics.Bitmap;

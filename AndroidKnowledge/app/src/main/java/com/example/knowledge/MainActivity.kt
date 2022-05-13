@@ -14,9 +14,9 @@ import com.example.knowledge.asynctask.AsyncActivity
 import com.example.knowledge.contentprovider.ProviderActivity
 import com.example.knowledge.cryptography.CryptoActivity
 import com.example.knowledge.datastore.DataStoreActivity
-import com.example.knowledge.image.ImageActivity
+import com.example.knowledge.view.image.ImageActivity
 import com.example.knowledge.lambda.LambdaActivity
-import com.example.knowledge.lbs.LocationActivity
+import com.example.knowledge.LBS.LocationActivity
 import com.example.knowledge.ninepatch.NinePatchActivity
 import com.example.knowledge.popupwindow.PopupActivity
 import com.example.knowledge.process.ProcessAliveActivity

@@ -2,18 +2,11 @@ package com.example.knowledge.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
-import com.example.knowledge.image.beautify.SlimFaceActivity;
-import com.example.knowledge.image.matrix.ColorFilterActivity;
-import com.example.knowledge.image.matrix.ColorHueActivity;
-import com.example.knowledge.image.matrix.ColorMatrixActivity;
-import com.example.knowledge.image.matrix.MatrixBaseActivity;
-import com.example.knowledge.image.matrix.MatrixDistortionActivity;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -67,14 +67,14 @@
         <activity android:name=".process.ProcessAliveActivity" />
         <activity android:name=".popupwindow.PopupActivity" />
         <activity android:name=".annotation.AnnotationActivity" />
-        <activity android:name=".image.ImageActivity" />
-        <activity android:name=".image.matrix.ColorMatrixActivity" />
-        <activity android:name=".image.matrix.ColorFilterActivity" />
-        <activity android:name=".image.matrix.ColorHueActivity" />
-        <activity android:name=".image.matrix.MatrixBaseActivity" />
-        <activity android:name=".image.matrix.MatrixDistortionActivity" />
-        <activity android:name=".image.beautify.SlimFaceActivity" />
-        <activity android:name=".lbs.LocationActivity" />
+        <activity android:name=".view.image.ImageActivity" />
+        <activity android:name=".view.image.matrix.ColorMatrixActivity" />
+        <activity android:name=".view.image.matrix.ColorFilterActivity" />
+        <activity android:name=".view.image.matrix.ColorHueActivity" />
+        <activity android:name=".view.image.matrix.MatrixBaseActivity" />
+        <activity android:name=".view.image.matrix.MatrixDistortionActivity" />
+        <activity android:name=".view.image.beautify.SlimFaceActivity" />
+        <activity android:name=".LBS.LocationActivity" />
         <activity android:name=".view.ViewActivity" />
         <activity android:name=".view.WebViewActivity" />
 

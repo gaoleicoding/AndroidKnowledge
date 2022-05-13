@@ -1,4 +1,4 @@
-package com.example.knowledge.image.beautify;
+package com.example.knowledge.view.image.beautify;
 
 import android.graphics.Color;
 import android.os.Bundle;
