@@ -22,6 +22,7 @@ import com.example.knowledge.popupwindow.PopupActivity
 import com.example.knowledge.process.ProcessAliveActivity
 import com.example.knowledge.recyclerview.RecyclerViewActivity
 import com.example.knowledge.service.ServiceActivity
+import com.example.knowledge.view.ViewActivity
 import com.tencent.mmkv.MMKV
 
 
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         "ProcessAliveActivity",
         "ImageActivity",
         "LocationActivity",
+        "ViewActivity",
     )
     var activities = arrayOf<Class<*>>(
         SecondActivity::class.java,
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         ProcessAliveActivity::class.java,
         ImageActivity::class.java,
         LocationActivity::class.java,
+        ViewActivity::class.java,
     )
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {

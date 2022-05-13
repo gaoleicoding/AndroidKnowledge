@@ -75,6 +75,8 @@
         <activity android:name=".image.matrix.MatrixDistortionActivity" />
         <activity android:name=".image.beautify.SlimFaceActivity" />
         <activity android:name=".lbs.LocationActivity" />
+        <activity android:name=".view.ViewActivity" />
+        <activity android:name=".view.WebViewActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
