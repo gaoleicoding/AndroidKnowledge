@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
+import com.example.knowledge.view.image.ImageActivity;
+import com.example.knowledge.view.webview.WebViewActivity;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,6 +17,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         findViewById(R.id.bt_webview).setOnClickListener(this);
+        findViewById(R.id.bt_image).setOnClickListener(this);
 
     }
 
@@ -25,6 +28,9 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bt_webview:
                 intent.setClass(ViewActivity.this, WebViewActivity.class);
+                break;
+            case R.id.bt_image:
+                intent.setClass(ViewActivity.this, ImageActivity.class);
                 break;
 
 

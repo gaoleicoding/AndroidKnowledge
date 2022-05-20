@@ -1,4 +1,4 @@
-package com.example.knowledge.view;
+package com.example.knowledge.view.webview;
 
 import android.content.Context;
 import android.util.AttributeSet;

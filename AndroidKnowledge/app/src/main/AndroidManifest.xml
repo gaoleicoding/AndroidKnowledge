@@ -76,7 +76,7 @@
         <activity android:name=".view.image.beautify.SlimFaceActivity" />
         <activity android:name=".LBS.LocationActivity" />
         <activity android:name=".view.ViewActivity" />
-        <activity android:name=".view.WebViewActivity" />
+        <activity android:name=".view.webview.WebViewActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

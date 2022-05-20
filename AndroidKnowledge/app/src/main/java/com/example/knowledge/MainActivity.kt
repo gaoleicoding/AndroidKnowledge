@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         "DataStoreActivity",
         "ServiceActivity",
         "ProcessAliveActivity",
-        "ImageActivity",
         "LocationActivity",
         "ViewActivity",
     )
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         DataStoreActivity::class.java,
         ServiceActivity::class.java,
         ProcessAliveActivity::class.java,
-        ImageActivity::class.java,
         LocationActivity::class.java,
         ViewActivity::class.java,
     )
