@@ -27,22 +27,24 @@
         android:layout_below="@id/title_text"
         android:background="@color/color_d1d1d1" />
 
-    <TextView
+    <Button
         android:id="@+id/tv_to_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="toSecondActivity"
+        android:textAllCaps="false"
         android:textSize="20sp" />
 
-    <TextView
+    <Button
         android:id="@+id/tv_to_third"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_below="@id/tv_to_second"
+        android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:text="toThirdActivity"
+        android:textAllCaps="false"
         android:textSize="20sp" />
 
 </RelativeLayout>

@@ -21,6 +21,7 @@ import com.example.knowledge.popupwindow.PopupActivity
 import com.example.knowledge.process.ProcessActivity
 import com.example.knowledge.recyclerview.RecyclerViewActivity
 import com.example.knowledge.service.ServiceActivity
+import com.example.knowledge.utils.LogUtil
 import com.example.knowledge.view.ViewActivity
 import com.tencent.mmkv.MMKV
 
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("info", "MainActivity--onCreate()")
+        LogUtil.d("info", "MainActivity--onCreate()")
         setContentView(R.layout.activity_main)
         setContentView(R.layout.activity_main)
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
@@ -90,37 +91,37 @@ class MainActivity : AppCompatActivity() {
     fun testMMKV() {
         val mmkv = MMKV.mmkvWithID("TEST")
         mmkv.encode("bool", true)
-        Log.i(TAG, "testMMKV--bool: " + mmkv.decodeBool("bool"))
+        LogUtil.d(TAG, "testMMKV--bool: " + mmkv.decodeBool("bool"))
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i("info", "MainActivity--onStart()")
+        LogUtil.d("info", "MainActivity--onStart()")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.i("info", "MainActivity--onResume()")
+        LogUtil.d("info", "MainActivity--onResume()")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i("info", "MainActivity--onPause()")
+        LogUtil.d("info", "MainActivity--onPause()")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i("info", "MainActivity--onStop()")
+        LogUtil.d("info", "MainActivity--onStop()")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.i("info", "MainActivity--onRestart()")
+        LogUtil.d("info", "MainActivity--onRestart()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i("info", "MainActivity--onDestroy()")
+        LogUtil.d("info", "MainActivity--onDestroy()")
     }
 
     companion object {

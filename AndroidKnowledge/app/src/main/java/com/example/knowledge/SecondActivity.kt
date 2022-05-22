@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.knowledge.utils.LogUtil
 
 class SecondActivity : AppCompatActivity() {
     private val TAG = "SecondActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG, "SecondActivity--onCreate()")
+        LogUtil.d(TAG, "SecondActivity--onCreate()")
         setContentView(R.layout.activity_second)
         findViewById<View>(R.id.tv_to_third).setOnClickListener {
             startActivity(Intent(this@SecondActivity, ThirdActivity::class.java))
@@ -26,7 +27,17 @@ class SecondActivity : AppCompatActivity() {
         //must store the new intent unless getIntent() will return the old one
         setIntent(intent)
         getNewIntent()
-        Log.i(TAG, "SecondActivity--onNewIntent()")
+        LogUtil.d(TAG, "SecondActivity--onNewIntent()")
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        LogUtil.d(TAG, "SecondActivity--onWindowFocusChanged: " + hasFocus)
+        if (hasFocus) {
+
+        } else {
+
+        }
+        super.onWindowFocusChanged(hasFocus)
     }
 
     private fun getNewIntent() {
@@ -36,31 +47,31 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.i(TAG, "SecondActivity--onStart()")
+        LogUtil.d(TAG, "SecondActivity--onStart()")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.i(TAG, "SecondActivity--onResume()")
+        LogUtil.d(TAG, "SecondActivity--onResume()")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i(TAG, "SecondActivity--onPause()")
+        LogUtil.d(TAG, "SecondActivity--onPause()")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i(TAG, "SecondActivity--onStop()")
+        LogUtil.d(TAG, "SecondActivity--onStop()")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.i(TAG, "SecondActivity--onRestart()")
+        LogUtil.d(TAG, "SecondActivity--onRestart()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(TAG, "SecondActivity--onDestroy()")
+        LogUtil.d(TAG, "SecondActivity--onDestroy()")
     }
 }

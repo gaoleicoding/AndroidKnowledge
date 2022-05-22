@@ -5,17 +5,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.knowledge.utils.LogUtil
 
 class ThirdActivity : AppCompatActivity() {
     private val TAG = "ThirdActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG, "ThirdActivity--onCreate()")
+        LogUtil.d(TAG, "ThirdActivity--onCreate()")
         setContentView(R.layout.activity_third)
         findViewById<View>(R.id.tv_to_second).setOnClickListener {
             startActivity(Intent(this@ThirdActivity, SecondActivity::class.java))
         }
-        findViewById < View >(R.id.tv_to_third).setOnClickListener {
+        findViewById<View>(R.id.tv_to_third).setOnClickListener {
             startActivity(Intent(this@ThirdActivity, ThirdActivity::class.java))
         }
     }
@@ -26,31 +27,31 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.i(TAG, "ThirdActivity--onStart()")
+        LogUtil.d(TAG, "ThirdActivity--onStart()")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.i(TAG, "ThirdActivity--onResume()")
+        LogUtil.d(TAG, "ThirdActivity--onResume()")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i(TAG, "ThirdActivity--onPause()")
+        LogUtil.d(TAG, "ThirdActivity--onPause()")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i(TAG, "ThirdActivity--onStop()")
+        LogUtil.d(TAG, "ThirdActivity--onStop()")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.i(TAG, "ThirdActivity--onRestart()")
+        LogUtil.d(TAG, "ThirdActivity--onRestart()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(TAG, "ThirdActivity--onDestroy()")
+        LogUtil.d(TAG, "ThirdActivity--onDestroy()")
     }
 }

@@ -27,11 +27,12 @@
         android:layout_below="@id/title_text"
         android:background="@color/color_d1d1d1" />
 
-    <TextView
+    <Button
         android:id="@+id/tv_to_third"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:textAllCaps="false"
         android:text="toThirdActivity"
         android:textSize="20sp" />
 </RelativeLayout>
