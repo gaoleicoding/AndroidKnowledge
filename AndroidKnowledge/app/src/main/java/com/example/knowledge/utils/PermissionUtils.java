@@ -1,24 +1,19 @@
 package com.example.knowledge.utils;
 
 import android.Manifest;
+
 import androidx.fragment.app.FragmentActivity;
+
 import com.example.knowledge.dialog.PermissionDialog;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
 import io.reactivex.functions.Consumer;
 
 public class PermissionUtils {
 
-    //需要处理的权限
-    public static final String[] PERMISSIONS_ALL = new String[]{
-            Manifest.permission.RECORD_AUDIO,//录音权限(可单独检测申请)
-            Manifest.permission.READ_EXTERNAL_STORAGE,//读文件权限
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,//写文件权限
-            Manifest.permission.READ_PHONE_STATE,//读取设备信息
-    };
-    public static final String PERMISSION_CAMERA = Manifest.permission.CAMERA;//相机权限单独判断
-    public static final String PERMISSION_AUDIO = Manifest.permission.RECORD_AUDIO;//录音权限强制获取
-    public static final String[] PERMISSION_RECORD = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    public static final String[] PERMISSION_CAMERA = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    public static final String[] PERMISSION_RECORD = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     public static String[] PERMISSION_FILE = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     public static String[] PERMISION_LOCATION = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
@@ -59,7 +54,7 @@ public class PermissionUtils {
                                         permissionCallBack.onDenied();
                                     } else {
                                         //不是首页
-                                        PermissionDialog.showPermissionDialog(activity, "",isExit);
+                                        PermissionDialog.showPermissionDialog(activity, "", isExit);
                                         permissionCallBack.onDeniedRational();
                                     }
 //
@@ -82,7 +77,7 @@ public class PermissionUtils {
      * @return
      */
     public static boolean isHasAudioPermission(FragmentActivity activity) {
-        return checkPermissionsIsGranted(activity, PERMISSION_AUDIO);
+        return checkPermissionsIsGranted(activity, Manifest.permission.RECORD_AUDIO);
     }
 
     public static void getPermissions(final FragmentActivity context, final PermissionCallBack permissionCallBack, String... permissions) {
@@ -118,6 +113,7 @@ public class PermissionUtils {
             }
         }
     }
+
     /**
      * 检查某个权限是否被申请
      *
@@ -137,19 +133,22 @@ public class PermissionUtils {
         return isGranted;
     }
 
-    public interface PermissionCallBack {
+    public static abstract class PermissionCallBack {
         //所有权限被通过
-        void onGranted();
+        public abstract void onGranted();
 
         //权限被拒绝
-        void onDenied();
+        public void onDenied() {
+        }
 
         //权限被选择不再提醒且拒绝
-        void onDeniedRational();
+        public void onDeniedRational() {
 
+        }
 
         //发生异常
-        void onException();
+        public void onException() {
+        }
 
     }
 }

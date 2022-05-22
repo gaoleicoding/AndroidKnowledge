@@ -6,7 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.os.Handler;
 
 public class AppApplication extends Application {
-    private static Context context;
+    public static Context context;
     private static Handler mHandler;
 
     public static boolean isDebug = false;//是否是测试环境

@@ -25,7 +25,7 @@ import com.example.knowledge.dialog.PermissionDialog;
 import java.util.List;
 import java.util.Locale;
 
-public class LocationActivity extends AppCompatActivity {
+public class  LocationActivity extends AppCompatActivity {
 
     public static final int LOCATION_CODE = 301;
     private LocationManager locationManager;
