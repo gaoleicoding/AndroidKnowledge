@@ -65,7 +65,7 @@
         <activity android:name=".recyclerview.horizontal.HorizontalRvActivity" />
         <activity android:name=".datastore.DataStoreActivity" />
         <activity android:name=".service.ServiceActivity" />
-        <activity android:name=".process.ProcessAliveActivity" />
+        <activity android:name=".process.ProcessActivity" />
         <activity android:name=".popupwindow.PopupActivity" />
         <activity android:name=".annotation.AnnotationActivity" />
         <activity android:name=".view.image.ImageActivity" />

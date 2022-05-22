@@ -14,12 +14,11 @@ import com.example.knowledge.asynctask.AsyncActivity
 import com.example.knowledge.contentprovider.ProviderActivity
 import com.example.knowledge.cryptography.CryptoActivity
 import com.example.knowledge.datastore.DataStoreActivity
-import com.example.knowledge.view.image.ImageActivity
 import com.example.knowledge.lambda.LambdaActivity
 import com.example.knowledge.LBS.LocationActivity
 import com.example.knowledge.ninepatch.NinePatchActivity
 import com.example.knowledge.popupwindow.PopupActivity
-import com.example.knowledge.process.ProcessAliveActivity
+import com.example.knowledge.process.ProcessActivity
 import com.example.knowledge.recyclerview.RecyclerViewActivity
 import com.example.knowledge.service.ServiceActivity
 import com.example.knowledge.view.ViewActivity
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         AnnotationActivity::class.java,
         DataStoreActivity::class.java,
         ServiceActivity::class.java,
-        ProcessAliveActivity::class.java,
+        ProcessActivity::class.java,
         LocationActivity::class.java,
         ViewActivity::class.java,
     )
