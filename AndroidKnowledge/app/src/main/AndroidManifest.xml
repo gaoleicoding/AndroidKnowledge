@@ -79,6 +79,8 @@
         <activity android:name=".view.ViewActivity" />
         <activity android:name=".view.webview.WebViewActivity" />
         <activity android:name=".view.photo.PhotoSelectActivity" />
+        <activity android:name=".TestJavaActivity" />
+        <activity android:name=".TestKotlinActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
