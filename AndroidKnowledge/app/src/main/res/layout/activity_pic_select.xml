@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:background="#E2E2E2"
         android:gravity="center"
-        android:text="拍照"
+        android:text="选择图片"
         android:textSize="18sp" />
 
     <ImageView
