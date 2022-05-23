@@ -73,9 +73,11 @@
         <activity android:name=".view.image.beautify.SlimFaceActivity" />
         <activity android:name=".LBS.LocationActivity" />
         <activity android:name=".view.ViewActivity" />
-        <activity android:name=".view.webview.WebViewActivity" />
+        <activity
+            android:name=".view.webview.WebViewActivity"
+            android:process=":webviewProcess" />
         <activity android:name=".view.photo.PhotoSelectActivity" />
-        <activity android:name=".TestJavaActivity" />
+        <activity android:name=".TestAndroidActivity" />
         <activity android:name=".TestKotlinActivity" />
 
         <provider

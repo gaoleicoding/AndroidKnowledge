@@ -3,13 +3,15 @@ package com.example.knowledge;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.os.Build;
 import android.os.Handler;
-import android.util.Log;
+import android.webkit.WebView;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDex;
 
 import com.example.knowledge.utils.LogUtil;
 
@@ -18,6 +20,13 @@ public class AppApplication extends Application {
     private static Handler mHandler;
 
     public static boolean isDebug = false;//是否是测试环境
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        initWebView();
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
@@ -30,6 +39,7 @@ public class AppApplication extends Application {
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new MyLifecycleObserver());
     }
 
+
     public void getApkMode() {
         try {
             ApplicationInfo info = getApplicationInfo();
@@ -40,6 +50,13 @@ public class AppApplication extends Application {
 
     public static Handler getMainHandler() {
         return mHandler;
+    }
+
+    private void initWebView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            String processName = getProcessName();
+            WebView.setDataDirectorySuffix(processName);
+        }
     }
 
     private class MyLifecycleObserver implements LifecycleObserver {

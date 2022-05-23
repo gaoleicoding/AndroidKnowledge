@@ -22,7 +22,6 @@ public class StartUpInitializer implements Initializer<String> {
 
     @Override
     public String create(@NonNull Context context) {
-        MultiDex.install(context);
         this.context = context;
         MMKV.initialize(context);
         return "StartUpInitializer";
