@@ -27,6 +27,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.2665985699693565" />
+        <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/drawable/lib_base_round_rect_black.xml" value="0.1985" />
+        <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/drawable/lib_base_round_rect_theme_normal.xml" value="0.1985" />
+        <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/drawable/lib_base_round_rect_white.xml" value="0.1985" />
         <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/activity_image.xml" value="0.1" />
         <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/activity_lambda.xml" value="0.26811594202898553" />
         <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/activity_location.xml" value="0.26811594202898553" />
@@ -36,6 +39,9 @@
         <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/activity_third.xml" value="0.20425724637681159" />
         <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/activity_view.xml" value="0.1" />
         <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/activity_webview.xml" value="0.1" />
+        <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/lib_base_dialog_checkversion.xml" value="0.20425724637681159" />
+        <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/lib_base_layout_dialog_common.xml" value="0.20425724637681159" />
+        <entry key="..\:/Android/Github/AndroidKnowledge/AndroidKnowledge/app/src/main/res/layout/lib_base_layout_dialog_loading.xml" value="0.20425724637681159" />
         <entry key="app/src/main/res/layout/activity_color_filter.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_color_hue.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_color_matrix.xml" value="0.15625" />

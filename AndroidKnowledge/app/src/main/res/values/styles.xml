@@ -7,4 +7,16 @@
         <item name="android:windowEnterAnimation">@anim/popup_fade_in</item>
         <item name="android:windowExitAnimation">@anim/popup_fade_out</item>
     </style>
+
+    <style name="lib_base_dialog_trans" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+    <style name="lib_base_checkVersion_dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
 </resources>

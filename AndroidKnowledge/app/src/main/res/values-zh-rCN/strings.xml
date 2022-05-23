@@ -26,4 +26,6 @@
     <string name="scale_ratios_hint">平滑缩放(如:0.2,0.5(在路径50%处把item缩放到20%))</string>
     <string name="apply_scale_ratios">更新平滑缩放</string>
     <string name="path_not_set">请先设置路径！</string>
+    <string name="no_location_provider">请打开GPS和网络使用定位功能</string>
+
 </resources>

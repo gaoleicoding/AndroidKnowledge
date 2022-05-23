@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,16 +20,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.knowledge.AppApplication;
 import com.example.knowledge.R;
 import com.example.knowledge.dialog.PermissionDialog;
+import com.example.knowledge.utils.DialogUtils;
+import com.example.knowledge.utils.LogUtil;
+import com.example.knowledge.utils.ToastUtil;
+import com.example.knowledge.utils.Utils;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class  LocationActivity extends AppCompatActivity {
-
+public class LocationActivity extends AppCompatActivity {
+    private final String TAG = "LocationActivity";
     public static final int LOCATION_CODE = 301;
-    private LocationManager locationManager;
+    private LocationManager mLocationManager;
+    private Location location;
     private String locationProvider;
     private TextView textView1, textView2;
 
@@ -43,7 +51,7 @@ public class  LocationActivity extends AppCompatActivity {
 
     private void requestPermissionLocation() {
         //1.获取位置管理器
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //获取权限（如果没有开启权限，会弹出对话框，询问是否开启权限）
@@ -56,40 +64,97 @@ public class  LocationActivity extends AppCompatActivity {
                         Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_CODE);
             } else {
                 //3.获取上次的位置，一般第一次运行，此值为null
-                getLastLocation();
+                uploadLocation();
             }
         } else {
-            getLastLocation();
+            uploadLocation();
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == LOCATION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == getPackageManager().PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                try {
+                    uploadLocation();
+
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                PermissionDialog.showPermissionDialog(LocationActivity.this, "位置", false);
+
+            }
+        }
+    }
+    private void uploadLocation() {
+        getLastLocation();
+        //第二次获取位置即第一次获取的最新位置。避免第一次getLastKnownLocation为空和获取的上次位置距离获取当前位置已经偏移很远
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                getLastLocation();
+                double longitude = 0;
+                double latitude = 0;
+                if (location != null) {
+                    longitude = location.getLongitude();
+                    latitude = location.getLatitude();
+                    LogUtil.d(TAG, "uploadLocation：" + longitude + "   " + latitude);
+                }
+
+                if (AppApplication.isDebug) {
+                    showAddress(latitude, longitude);
+                }
+            }
+        }, 500);
+
     }
 
 
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
-        Location location = null;
-
-        List<String> providers = locationManager.getProviders(true);
-        for (String provider : providers) {
-            @SuppressLint("MissingPermission")
-            Location l = locationManager.getLastKnownLocation(provider);
-            if (l == null) {
-                continue;
+        try {
+            if (mLocationManager == null) {
+                mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             }
-            if (location == null || l.getAccuracy() < location.getAccuracy()) {
-                // Found best last known location: %s", l);
-                location = l;
-                locationProvider = provider;
+            List<String> providers = mLocationManager.getProviders(true);
+            if (providers.size() == 0) {
+                ToastUtil.showToast(this, getString(R.string.no_location_provider));
+                return;
             }
-        }
-        if (location != null) {
 
-            textView1.setText("经纬度：" + location.getLongitude() + " " +
-                    location.getLatitude());
-            getAddress(location);
+            if (providers.contains(LocationManager.NETWORK_PROVIDER) && Utils.isNetConnected(this)) {
+                //首先Network，定位精度高
+                locationProvider = LocationManager.NETWORK_PROVIDER;
+                LogUtil.d(TAG, "网络定位方式");
+            } else if (providers.contains(LocationManager.GPS_PROVIDER)) {
+                // 次选GPS，因为偏差较大，直线距离偏差大概有600-700米
+                locationProvider = LocationManager.GPS_PROVIDER;
+                LogUtil.d(TAG, "GPS定位方式");
+            }
+            if (locationProvider != null) {
+                location = mLocationManager.getLastKnownLocation(locationProvider);
+            }
+//        for (String proqvider : providers) {
+//            @SuppressLint("MissingPermission")
+//            Location l = mLocationManager.getLastKnownLocation(provider);
+//            if (l == null) {
+//                continue;
+//            }
+//            if (location == null || l.getAccuracy() < location.getAccuracy()) {
+//                // Found best last known location: %s", l);
+//                location = l;
+//                locationProvider = provider;
+//            }
+//        }
 
-        } else {
-            //监视地理位置变化，第二个和第三个参数分别为更新的最短时间minTime和最短距离minDistace
-            locationManager.requestLocationUpdates(locationProvider, 3000, 1, locationListener);
+            if (location == null) {
+                mLocationManager.requestLocationUpdates(locationProvider, 2000, 1, locationListener);
+
+            }
+        } catch (Exception e) {
+            LogUtil.e(TAG, "getLastLocation-e:" + e.getMessage());
         }
 
     }
@@ -121,53 +186,50 @@ public class  LocationActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == LOCATION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == getPackageManager().PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                try {
-                    getLastLocation();
-
-                } catch (SecurityException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                PermissionDialog.showPermissionDialog(LocationActivity.this, "位置", false);
-
-            }
-        }
-    }
-
-
-    //获取地址信息:城市、街道等信息
-    private void getAddress(Location location) {
-        List<Address> addressList;
-        try {
-            if (location != null) {
-                Geocoder gc = new Geocoder(this, Locale.getDefault());
-                addressList = gc.getFromLocation(location.getLatitude(),
-                        location.getLongitude(), 1);
-                Address address = addressList.get(0);
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(address.getLocality());
-                stringBuilder.append(address.getSubLocality());
-                stringBuilder.append(address.getSubAdminArea());
-                stringBuilder.append(address.getThoroughfare());
-                int index = address.getMaxAddressLineIndex() / 2;
-                stringBuilder.append(address.getAddressLine(index));
-                textView2.setText("地址信息：" + stringBuilder);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        locationManager.removeUpdates(locationListener);
+        mLocationManager.removeUpdates(locationListener);
     }
 
 
+    public void showAddress(double latitude, double longitude) {
+        List<Address> addressList = null;
+        Geocoder geocoder = new Geocoder(this);
+        try {
+            addressList = geocoder.getFromLocation(latitude, longitude, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (addressList != null) {
+            for (Address address : addressList) {
+                LogUtil.d(TAG, String.format("address: %s", address.toString()));
+            }
+            String showAddress = null;
+            int size = addressList.size();
+            if (size == 1) {
+                showAddress = String.format("address: %s", addressList.get(0).toString());
+            } else if (size > 1) {
+                showAddress = String.format("address: %s", addressList.get(size / 2).toString());
+            } else {
+                showAddress = "没有获取到位置信息";
+            }
+            String title = null;
+            if (LocationManager.NETWORK_PROVIDER.equals(locationProvider)) {
+                title = "NETWORK";
+            } else if (LocationManager.GPS_PROVIDER.equals(locationProvider)) {
+                title = "GPS";
+            }
+            DialogUtils.createCommonDialog(this, title, showAddress, "知道了", "取消", DialogUtils.DIALOG_SHOWTYPE_ONE, true, new DialogUtils.DialogCallBack() {
+                @Override
+                public void onConfirm() {
+                }
+
+                @Override
+                public void onCancel() {
+                }
+            });
+        }
+    }
 }

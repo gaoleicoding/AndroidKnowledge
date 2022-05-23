@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -108,5 +110,24 @@ public class Utils {
         return bp;
 
     }
+    /**
+     * 判断当前是否有网络连接,但是如果该连接的网络无法上网，也会返回true
+     */
+    public static boolean isNetConnected(Context mContext) {
 
+        if (mContext != null) {
+            try {
+                ConnectivityManager connectivityManager =
+                        (ConnectivityManager) mContext.
+                                getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                boolean connected = networkInfo.isConnected();
+                if (connected) {
+                    return networkInfo.getState() == NetworkInfo.State.CONNECTED;
+                }
+            } catch (Exception e) {
+            }
+        }
+        return false;
+    }
 }
