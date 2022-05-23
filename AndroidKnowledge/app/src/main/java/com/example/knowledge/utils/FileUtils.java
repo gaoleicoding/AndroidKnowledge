@@ -25,11 +25,6 @@ import java.io.IOException;
  */
 public class FileUtils {
     private static final String TAG = "PicUtils";
-    private static final String PicRootDirectory = AppApplication.context.getFilesDir().getAbsolutePath() + File.separator + Environment.DIRECTORY_PICTURES;
-
-    public static String getPicRootDirectory() {
-        return PicRootDirectory;
-    }
 
     /**
      * 获取系统result的图片信息转化为Uri
@@ -121,6 +116,7 @@ public class FileUtils {
 
         return null;
     }
+
     /**
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.

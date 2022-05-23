@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -57,10 +58,9 @@ public class PhotoSelectActivity extends AppCompatActivity {
 
     protected void takePhoto(final int requestCode) {
         try {
-            File imageStorageDir = new File(FileUtils.getPicRootDirectory());
-            if (!imageStorageDir.exists()) {
-                imageStorageDir.mkdirs();
-            }
+            //Context.getExternalFilesDir("glide").getPath(); 对应路径：Android/data/<应用程序包>/files/glide  （如果想缓存文件可用这个，会随应用删除而删除，节约用户空间）
+            File imageStorageDir = getExternalFilesDir("photo");
+
             imagePath = imageStorageDir + File.separator + "IMG_" + System.currentTimeMillis() + ".jpg";
             File file = new File(imagePath);
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
