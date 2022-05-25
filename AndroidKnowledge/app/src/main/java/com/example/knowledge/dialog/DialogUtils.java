@@ -1,4 +1,4 @@
-package com.example.knowledge.utils;
+package com.example.knowledge.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

@@ -23,14 +23,13 @@ import androidx.core.content.ContextCompat;
 import com.example.knowledge.AppApplication;
 import com.example.knowledge.R;
 import com.example.knowledge.dialog.PermissionDialog;
-import com.example.knowledge.utils.DialogUtils;
+import com.example.knowledge.dialog.DialogUtils;
 import com.example.knowledge.utils.LogUtil;
 import com.example.knowledge.utils.ToastUtil;
 import com.example.knowledge.utils.Utils;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 public class LocationActivity extends AppCompatActivity {
     private final String TAG = "LocationActivity";
