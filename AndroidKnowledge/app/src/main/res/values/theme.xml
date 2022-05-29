@@ -9,6 +9,7 @@
         <item name="colorAccent">@color/purple_assist_dark</item>
         <!--页面背景色-->
         <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:typeface">monospace</item>
     </style>
 
     <!-- 5.0及以上6.0以下状态栏灰底白字；6.0及以上状态栏白底黑字 -->

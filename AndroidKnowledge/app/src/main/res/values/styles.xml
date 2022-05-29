@@ -3,6 +3,7 @@
     <!-- Application theme. -->
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AnimationPreview">
         <item name="android:windowEnterAnimation">@anim/popup_fade_in</item>
         <item name="android:windowExitAnimation">@anim/popup_fade_out</item>
@@ -13,10 +14,17 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
+
     <style name="lib_base_checkVersion_dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <!-- 透明 -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="divider_1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/color_d1d1d1</item>
     </style>
 
 </resources>

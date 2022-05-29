@@ -51,7 +51,7 @@
         <activity android:name=".recyclerview.decoration.ColorDividerActivity" />
         <activity android:name=".recyclerview.decoration.TimelineActivity" />
         <activity android:name=".recyclerview.decoration.BookRankActivity" />
-        <activity android:name=".recyclerview.decoration.HeaderActivity" />
+        <activity android:name=".recyclerview.decoration.RVHeaderActivity" />
         <activity android:name=".recyclerview.decoration.StickyHeaderActivity" />
         <activity android:name=".recyclerview.snaphelper.SnapHelperActivity" />
         <activity android:name=".recyclerview.layoutmanager.LayoutManagerActivity" />
@@ -73,6 +73,7 @@
         <activity android:name=".view.image.beautify.SlimFaceActivity" />
         <activity android:name=".LBS.LocationActivity" />
         <activity android:name=".view.ViewActivity" />
+        <activity android:name=".view.font.FontActivity" />
         <activity
             android:name=".view.webview.WebViewActivity"
             android:process=":webviewProcess" />

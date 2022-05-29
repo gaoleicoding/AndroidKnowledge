@@ -25,7 +25,18 @@ public class CryptoActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_decrypt);
+
+        cryptoFactory = new CryptoFactory();
+        IEncrypt iEncrypt = new RSAEncryptUtil();
+        cryptoFactory.setStrategy(iEncrypt);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_decrypt;
+    }
+    @Override
+    public void initView() {
         edTextToEncrypt = findViewById(R.id.ed_text_to_encrypt);
         tvEncryptedText = findViewById(R.id.tv_encrypted_text);
         tvDecryptedText = findViewById(R.id.tv_decrypted_text);
@@ -35,9 +46,7 @@ public class CryptoActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_encrypt_rsa).setOnClickListener(this);
         findViewById(R.id.btn_decrypt_rsa).setOnClickListener(this);
 
-        cryptoFactory = new CryptoFactory();
-        IEncrypt iEncrypt = new RSAEncryptUtil();
-        cryptoFactory.setStrategy(iEncrypt);
+        tvHeader.setText("CryptoActivity");
     }
 
     @Override

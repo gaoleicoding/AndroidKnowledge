@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <include layout="@layout/activity_header" />
 
     <EditText
         android:id="@+id/ed_text_to_encrypt"

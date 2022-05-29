@@ -68,5 +68,6 @@
     <string name="apply_scale_ratios">apply scale ratios</string>
     <string name="path_not_set">Path not set yet!</string>
     <string name="no_location_provider">Please open GPS and network </string>
+    <string name="font_test">μ0123456789</string>
 
 </resources>
