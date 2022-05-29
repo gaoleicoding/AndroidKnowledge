@@ -14,6 +14,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 
 import com.example.knowledge.utils.LogUtil;
+import com.example.knowledge.utils.TypeFaceUtil;
 
 public class AppApplication extends Application {
     public static Context context;
@@ -30,13 +31,14 @@ public class AppApplication extends Application {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         context = this;
         mHandler = new Handler();
 
-        //初始化一次防止静态变量被回收
-        super.onCreate();
         getApkMode();
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new MyLifecycleObserver());
+        TypeFaceUtil.replaceSystemDefaultFont(this,TypeFaceUtil.fontPath_ARIAL);
+
     }
 
 
