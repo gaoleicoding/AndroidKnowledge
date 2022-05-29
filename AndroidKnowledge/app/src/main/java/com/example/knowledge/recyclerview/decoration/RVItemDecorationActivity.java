@@ -67,7 +67,7 @@ public class RVItemDecorationActivity extends AppCompatActivity implements View.
 
                 break;
             case R.id.btn_divider4:
-                Intent intent4 = new Intent(RVItemDecorationActivity.this,HeaderActivity.class);
+                Intent intent4 = new Intent(RVItemDecorationActivity.this, RVHeaderActivity.class);
                 startActivity(intent4);
                 break;
             case R.id.btn_divider5:

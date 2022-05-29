@@ -11,14 +11,14 @@ import com.example.knowledge.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeaderActivity extends AppCompatActivity {
+public class RVHeaderActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     List<String> data;
     TestAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_header);
+        setContentView(R.layout.activity_rv_header);
         mRecyclerView = (RecyclerView) findViewById(R.id.header_recyclerview);
 
         initDatas();
