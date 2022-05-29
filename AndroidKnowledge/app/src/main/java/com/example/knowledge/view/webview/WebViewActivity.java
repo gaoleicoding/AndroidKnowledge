@@ -18,7 +18,6 @@ import com.example.knowledge.R;
 
 public class WebViewActivity extends AppCompatActivity {
     WebView mWebview;
-    WebSettings mWebSettings;
     TextView beginLoading, endLoading, loading, mtitle;
     String localURL = "file:///android_asset/test.html";
     String baidu = "http://www.baidu.com/";
@@ -28,11 +27,11 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
 
-        mWebview = (WebView) findViewById(R.id.webView1);
-        beginLoading = (TextView) findViewById(R.id.text_beginLoading);
-        endLoading = (TextView) findViewById(R.id.text_endLoading);
-        loading = (TextView) findViewById(R.id.text_Loading);
-        mtitle = (TextView) findViewById(R.id.title);
+        mWebview = findViewById(R.id.webView1);
+        beginLoading = findViewById(R.id.text_beginLoading);
+        endLoading = findViewById(R.id.text_endLoading);
+        loading = findViewById(R.id.text_Loading);
+        mtitle = findViewById(R.id.title);
 
         initSetting(mWebview);
 
@@ -40,6 +39,31 @@ public class WebViewActivity extends AppCompatActivity {
 
 //        initChromeClient();
 //        initWebViewClient();
+    }
+
+    private void initSetting(WebView webView) {
+        WebSettings mWebSettings = webView.getSettings();
+
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        mWebSettings.setJavaScriptEnabled(true);//设置支持javaScript
+        mWebSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
+        mWebSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+        mWebSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        mWebSettings.setUserAgentString("User-Agent");
+        mWebSettings.setLightTouchEnabled(true);//设置用鼠标激活被选项
+        mWebSettings.setBuiltInZoomControls(true);//设置支持缩放
+        mWebSettings.setDomStorageEnabled(true);//设置DOM缓存，当H5网页使用localStorage时，一定要设置
+        mWebSettings.setDatabaseEnabled(true);
+        mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//设置去缓存，防止加载的为上一次加载过的
+        mWebSettings.setSupportZoom(true);//设置支持变焦
+        webView.setHapticFeedbackEnabled(false);
+        mWebSettings.setPluginState(WebSettings.PluginState.ON);
+        mWebSettings.setAllowFileAccess(true);
+        mWebSettings.setAllowContentAccess(true);
+        mWebSettings.setAllowUniversalAccessFromFileURLs(true);
+        mWebSettings.setAllowFileAccessFromFileURLs(true);
+        mWebSettings.setFixedFontFamily("cursive");
     }
 
     private void initWebViewClient() {
@@ -96,29 +120,6 @@ public class WebViewActivity extends AppCompatActivity {
         });
     }
 
-    private void initSetting(WebView webView) {
-        WebSettings mWebSettings = webView.getSettings();
-
-        CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.setAcceptCookie(true);
-        mWebSettings.setJavaScriptEnabled(true);//设置支持javaScript
-        mWebSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
-        mWebSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-        mWebSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        mWebSettings.setUserAgentString("User-Agent");
-        mWebSettings.setLightTouchEnabled(true);//设置用鼠标激活被选项
-        mWebSettings.setBuiltInZoomControls(true);//设置支持缩放
-        mWebSettings.setDomStorageEnabled(true);//设置DOM缓存，当H5网页使用localStorage时，一定要设置
-        mWebSettings.setDatabaseEnabled(true);
-        mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//设置去缓存，防止加载的为上一次加载过的
-        mWebSettings.setSupportZoom(true);//设置支持变焦
-        webView.setHapticFeedbackEnabled(false);
-        mWebSettings.setPluginState(WebSettings.PluginState.ON);
-        mWebSettings.setAllowFileAccess(true);
-        mWebSettings.setAllowContentAccess(true);
-        mWebSettings.setAllowUniversalAccessFromFileURLs(true);
-        mWebSettings.setAllowFileAccessFromFileURLs(true);
-    }
 
     //点击返回上一页面而不是退出浏览器
     @Override
