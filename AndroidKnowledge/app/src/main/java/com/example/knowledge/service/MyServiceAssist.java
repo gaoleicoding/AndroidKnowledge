@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 public class MyServiceAssist extends Service {
@@ -21,7 +20,7 @@ public class MyServiceAssist extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        startForeground(ServiceNotificationManager.NOTIFICATION_FOREGROUND_ID, ServiceNotificationManager.getNotification(this));
+        startForeground(NotifyManager.NOTIFICATION_FOREGROUND_ID, NotifyManager.getNotification(this));
         Log.d(TAG, "onCreate1");
         stopSelf();
     }
@@ -38,8 +37,8 @@ public class MyServiceAssist extends Service {
         super.onDestroy();
         //stopForeground 停止服务并且取消通知栏 ，这种情况比较特殊，
         // 所以还要调用ServiceNotificationManager.removeNotification();
-        ServiceNotificationManager.removeNotification();
         stopForeground(true);
+        NotifyManager.removeNotification();
         Log.d(TAG, "onDestroy1");
     }
 }

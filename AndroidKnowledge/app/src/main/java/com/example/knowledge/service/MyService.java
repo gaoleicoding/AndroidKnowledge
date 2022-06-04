@@ -34,7 +34,7 @@ public class MyService extends Service {
         super.onCreate();
         Log.d(TAG, "onCreate");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(ServiceNotificationManager.NOTIFICATION_FOREGROUND_ID, ServiceNotificationManager.getNotification(this));
+            startForeground(NotifyManager.NOTIFICATION_FOREGROUND_ID, NotifyManager.getNotification(this));
             Intent intent = new Intent(this, MyServiceAssist.class);
             startForegroundService(intent);
         }
