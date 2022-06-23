@@ -11,6 +11,10 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'http://developer.huawei.com/repo/' }
+        maven { url 'https://repo1.maven.org/maven2/' }//友盟
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
@@ -32,6 +36,12 @@ allprojects {
         maven {
             url 'https://jitpack.io'
         }
+        maven { url 'http://www.flyingying.com:8081/nexus/content/repositories/com.fifedu.androidLib/' }
+        maven { url "https://artifacts.iflytek.com/artifactory/ebg-mvn-release-private/" }
+        maven { url 'https://artifacts.iflytek.com/artifactory/mvn-repo/' }
+        maven { url 'http://developer.huawei.com/repo/' }
+        maven { url 'https://repo1.maven.org/maven2/' }//友盟
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
 }
 
