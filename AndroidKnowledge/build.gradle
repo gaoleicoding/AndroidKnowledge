@@ -38,7 +38,7 @@ allprojects {
             url 'https://jitpack.io'
         }
         maven {
-            url 'https://raw.githubusercontent.com/gaoleicoding/AndroidKnowledge/master/'
+            url 'https://raw.githubusercontent.com/gaoleicoding/AndroidKnowledge/AndroidKnowledge/master/'
         }
         maven { url 'http://www.flyingying.com:8081/nexus/content/repositories/com.fifedu.androidLib/' }
         maven { url "https://artifacts.iflytek.com/artifactory/ebg-mvn-release-private/" }
