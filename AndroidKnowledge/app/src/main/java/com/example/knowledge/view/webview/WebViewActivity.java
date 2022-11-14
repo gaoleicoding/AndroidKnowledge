@@ -3,24 +3,28 @@ package com.example.knowledge.view.webview;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
+import com.tencent.smtt.sdk.CookieManager;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 
 public class WebViewActivity extends AppCompatActivity {
     WebView mWebview;
-    TextView beginLoading, endLoading, loading, mtitle;
+    TextView mtitle;
+    ProgressBar mWebViewPb;
     String localURL = "file:///android_asset/test.html";
     String baidu = "http://www.baidu.com/";
+    String noteUrl = "https://notecs.fifedu.com/note-center-static/v100/app/index.html#/noteData/detailPage?id=e9d4c728bb7347f791cc92b51a0844c2&userId=e79d688684964b35a9ab96abe4d5f155&schoolId=2000000026000000001&jtzy=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFsTmFtZSI6IuadjueOuiIsInNjaG9vbElkIjoiMjAwMDAwMDAyNjAwMDAwMDAwMSIsImlzcyI6ImZpZmFjIiwiaWQiOiIyODExMDAwMjI2MDAwNTc3MTY1IiwiZXhwIjoxNjY5MDIzNzIxLCJ1c2VybmFtZSI6ImJmc3VsaXhpIiwibWVtYmVySWQiOiJlNzlkNjg4Njg0OTY0YjM1YTlhYjk2YWJlNGQ1ZjE1NSJ9.LjEt-L1C6kGzH-tsseShJGiwraCBUyDl0sFdaqytQlU%3D%3D";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +32,20 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_webview);
 
         mWebview = findViewById(R.id.webView1);
-        beginLoading = findViewById(R.id.text_beginLoading);
-        endLoading = findViewById(R.id.text_endLoading);
-        loading = findViewById(R.id.text_Loading);
+        mWebViewPb = findViewById(R.id.pb_webview);
         mtitle = findViewById(R.id.title);
 
         initSetting(mWebview);
 
-        mWebview.loadUrl(localURL);
-
-//        initChromeClient();
-//        initWebViewClient();
+//        String webViewAgent=mWebview.getSettings().getUserAgentString();
+//        String webViewAgent2=new WebView(getApplicationContext()).getSettings().getUserAgentString();
+//        String agent=System.getProperty("http.agent");
+//        Log.d("WebViewActivity","webViewAgent:"+webViewAgent);
+//        Log.d("WebViewActivity","webViewAgent2:"+webViewAgent2);
+//        Log.d("WebViewActivity","agent:"+agent);
+        initChromeClient();
+        initWebViewClient();
+        mWebview.loadUrl(noteUrl);
     }
 
     private void initSetting(WebView webView) {
@@ -50,7 +57,7 @@ public class WebViewActivity extends AppCompatActivity {
         mWebSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         mWebSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
         mWebSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        mWebSettings.setUserAgentString("User-Agent");
+//        mWebSettings.setUserAgentString("User-Agent");
         mWebSettings.setLightTouchEnabled(true);//设置用鼠标激活被选项
         mWebSettings.setBuiltInZoomControls(true);//设置支持缩放
         mWebSettings.setDomStorageEnabled(true);//设置DOM缓存，当H5网页使用localStorage时，一定要设置
@@ -72,15 +79,12 @@ public class WebViewActivity extends AppCompatActivity {
             //设置加载前的函数
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                System.out.println("开始加载了");
-                beginLoading.setText("开始加载了");
 
             }
 
             //设置结束加载函数
             @Override
             public void onPageFinished(WebView view, String url) {
-                endLoading.setText("结束加载了");
 
             }
 
@@ -97,7 +101,6 @@ public class WebViewActivity extends AppCompatActivity {
         //设置WebChromeClient类
         mWebview.setWebChromeClient(new WebChromeClient() {
 
-
             //获取网站标题
             @Override
             public void onReceivedTitle(WebView view, String title) {
@@ -109,12 +112,9 @@ public class WebViewActivity extends AppCompatActivity {
             //获取加载进度
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress < 100) {
-                    String progress = newProgress + "%";
-                    loading.setText(progress);
-                } else if (newProgress == 100) {
-                    String progress = newProgress + "%";
-                    loading.setText(progress);
+                mWebViewPb.setProgress(newProgress);
+                if (newProgress > 98) {
+                    mWebViewPb.setVisibility(View.GONE);
                 }
             }
         });
