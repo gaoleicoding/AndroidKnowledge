@@ -4,48 +4,39 @@ buildscript {
     ext.kotlin_version = '1.4.31'
 
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/public' }//jcenter
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }//gradle-plugin
-        maven { url 'https://maven.aliyun.com/repository/central' }//central
-        maven { url 'https://maven.aliyun.com/repository/google' }//google
+        // 阿里云镜像
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
         google()
         jcenter()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
-        maven { url 'http://developer.huawei.com/repo/' }
-        maven { url 'https://repo1.maven.org/maven2/' }//友盟
-        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.1'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/public/' }
-        maven { url 'https://maven.aliyun.com/repository/google/' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        // 阿里云镜像
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
         google()
         jcenter()
         mavenCentral()
         maven {
             url 'https://jitpack.io'
         }
-        maven {
-            url 'https://raw.githubusercontent.com/gaoleicoding/AndroidKnowledge/AndroidKnowledge/master/'
-        }
-        maven { url 'http://www.flyingying.com:8081/nexus/content/repositories/com.fifedu.androidLib/' }
-        maven { url "https://artifacts.iflytek.com/artifactory/ebg-mvn-release-private/" }
-        maven { url 'https://artifacts.iflytek.com/artifactory/mvn-repo/' }
-        maven { url 'http://developer.huawei.com/repo/' }
-        maven { url 'https://repo1.maven.org/maven2/' }//友盟
-        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+
     }
 }
 

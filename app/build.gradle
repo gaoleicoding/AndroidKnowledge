@@ -134,7 +134,6 @@ dependencies {
     // Proto DataStore
     implementation "androidx.datastore:datastore-core:1.0.0-alpha05"
     implementation 'pub.devrel:easypermissions:1.0.1'
-    implementation 'fifedu_android:lib_common_business:1.4.2'
     //腾讯x5内核WebView
     api 'com.tencent.tbs:tbssdk:44226'
 
