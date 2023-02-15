@@ -40,11 +40,12 @@ android {
             keyAlias 'knowledge'
         }
     }
-    compileSdkVersion 30
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
     defaultConfig {
         applicationId "com.example.knowledge"
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -136,6 +137,8 @@ dependencies {
     implementation 'fifedu_android:lib_common_business:1.4.2'
     //腾讯x5内核WebView
     api 'com.tencent.tbs:tbssdk:44226'
+
+    api project(':lib_base')
 }
 repositories {
     mavenCentral()
