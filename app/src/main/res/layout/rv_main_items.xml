@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="30dp"
+    android:paddingLeft="16dp"
     android:paddingTop="8dp"
-    android:paddingRight="30dp"
+    android:paddingRight="16dp"
     android:paddingBottom="8dp">
 
     <TextView
         android:id="@+id/tv_content"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:includeFontPadding="false"
         android:textSize="16sp"
-        tools:text="12345"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="12345" />
 
     <ImageView
         android:id="@+id/iv_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:src="@drawable/icon_arrow_right" />
-</LinearLayout>
+</RelativeLayout>
