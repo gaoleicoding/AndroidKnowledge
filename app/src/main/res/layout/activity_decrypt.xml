@@ -8,13 +8,13 @@
     <include layout="@layout/activity_header" />
 
     <EditText
-        android:id="@+id/ed_text_to_encrypt"
+        android:id="@+id/et_encrypt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp" />
 
     <TextView
-        android:id="@+id/tv_encrypted_text"
+        android:id="@+id/tv_encrypt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="1" />
@@ -56,7 +56,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_decrypted_text"
+        android:id="@+id/tv_decrypt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="2" />

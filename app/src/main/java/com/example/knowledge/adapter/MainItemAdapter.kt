@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledge.R
 
 
-class ItemAdapter(private val ctx: Context, private val items: Array<String>) :
-        RecyclerView.Adapter<ItemAdapter.MyViewHolder>() {
+class MainItemAdapter(private val ctx: Context, private val items: Array<String>) :
+        RecyclerView.Adapter<MainItemAdapter.MyViewHolder>() {
 
     fun setOnItemClickLitener(mOnItemClickLitener: OnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener

@@ -1,6 +1,7 @@
 package com.example.knowledge.cryptography;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -8,38 +9,44 @@ import android.widget.TextView;
 import com.example.knowledge.BaseActivity;
 import com.example.knowledge.MainActivity;
 import com.example.knowledge.R;
+import com.example.knowledge.cryptography.aes.AESEncryptUtil;
 import com.example.knowledge.cryptography.rsa.RSAEncryptUtil;
+import com.example.knowledge.utils.ToastUtil;
 
 public class CryptoActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    EditText edTextToEncrypt;
+    EditText encryptEt;
 
-    TextView tvEncryptedText;
+    TextView encryptTv;
 
-    TextView tvDecryptedText;
+    TextView decryptTv;
 
     private CryptoFactory cryptoFactory;
+    private IEncrypt aesEncrypt = new AESEncryptUtil();
+    private IEncrypt rsaEncrypt = new RSAEncryptUtil();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         cryptoFactory = new CryptoFactory();
-        IEncrypt iEncrypt = new RSAEncryptUtil();
-        cryptoFactory.setStrategy(iEncrypt);
+
+
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_decrypt;
     }
+
     @Override
     public void initView() {
-        edTextToEncrypt = findViewById(R.id.ed_text_to_encrypt);
-        tvEncryptedText = findViewById(R.id.tv_encrypted_text);
-        tvDecryptedText = findViewById(R.id.tv_decrypted_text);
+        encryptEt = findViewById(R.id.et_encrypt);
+        encryptTv = findViewById(R.id.tv_encrypt);
+        decryptTv = findViewById(R.id.tv_decrypt);
 
         findViewById(R.id.btn_encrypt_aes).setOnClickListener(this);
         findViewById(R.id.btn_decrypt_aes).setOnClickListener(this);
@@ -53,18 +60,25 @@ public class CryptoActivity extends BaseActivity implements View.OnClickListener
     public void onClick(final View view) {
 
         final int id = view.getId();
-
+        if (TextUtils.isEmpty(encryptEt.getText().toString().trim())) {
+            ToastUtil.showToast(CryptoActivity.this, "请输入加密内容");
+            return;
+        }
         switch (id) {
             case R.id.btn_encrypt_aes:
+                cryptoFactory.setStrategy(aesEncrypt);
                 encryptText("AES_ALIAS");
                 break;
             case R.id.btn_decrypt_aes:
+                cryptoFactory.setStrategy(aesEncrypt);
                 decryptText("AES_ALIAS");
                 break;
             case R.id.btn_encrypt_rsa:
+                cryptoFactory.setStrategy(rsaEncrypt);
                 encryptText("RSA_ALIAS");
                 break;
             case R.id.btn_decrypt_rsa:
+                cryptoFactory.setStrategy(rsaEncrypt);
                 decryptText("RSA_ALIAS");
                 break;
         }
@@ -72,13 +86,13 @@ public class CryptoActivity extends BaseActivity implements View.OnClickListener
 
     private void encryptText(String alias) {
         final String encryptedText = cryptoFactory.getStrategy()
-                .encryptText(alias, edTextToEncrypt.getText().toString());
-        tvEncryptedText.setText(encryptedText);
+                .encryptText(alias, encryptEt.getText().toString());
+        encryptTv.setText(encryptedText);
     }
 
     private void decryptText(String alias) {
-        final String decryptedText = cryptoFactory.getDecryptText(alias, tvEncryptedText.getText().toString());
-        tvDecryptedText.setText(decryptedText);
+        final String decryptedText = cryptoFactory.getDecryptText(alias, encryptTv.getText().toString());
+        decryptTv.setText(decryptedText);
     }
 
 }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledge.LBS.LocationActivity
-import com.example.knowledge.adapter.ItemAdapter
+import com.example.knowledge.adapter.MainItemAdapter
 import com.example.knowledge.annotation.AnnotationActivity
 import com.example.knowledge.asynctask.AsyncActivity
 import com.example.knowledge.contentprovider.ProviderActivity
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
         val layoutManager = LinearLayoutManager(this)
         recyclerview.layoutManager = layoutManager
-        val itemAdapter = ItemAdapter(this, items)
+        val itemAdapter = MainItemAdapter(this, items)
         recyclerview.adapter = itemAdapter
         recyclerview.addItemDecoration(
             DividerItemDecoration(
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        itemAdapter.setOnItemClickLitener(object : ItemAdapter.OnItemClickLitener {
+        itemAdapter.setOnItemClickLitener(object : MainItemAdapter.OnItemClickLitener {
             override fun onItemClick(v: View) {
                 val position = recyclerview.getChildAdapterPosition(v)
                 startActivity(Intent(this@MainActivity, activities[position]))

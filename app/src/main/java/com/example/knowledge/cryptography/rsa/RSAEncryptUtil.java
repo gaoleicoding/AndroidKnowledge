@@ -7,7 +7,6 @@ import android.util.Base64;
 
 import com.example.knowledge.cryptography.IEncrypt;
 import com.example.knowledge.utils.ContextProvider;
-import com.example.knowledge.utils.StartUpInitializer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -95,9 +94,7 @@ public class RSAEncryptUtil implements IEncrypt {
      */
     public String encryptText(String alias, String encryptContent) {
         if (!TextUtils.isEmpty(encryptContent) && !TextUtils.isEmpty(alias)) {
-            if (!isHaveKeyStore(alias) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                initKeyStore(alias);
-            }
+            initKeyStore(alias);
             byte[] vals = null;
             try {
                 KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(alias, null);
@@ -136,9 +133,7 @@ public class RSAEncryptUtil implements IEncrypt {
 
     public String decryptText(String alias, String decryptContent) {
         if (!TextUtils.isEmpty(alias) && !TextUtils.isEmpty(decryptContent)) {
-            if (!isHaveKeyStore(alias) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                initKeyStore(alias);
-            }
+            initKeyStore(alias);
             String decryptStr = "";
             try {
                 KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(alias, null);
