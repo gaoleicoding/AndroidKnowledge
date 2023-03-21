@@ -10,55 +10,128 @@
     <EditText
         android:id="@+id/et_encrypt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
-
-    <TextView
-        android:id="@+id/tv_encrypt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="1" />
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:hint="请输入加密内容"
+        android:textColorHint="@color/bg_text_grey" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_encrypt_aes"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AES加密" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_encrypt_rsa"
+            <TextView
+                android:id="@+id/btn_encrypt_aes"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_border_blue"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="AES加密" />
+
+            <TextView
+                android:id="@+id/btn_decrypt_aes"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_border_blue"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="AES解密" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RSA加密" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/btn_encrypt_rsa"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_border_blue"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="RSA加密" />
+
+            <TextView
+                android:id="@+id/btn_decrypt_rsa"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_border_blue"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="RSA解密" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_encrypt_md5"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_border_blue"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="MD5加密" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_decrypt_aes"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AES解密" />
+            android:text="加密结果:"
+            android:textColor="@color/bg_black_d9"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn_decrypt_rsa"
+        <TextView
+            android:id="@+id/tv_encrypt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RSA解密" />
+            android:layout_marginStart="10dp"
+            android:textColor="@color/bg_black_d9"
+            tools:text="1" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_decrypt"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="2" />
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="解密结果:"
+            android:textColor="@color/bg_black_d9"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_decrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/bg_black_d9"
+            tools:text="2" />
+    </LinearLayout>
 </LinearLayout>

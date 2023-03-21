@@ -24,5 +24,25 @@
     <color name="base_shadow_color_orange">#AAFD6960</color>
     <color name="grey_level_1">#4A4A4A</color><!--深色-->
     <color name="color_d1d1d1">#d1d1d1</color><!--深色-->
+    <!-- 排行榜 赞文字颜色 -->
+    <color name="bg_text_yellow">#FFB61E</color>
+    <!-- 黑色 85% -->
+    <color name="bg_black_d9">#D9000000</color>
+    <!-- 黑色 65% -->
+    <color name="bg_black_a6">#A6000000</color>
+    <!-- 黑色 60% -->
+    <color name="bg_black_99">#99000000</color>
+    <!-- 黑色 45% -->
+    <color name="bg_black_73">#73000000</color>
+    <!-- 黑色 20% -->
+    <color name="bg_black_33">#33000000</color>
+    <!-- 黑色 3% -->
+    <color name="bg_black_08">#08000000</color>
+    <!-- 主题蓝色 5% -->
+    <color name="bg_blue_0d">#0D3388FF</color>
+    <!-- 主题白色 80% -->
+    <color name="bg_white_cc">#CCFFFFFF</color>
+    <!-- 主题白色 60% -->
+    <color name="bg_white_99">#99FFFFFF</color>
 
 </resources>

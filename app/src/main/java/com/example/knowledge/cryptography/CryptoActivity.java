@@ -11,6 +11,7 @@ import com.example.knowledge.MainActivity;
 import com.example.knowledge.R;
 import com.example.knowledge.cryptography.aes.AESEncryptUtil;
 import com.example.knowledge.cryptography.rsa.RSAEncryptUtil;
+import com.example.knowledge.utils.SignUtils;
 import com.example.knowledge.utils.ToastUtil;
 
 public class CryptoActivity extends BaseActivity implements View.OnClickListener {
@@ -52,6 +53,7 @@ public class CryptoActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_decrypt_aes).setOnClickListener(this);
         findViewById(R.id.btn_encrypt_rsa).setOnClickListener(this);
         findViewById(R.id.btn_decrypt_rsa).setOnClickListener(this);
+        findViewById(R.id.tv_encrypt_md5).setOnClickListener(this);
 
         tvHeader.setText("CryptoActivity");
     }
@@ -60,10 +62,10 @@ public class CryptoActivity extends BaseActivity implements View.OnClickListener
     public void onClick(final View view) {
 
         final int id = view.getId();
-        if (TextUtils.isEmpty(encryptEt.getText().toString().trim())) {
-            ToastUtil.showToast(CryptoActivity.this, "请输入加密内容");
-            return;
-        }
+//        if (TextUtils.isEmpty(encryptEt.getText().toString().trim())) {
+//            ToastUtil.showToast(CryptoActivity.this, "请输入加密内容");
+//            return;
+//        }
         switch (id) {
             case R.id.btn_encrypt_aes:
                 cryptoFactory.setStrategy(aesEncrypt);
@@ -80,6 +82,12 @@ public class CryptoActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn_decrypt_rsa:
                 cryptoFactory.setStrategy(rsaEncrypt);
                 decryptText("RSA_ALIAS");
+                break;
+            case R.id.tv_encrypt_md5:
+                encryptEt.setText("aioralxs00110001Sx3bM3Lj");
+                String content=encryptEt.getText().toString();
+                String md5 = SignUtils.md5(content);
+                encryptTv.setText(md5);
                 break;
         }
     }
