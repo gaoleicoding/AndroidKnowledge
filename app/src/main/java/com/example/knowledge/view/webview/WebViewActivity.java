@@ -5,17 +5,22 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
-import com.tencent.smtt.sdk.CookieManager;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
+//import com.tencent.smtt.sdk.CookieManager;
+//import com.tencent.smtt.sdk.WebChromeClient;
+//import com.tencent.smtt.sdk.WebSettings;
+//import com.tencent.smtt.sdk.WebView;
+//import com.tencent.smtt.sdk.WebViewClient;
 
 
 public class WebViewActivity extends AppCompatActivity {
@@ -43,9 +48,9 @@ public class WebViewActivity extends AppCompatActivity {
 //        Log.d("WebViewActivity","webViewAgent:"+webViewAgent);
 //        Log.d("WebViewActivity","webViewAgent2:"+webViewAgent2);
 //        Log.d("WebViewActivity","agent:"+agent);
-        initChromeClient();
-        initWebViewClient();
-        mWebview.loadUrl(noteUrl);
+//        initChromeClient();
+//        initWebViewClient();
+        mWebview.loadUrl(localURL);
     }
 
     private void initSetting(WebView webView) {
