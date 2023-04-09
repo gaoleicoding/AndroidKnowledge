@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -53,7 +52,7 @@ public class PhotoSelectActivity extends AppCompatActivity {
             public void onDeniedRational() {
                 //勾选不在提示，且拒绝"
             }
-        }, PermissionUtils.PERMISSION_CAMERA);
+        }, PermissionUtils.PERMISSIONS_CAMERA);
     }
 
     protected void takePhoto(final int requestCode) {

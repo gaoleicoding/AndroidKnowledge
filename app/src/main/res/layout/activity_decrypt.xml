@@ -86,7 +86,7 @@
                 android:background="@drawable/button_border_blue"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="MD5加密" />
+                android:text="MD5值" />
 
         </LinearLayout>
     </LinearLayout>
