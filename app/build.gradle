@@ -54,15 +54,10 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
-    }
+
     buildFeatures {
         dataBinding = true
+        viewBinding true
     }
     buildTypes {
         debug {
@@ -124,6 +119,7 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.caverock:androidsvg-aar:1.4'
 
     implementation 'com.wuyr:pathlayoutmanager:1.0.3'
     implementation 'com.tencent:mmkv-static:1.2.6'
@@ -137,6 +133,7 @@ dependencies {
     //腾讯x5内核WebView
     api 'com.tencent.tbs:tbssdk:44226'
     implementation 'com.github.getActivity:XXPermissions:13.6'
+
     api project(':lib_base')
 }
 repositories {

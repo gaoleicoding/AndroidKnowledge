@@ -19,7 +19,7 @@
         android:text="复原"
         android:textColor="#999999" />
 
-    <com.example.knowledge.view.image.beautify.SlimFaceView
+    <com.example.knowledge.image.beautify.SlimFaceView
         android:id="@+id/myPSView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -14,8 +14,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-import com.example.knowledge.AppApplication;
-import com.example.knowledge.view.photo.FileProviderUtil;
+import com.example.knowledge.image.photo.FileProviderUtil;
 
 import java.io.File;
 import java.io.IOException;

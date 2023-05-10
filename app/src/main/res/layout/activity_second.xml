@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:onClick="onBack"
-        android:src="@drawable/icon_back" />
+        android:src="@drawable/ic_arrow_back" />
 
     <TextView
         android:id="@+id/title_text"

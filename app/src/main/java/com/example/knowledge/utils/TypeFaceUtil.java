@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 public class TypeFaceUtil {
     private static final String TAG = "TypeFaceUtils";
     //字体地址，一般放置在assets/fonts目录
+    public static final String fontPath_SYMBOL = "fonts/symbol.ttf";
     public static final String fontPath_ARIAL = "fonts/ARIAL.TTF";
     public static final String fontPath_DroidSansFallbackBd = "fonts/DroidSansFallbackBd.ttf";
     public static final String fontPath_DroidSansFallback = "fonts/DroidSansFallback.ttf";

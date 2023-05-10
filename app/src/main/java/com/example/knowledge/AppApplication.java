@@ -23,6 +23,10 @@ public class AppApplication extends Application {
 
     public static boolean isDebug = false;//是否是测试环境
 
+    public static Context getContext() {
+        return context;
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

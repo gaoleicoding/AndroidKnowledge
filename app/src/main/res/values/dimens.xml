@@ -8,4 +8,5 @@
     <dimen name="header_divider_height">2dp</dimen>
     <dimen name="header_height">54dp</dimen>
     <dimen name="header_textsize">22sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

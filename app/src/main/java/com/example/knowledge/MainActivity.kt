@@ -2,138 +2,142 @@ package com.example.knowledge
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.widget.ExpandableListView
+import android.widget.ExpandableListView.OnChildClickListener
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.knowledge.LBS.LocationActivity
-import com.example.knowledge.adapter.MainItemAdapter
-import com.example.knowledge.annotation.AnnotationActivity
-import com.example.knowledge.asynctask.AsyncActivity
-import com.example.knowledge.contentprovider.ProviderActivity
-import com.example.knowledge.cryptography.CryptoActivity
-import com.example.knowledge.datastore.DataStoreActivity
-import com.example.knowledge.lambda.LambdaActivity
-import com.example.knowledge.ninepatch.NinePatchActivity
-import com.example.knowledge.popupwindow.PopupActivity
-import com.example.knowledge.process.ProcessActivity
-import com.example.knowledge.recyclerview.RecyclerViewActivity
-import com.example.knowledge.service.ServiceActivity
-import com.example.knowledge.utils.LogUtil
-import com.example.knowledge.view.ViewActivity
-import com.tencent.mmkv.MMKV
-
+import com.example.knowledge.adapter.MyExListAdapter
+import com.example.knowledge.bean.ChildBean
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var expandableListView: ExpandableListView
+    private var groups = mutableListOf<String>()
+    private var children = mutableListOf<List<ChildBean>>()
 
-    companion object {
-        private const val TAG = "MainActivity"
-    }
-
-    var items = arrayOf(
-        "SecondActivity",
-        "加解密",
-        "Lambda",
-        "四大组建之ContentProvider",
-        "四大组件-Service",
-        "NinePatch",
-        "RecyclerView",
-        "AsyncTask",
-        "弹窗",
-        "注解",
-        "Jetpack",
-        "进程保活",
-        "位置服务",
-        "安卓组件",
-    )
-    var activities = arrayOf<Class<*>>(
-        SecondActivity::class.java,
-        CryptoActivity::class.java,
-        LambdaActivity::class.java,
-        ProviderActivity::class.java,
-        ServiceActivity::class.java,
-        NinePatchActivity::class.java,
-        RecyclerViewActivity::class.java,
-        AsyncActivity::class.java,
-        PopupActivity::class.java,
-        AnnotationActivity::class.java,
-        DataStoreActivity::class.java,
-        ProcessActivity::class.java,
-        LocationActivity::class.java,
-        ViewActivity::class.java,
-    )
-    private val a = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LogUtil.d(TAG, "MainActivity--onCreate()")
         setContentView(R.layout.activity_main)
-        val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerview.layoutManager = layoutManager
-        val itemAdapter = MainItemAdapter(this, items)
-        recyclerview.adapter = itemAdapter
-        recyclerview.addItemDecoration(
-            DividerItemDecoration(
-                this@MainActivity,
-                DividerItemDecoration.VERTICAL
+        initData()
+        expandableListView = findViewById(R.id.eplv_point)
+        val myExListAdapter = MyExListAdapter(this@MainActivity, groups, children)
+        expandableListView.setAdapter(myExListAdapter)
+        expandableListView.setOnChildClickListener(OnChildClickListener { parent, v, groupPosition, childPosition, id ->
+            try {
+                val c1 = Class.forName(children[groupPosition][childPosition].className)
+                startActivity(Intent(this@MainActivity, c1))
+            } catch (e: ClassNotFoundException) {
+                throw RuntimeException(e)
+            }
+            false
+        })
+    }
+
+    //设置一下模拟的数据
+    private fun initData() {
+        val items: MutableList<ChildBean> = ArrayList() //组别中的数据
+        groups.add("四大组件之Activity")
+        groups.add("四大组建之ContentProvider")
+        groups.add("四大组件之Service")
+        groups.add("四大组件之Broadcast")
+        groups.add("多媒体之图片")
+        groups.add("安卓组件")
+        groups.add("Jetpack")
+        groups.add("安全")
+        groups.add("安卓知识点")
+        items.add(ChildBean("SecondActivity", "com.example.knowledge.activity.SecondActivity"))
+        items.add(
+            ChildBean(
+                "TestAndroidActivity",
+                "com.example.knowledge.activity.TestAndroidActivity"
             )
         )
-        itemAdapter.setOnItemClickLitener(object : MainItemAdapter.OnItemClickLitener {
-            override fun onItemClick(v: View) {
-                val position = recyclerview.getChildAdapterPosition(v)
-                startActivity(Intent(this@MainActivity, activities[position]))
-            }
-        })
-
-
-//        testMMKV()
+        items.add(
+            ChildBean(
+                "TestKotlinActivity",
+                "com.example.knowledge.activity.TestKotlinActivity"
+            )
+        )
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(ChildBean("ProviderActivity", "com.example.knowledge.provider.ProviderActivity"))
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(ChildBean("ServiceActivity", "com.example.knowledge.service.ServiceActivity"))
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(
+            ChildBean(
+                "BroadcastActivity",
+                "com.example.knowledge.broadcast.BroadcastActivity"
+            )
+        )
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(
+            ChildBean(
+                "NinePatchActivity",
+                "com.example.knowledge.image.ninepatch.NinePatchActivity"
+            )
+        )
+        items.add(ChildBean("ImgProcessActivity", "com.example.knowledge.image.ImgProcessActivity"))
+        items.add(
+            ChildBean(
+                "PhotoSelectActivity",
+                "com.example.knowledge.image.photo.PhotoSelectActivity"
+            )
+        )
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(
+            ChildBean(
+                "WebViewActivity",
+                "com.example.knowledge.component.webview.WebViewActivity"
+            )
+        )
+        items.add(
+            ChildBean(
+                "RecyclerViewActivity",
+                "com.example.knowledge.component.recyclerview.RecyclerViewActivity"
+            )
+        )
+        items.add(
+            ChildBean(
+                "PopupActivity",
+                "com.example.knowledge.component.popupwindow.PopupActivity"
+            )
+        )
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(
+            ChildBean(
+                "DataStoreActivity",
+                "com.example.knowledge.jetpack.datastore.DataStoreActivity"
+            )
+        )
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(ChildBean("CryptoActivity", "com.example.knowledge.security.CryptoActivity"))
+        children.add(ArrayList(items))
+        items.clear()
+        items.add(
+            ChildBean(
+                "ProcessActivity",
+                "com.example.knowledge.android.process.ProcessActivity"
+            )
+        )
+        items.add(
+            ChildBean(
+                "LocationActivity",
+                "com.example.knowledge.android.LBS.LocationActivity"
+            )
+        )
+        items.add(ChildBean("FontActivity", "com.example.knowledge.android.font.FontActivity"))
+        items.add(
+            ChildBean(
+                "AnnotationActivity",
+                "com.example.knowledge.android.annotation.AnnotationActivity"
+            )
+        )
+        children.add(ArrayList(items))
+        items.clear()
     }
-
-
-    fun testMMKV() {
-        val mmkv = MMKV.mmkvWithID("TEST")
-        mmkv.encode("bool", true)
-        LogUtil.d(TAG, "testMMKV--bool: " + mmkv.decodeBool("bool"))
-    }
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        LogUtil.d(TAG, "onWindowFocusChanged: " + hasFocus)
-        if (hasFocus) {
-
-        } else {
-
-        }
-        super.onWindowFocusChanged(hasFocus)
-    }
-    override fun onStart() {
-        super.onStart()
-        LogUtil.d(TAG, "MainActivity--onStart()")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        LogUtil.d(TAG, "MainActivity--onResume()")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        LogUtil.d(TAG, "MainActivity--onPause()")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        LogUtil.d(TAG, "MainActivity--onStop()")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        LogUtil.d(TAG, "MainActivity--onRestart()")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        LogUtil.d(TAG, "MainActivity--onDestroy()")
-    }
-
 }

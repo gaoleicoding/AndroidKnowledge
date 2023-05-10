@@ -1,0 +1,39 @@
+<?xml version="1.0 encoding="utf-8?>
+<html>
+<head>
+    <title>H5与Android交互</title>
+    <script src="action.js"></script>
+    <script>
+   function nativeCallWeb(json){
+<!--      alert(JSON.stringify(json));-->
+      document.querySelector('#location').innerHTML = '  ' +  json.data.address
+   }
+
+    </script>
+</head>
+<body>
+<h2>
+    <a href="kyxlstu://fifedu.com?appFlag=aioral&userNo=xs001&code=ouchn&appKey=10001&sign=6df089e072761018018671f08d8dcac6&eventType=1"
+       style="font-size:36px">跳转到首页</a>
+</h2>
+<h2>
+    <a href="kyxlstu://fifedu.com?appFlag=aioral&userNo=xs001&code=ouchn&appKey=10001&sign=6df089e072761018018671f08d8dcac6&eventType=2"
+       style="font-size:36px">跳转到形考列表</a>
+</h2>
+<h2>
+    <a href="kyxlstu://fifedu.com?appFlag=aioral&userNo=xs001&code=ouchn&appKey=10001&sign=6df089e072761018018671f08d8dcac6&eventType=3&eventId=044a8ed2cb294c0494030b89cc90c457"
+       style="font-size:36px">跳转到形考单元列表</a>
+</h2>
+
+<button onclick="action(1)" style="font-size:36px">获取位置</button>
+<span id="location" style="font-size:36px"></span>
+
+
+<h2 style="font-family: Symbol" >μ显示为了m</h2>
+<img
+        src="https://test.fifedu.com/static/fiftest//upload/image/20220426/86fde1bb67924d339c2de7d17b55e7b5.svg"
+        alt=""
+/>
+
+</body>
+</html>

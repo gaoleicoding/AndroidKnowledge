@@ -30,7 +30,7 @@
             android:layout_marginRight="30dp"
             android:gravity="center_horizontal"
             android:text="发现一个新版本"
-            android:textColor="@color/bg_normal_black"
+            android:textColor="@color/base_normal_black"
             android:textSize="18dp"
             android:textStyle="bold" />
 

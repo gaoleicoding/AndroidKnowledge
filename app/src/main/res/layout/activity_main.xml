@@ -1,4 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_root"
     android:layout_width="match_parent"
@@ -7,34 +7,15 @@
 
     <TextView
         android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="MainActivity"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        style="@style/base_head_style"
+        android:text="学安卓" />
 
-    <View
-        android:id="@+id/divider"
+    <ExpandableListView
+        android:id="@+id/eplv_point"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/title_text"
-        android:background="@color/color_d1d1d1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_text" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider" />
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:groupIndicator="@null" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
