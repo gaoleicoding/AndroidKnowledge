@@ -131,7 +131,7 @@ dependencies {
     implementation "androidx.datastore:datastore-core:1.0.0-alpha05"
     implementation 'pub.devrel:easypermissions:1.0.1'
     //腾讯x5内核WebView
-    api 'com.tencent.tbs:tbssdk:44226'
+    api 'com.tencent.tbs:tbssdk:44286'
     implementation 'com.github.getActivity:XXPermissions:13.6'
 
     api project(':lib_base')
