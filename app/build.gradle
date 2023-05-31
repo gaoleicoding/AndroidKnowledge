@@ -133,8 +133,8 @@ dependencies {
     //腾讯x5内核WebView
     api 'com.tencent.tbs:tbssdk:44286'
     implementation 'com.github.getActivity:XXPermissions:13.6'
-
-    api project(':lib_base')
+    implementation "androidx.security:security-crypto:1.1.0-alpha03"
+    api project(':lib_common_utils')
 }
 repositories {
     mavenCentral()

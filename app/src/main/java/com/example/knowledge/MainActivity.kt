@@ -120,8 +120,8 @@ class MainActivity : AppCompatActivity() {
         items.clear()
         items.add(
             ChildBean(
-                "ProcessActivity",
-                "com.example.knowledge.android.process.ProcessActivity"
+                "StorageActivity",
+                "com.example.knowledge.android.storage.StorageActivity"
             )
         )
         items.add(
