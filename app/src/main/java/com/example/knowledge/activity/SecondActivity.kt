@@ -50,6 +50,11 @@ class SecondActivity : AppCompatActivity() {
         LogUtil.d(TAG, "SecondActivity--onStart()")
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        LogUtil.d(TAG, "SecondActivity--onRestart()")
+    }
+
     override fun onResume() {
         super.onResume()
         LogUtil.d(TAG, "SecondActivity--onResume()")
@@ -63,11 +68,6 @@ class SecondActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         LogUtil.d(TAG, "SecondActivity--onStop()")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        LogUtil.d(TAG, "SecondActivity--onRestart()")
     }
 
     override fun onDestroy() {

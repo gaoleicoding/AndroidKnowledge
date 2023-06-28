@@ -21,12 +21,6 @@
         android:text="ThirdActivity"
         android:textSize="20sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/title_text"
-        android:background="@color/color_d1d1d1" />
-
     <Button
         android:id="@+id/tv_to_second"
         android:layout_width="wrap_content"
