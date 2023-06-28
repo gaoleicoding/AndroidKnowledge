@@ -1,0 +1,22 @@
+<resources>
+    <string name="lib_utils_perm_request_title">权限申请说明</string>
+    <string name="lib_utils_per_request_content">应用需要的%s权限尚未授权，将影响您的正常使用，请检查权限是否已经开启！</string>
+    <string name="lib_utils_perm_camera_des">该功能需要申请您的相机权限，用于图片拍摄和上传，请允许访问。</string>
+    <string name="lib_utils_perm_audio_des">该功能需要申请您的录音权限，用于正常录音和上传，请允许访问。</string>
+    <string name="lib_utils_perm_video_des">该功能需要申请您的录音、相机权限，用于正常视频拍摄，请允许访问。</string>
+    <string name="lib_utils_perm_storage_des">该功能需要申请您的存储权限，用于访问手机文件，请允许访问。</string>
+    <string name="lib_utils_perm_common_des">该功能需要申请相应的权限，请允许访问。</string>
+    <string name="lib_utils_camera_des">相机和存储</string>
+    <string name="lib_utils_audio_des">麦克风和存储</string>
+    <string name="lib_utils_video_des">相机、麦克风和存储</string>
+    <string name="lib_utils_storage_des">存储</string>
+    <string name="lib_utils_confirm">确定</string>
+    <string name="lib_utils_cancel">取消</string>
+    <string name="lib_utils_exit">退出</string>
+    <string name="lib_utils_setting">设置</string>
+    <string name="lib_utils_take_photo">拍照</string>
+    <string name="lib_utils_select_album">从手机相册选择</string>
+    <string name="lib_utils_img_save_sucess">保存成功！</string>
+    <string name="lib_utils_img_save_failure">保存失败！</string>
+
+</resources>

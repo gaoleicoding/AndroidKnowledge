@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.common.utils">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.fifedu.lib_common_utils">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application>
+        <provider
+            android:name=".ContextProvider"
+            android:authorities="${applicationId}.ContextProvider"
+            android:exported="false" />
+    </application>
 
 </manifest>

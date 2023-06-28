@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lib_utils_color_3388FF">#3388FF</color>
+    <color name="lib_utils_color_409FFF">#409FFF</color>
+    <color name="lib_utils_color_66000000">#66000000</color>
+    <color name="lib_utils_color_1A000000">#1A000000</color>
+    <color name="lib_utils_color_808080">#1A808080</color>
+    <color name="lib_utils_black">#000000</color>
+    <color name="lib_utils_white">#FFFFFF</color>
+    <color name="lib_utils_color_DFDFDF">#DFDFDF</color>
+    <color name="lib_utils_color_3D444D">#3D444D</color>
+</resources>
