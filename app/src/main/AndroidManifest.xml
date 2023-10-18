@@ -70,6 +70,7 @@
         <activity android:name=".image.beautify.SlimFaceActivity" />
         <activity android:name=".android.LBS.LocationActivity" />
         <activity android:name=".android.font.FontActivity" />
+        <activity android:name=".component.video.VideoPlayActivity" />
         <activity
             android:name=".component.webview.WebViewActivity"
             android:process=":webviewProcess" />

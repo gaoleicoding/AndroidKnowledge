@@ -89,6 +89,13 @@ class MainActivity : AppCompatActivity() {
         items.clear()
         items.add(
             ChildBean(
+                "VideoPlayActivity",
+                "com.example.knowledge.component.video.VideoPlayActivity"
+            )
+        )
+
+        items.add(
+            ChildBean(
                 "WebViewActivity",
                 "com.example.knowledge.component.webview.WebViewActivity"
             )
