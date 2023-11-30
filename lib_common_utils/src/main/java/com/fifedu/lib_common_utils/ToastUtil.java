@@ -29,6 +29,7 @@ public class ToastUtil {
     }
 
     public static void showToast(final Context mContext, final String msg, boolean isLong) {
+        if (mContext == null || TextUtils.isEmpty(msg)) return;
         Handler mainThread = new Handler(Looper.getMainLooper());
         mainThread.post(new Runnable() {
             @Override

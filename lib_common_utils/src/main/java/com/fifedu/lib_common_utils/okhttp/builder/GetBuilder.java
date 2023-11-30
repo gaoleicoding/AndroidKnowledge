@@ -10,6 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import okhttp3.HttpUrl;
+
 /**
  * Created by gaolei on 2023/5/23.
  */
@@ -27,12 +29,12 @@ public class GetBuilder extends OkHttpRequestBuilder<GetBuilder> implements HasP
         if (url == null || params == null || params.isEmpty()) {
             return url;
         }
-        Uri.Builder builder = Uri.parse(url).buildUpon();
+        HttpUrl.Builder builder = HttpUrl.parse(url).newBuilder();
         Set<String> keys = params.keySet();
         Iterator<String> iterator = keys.iterator();
         while (iterator.hasNext()) {
             String key = iterator.next();
-            builder.appendQueryParameter(key, params.get(key));
+            builder.addQueryParameter(key, params.get(key));
         }
         return builder.build().toString();
     }

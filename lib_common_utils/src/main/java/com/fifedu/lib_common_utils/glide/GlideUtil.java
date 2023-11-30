@@ -3,8 +3,6 @@ package com.fifedu.lib_common_utils.glide;
 import android.content.Context;
 import android.widget.ImageView;
 
-import androidx.annotation.DrawableRes;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -26,7 +24,23 @@ public class GlideUtil {
     public static void loadImg(ImageView imageView, String url) {
         Glide.with(imageView.getContext())
                 .load(url)
-                //.placeholder(R.drawable.ic_default_image)
+                .into(imageView);
+    }
+
+    public static void loadImg(String url, ImageView imageView) {
+        Glide.with(imageView.getContext())
+                .load(url)
+                .into(imageView);
+    }
+
+    /**
+     * load SD卡资源：load("file://"+Environment.getExternalStorageDirectory().getPath()+"/test.jpg")
+     * load ContentProvider资源：load("content://media/external/images/media/139469")
+     * load assets资源：load("file:///android_asset/f003.gif")
+     */
+    public static void loadDrawableFromLocal(String path, ImageView imageView) {
+        Glide.with(imageView.getContext())
+                .load(path)
                 .into(imageView);
     }
 
@@ -44,7 +58,7 @@ public class GlideUtil {
                 .into(imageView);
     }
 
-    public static void loadLocalGIF(ImageView imageView, int resId) {
+    public static void loadResGIF(ImageView imageView, int resId) {
         Glide.with(imageView.getContext())
                 .asGif()
                 .load(resId)
@@ -54,46 +68,52 @@ public class GlideUtil {
     //Glide设置图片圆角角度
     public static void loadImgWithCorner(ImageView imageView, String url, int corner) {
         RoundedCorners roundedCorners = new RoundedCorners(corner);
-        //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
-        // RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(20, 20);
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
         Glide.with(imageView.getContext())
                 .load(url)
-                //.placeholder(R.drawable.ic_default_image)
                 .apply(options)
                 .into(imageView);
     }
 
-    public static void loadLocalImgWithCorner(ImageView imageView, int resId, int corner) {
+    public static void loadResImgWithCorner(ImageView imageView, int resId, int corner) {
         RoundedCorners roundedCorners = new RoundedCorners(corner);
-        //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
-        // RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(20, 20);
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
         Glide.with(imageView.getContext())
                 .load(resId)
-                //.placeholder(R.drawable.ic_default_image)
                 .apply(options)
                 .into(imageView);
     }
 
+    /**
+     * 加载圆形图片
+     */
+    public static void showCircleImgFromNet(String url, ImageView imageView) {
+        Glide.with(imageView.getContext())
+                .load(url)
+                .circleCrop()
+                .into(imageView);
+    }
+
+    public static void showCircleImgFromRes(int resId, ImageView imageView) {
+        Glide.with(imageView.getContext())
+                .load(resId)
+                .circleCrop()
+                .into(imageView);
+    }
 
     /**
      * 加载圆形图片(带默认图和边框)
      */
-    public void loadImgCircleWithBorder(ImageView view, String url, @DrawableRes int defaultRes, int borderWidth, int borderColor) {
+    public static void loadImgCircleWithBorder(String url, ImageView imageView, int borderWidth, int borderColor) {
         RequestOptions options = RequestOptions
-                .bitmapTransform(new GlideCircleWithBorder(borderWidth, borderColor))
-                .placeholder(defaultRes)
-                .error(defaultRes);
-        Glide.with(view).load(url).apply(options).into(view);
+                .bitmapTransform(new GlideCircleWithBorder(borderWidth, borderColor));
+        Glide.with(imageView.getContext()).load(url).apply(options).into(imageView);
     }
 
-    public void loadLocalImgCircleWithBorder(ImageView view, int resId, @DrawableRes int defaultRes, int borderWidth, int borderColor) {
+    public static void loadResImgCircleWithBorder(ImageView imageView, int resId, int borderWidth, int borderColor) {
         RequestOptions options = RequestOptions
-                .bitmapTransform(new GlideCircleWithBorder(borderWidth, borderColor))
-                .placeholder(defaultRes)
-                .error(defaultRes);
-        Glide.with(view).load(resId).apply(options).into(view);
+                .bitmapTransform(new GlideCircleWithBorder(borderWidth, borderColor));
+        Glide.with(imageView.getContext()).load(resId).apply(options).into(imageView);
     }
 
     /**
@@ -106,7 +126,7 @@ public class GlideUtil {
                 .into(imageView);
     }
 
-    public static void loadLocalImgWithBlur(ImageView imageView, int resId, int radius) {
+    public static void loadResImgWithBlur(ImageView imageView, int resId, int radius) {
         Glide.with(imageView.getContext())
                 .load(resId)
                 // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。

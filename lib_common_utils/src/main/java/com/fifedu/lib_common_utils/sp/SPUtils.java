@@ -7,6 +7,7 @@ import android.util.Base64;
 
 import com.fifedu.lib_common_utils.ContextProvider;
 import com.fifedu.lib_common_utils.EncryptUtils;
+import com.fifedu.lib_common_utils.log.LogUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -23,17 +24,42 @@ public class SPUtils {
      */
     public static String FILE_NAME = "kyxl_share_data";
 
-
+    /**
+     * AES加密保存数据
+     */
     public static void putEncrypt(String key, String content) {
-
-        String encryption = EncryptUtils.cryptoAES(content, 1);
-        put(key, encryption);
+        putEncrypt(ContextProvider.getAppContext(), key, content);
     }
 
-    public static String getDectrypt(String key, String content) {
+    public static void putEncrypt(Context context, String key, String content) {
+        try {
+            String encryption = EncryptUtils.cryptoAES(content, 1);
+            SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString(key, encryption);
+            SharedPreferencesCompat.apply(editor);
+        } catch (Exception e) {
+            LogUtils.e("SPUtils", "putEncrypt: " + e.getMessage());
+        }
+    }
 
-        String decryption = (String) get(key, content);
-        return EncryptUtils.cryptoAES(decryption, 2);
+    /**
+     * 解密AES保存的数据
+     */
+    public static String getDectrypt(String key, String content) {
+        return getDectrypt(ContextProvider.getAppContext(), key, content);
+    }
+
+    public static String getDectrypt(Context context, String key, String content) {
+        try {
+            SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+            String decryption = sp.getString(key, content);
+            return EncryptUtils.cryptoAES(decryption, 2);
+        } catch (Exception e) {
+            LogUtils.e("SPUtils", "getDectrypt: " + e.getMessage());
+        }
+        return "";
     }
 
     public static void put(String key, Object object) {
@@ -45,34 +71,15 @@ public class SPUtils {
     }
 
     /**
-     * AES加密保存数据
-     */
-    public static void putEncrypt(Context context, String key, String content) {
-
-        String encryption = EncryptUtils.cryptoAES(content, 1);
-        put(context, key, encryption);
-    }
-
-    /**
-     * 解密AES保存的数据
-     */
-    public static String getDectrypt(Context context, String key, String content) {
-
-        String decryption = (String) get(context, key, content);
-        return EncryptUtils.cryptoAES(decryption, 2);
-    }
-
-
-    /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
      */
     public static void put(Context context, String key, Object object) {
 
         if (context != null && !TextUtils.isEmpty(key)) {
+
             SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
-
             if (object instanceof String) {
                 editor.putString(key, (String) object);
             } else if (object instanceof Integer) {
@@ -98,7 +105,6 @@ public class SPUtils {
         if (context != null && !TextUtils.isEmpty(key) && defaultObject != null) {
             SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                     Context.MODE_PRIVATE);
-
             if (defaultObject instanceof String) {
                 return sp.getString(key, (String) defaultObject);
             } else if (defaultObject instanceof Integer) {

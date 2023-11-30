@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="lib_utils_loading_dialog" parent="android:style/Theme.Dialog">
+    <style name="lib_utils_loading_dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowFrame">@null</item>
         <!-- 边框 -->
         <item name="android:windowNoTitle">true</item>
@@ -11,7 +11,7 @@
         <!-- 背景透明 -->
         <item name="android:windowIsFloating">true</item>
         <!-- 是否浮现在activity之上 -->
-        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
         <!-- 模糊，默认为true -->
         <item name="android:windowContentOverlay">@null</item>
     </style>

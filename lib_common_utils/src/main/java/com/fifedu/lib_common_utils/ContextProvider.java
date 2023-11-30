@@ -26,6 +26,9 @@ public class ContextProvider extends ContentProvider {
     private static Context context;
 
     public static Context getAppContext() {
+        if(context==null){
+            context=AppUtil.currentApplication();
+        }
         return context;
     }
 

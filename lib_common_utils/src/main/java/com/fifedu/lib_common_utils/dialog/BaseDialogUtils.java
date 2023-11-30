@@ -37,24 +37,31 @@ public class BaseDialogUtils {
      * 创建loading对话框
      */
     public static Dialog createLoadingDialog(Activity context) {
+        return createLoadingDialog(context, "");
+    }
+
+    public static Dialog createLoadingDialog(Activity context, String title) {
         if (context.isFinishing()) return null;
-        View v = View.inflate(context, R.layout.lib_utils_loading_dialog, null);// 得到加载view
-        LinearLayout layout = (LinearLayout) v.findViewById(R.id.ll_dialog);// 加载布局
+        View view = View.inflate(context, R.layout.lib_utils_loading_dialog, null);// 得到加载view
         // main.xml中的ImageView
-        ImageView spaceshipImage = (ImageView) v.findViewById(R.id.iv_progress);
+        ImageView iv_loading = view.findViewById(R.id.iv_loading);
+        TextView tv_loading = view.findViewById(R.id.tv_loading);
+        if (!TextUtils.isEmpty(title)) {
+            tv_loading.setVisibility(View.VISIBLE);
+            tv_loading.setText(title);
+        }
         // 加载动画(旋转动画)
-        Animation aa = AnimationUtils.loadAnimation(context,
-                R.anim.lib_utils_anim_progress_rotate);
+        Animation aa = AnimationUtils.loadAnimation(context, R.anim.lib_utils_anim_progress_rotate);
         // 使用ImageView显示动画
-        spaceshipImage.startAnimation(aa);
-        Dialog loadingDialog = new Dialog(context, R.style.lib_utils_loading_dialog);// 创建自定义样式dialog
+        iv_loading.startAnimation(aa);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.lib_utils_loading_dialog);
+        builder.setView(view);
+        final Dialog loadingDialog = builder.show();
         loadingDialog.setCancelable(true);// 可以用“返回键”取消
-        loadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
 
         return loadingDialog;
     }
+
 
     public static void createCommonDialog(final Activity activity, String title, String msg, String confirm, String cancel, int showType, boolean isCancelable, final BaseDialogCallBack dialogCallBack) {
         createCustomDialog(activity, R.layout.lib_utils_dialog_common, title, msg, confirm, cancel, showType, isCancelable, dialogCallBack);

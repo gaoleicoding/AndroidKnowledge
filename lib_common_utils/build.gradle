@@ -24,6 +24,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api "androidx.appcompat:appcompat:$rootProject.androidxVersion"
+    api "com.google.android.material:material:$rootProject.androidxVersion"
     // glide
     api "com.github.bumptech.glide:glide:$rootProject.glide"
     api "com.github.bumptech.glide:compiler:$rootProject.glide"
@@ -38,5 +39,4 @@ dependencies {
     api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
     api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid"
     api "com.github.tbruyelle:rxpermissions:$rootProject.rxpermissions"
-
 }

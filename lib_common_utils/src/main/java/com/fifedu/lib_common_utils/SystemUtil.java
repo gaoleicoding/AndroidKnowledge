@@ -11,6 +11,10 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
+
+import com.fifedu.lib_common_utils.log.LogUtils;
 
 import java.security.MessageDigest;
 import java.util.Locale;
@@ -20,6 +24,33 @@ import java.util.Locale;
  */
 
 public class SystemUtil {
+
+    /**
+     * 没有连接网络
+     */
+    public static final int NETWORK_NONE = -1;
+    /**
+     * 移动网络
+     */
+    public static final int NETWORK_MOBILE = 0;
+    /**
+     * 无线网络
+     */
+    public static final int NETWORK_WIFI = 1;
+
+    public static boolean isPad(Context context) {
+        boolean isPad = (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        DisplayMetrics dm = new DisplayMetrics();
+        display.getMetrics(dm);
+        double x = Math.pow(dm.widthPixels / dm.xdpi, 2);
+        double y = Math.pow(dm.heightPixels / dm.ydpi, 2);
+        double screenInches = Math.sqrt(x + y); // 屏幕尺寸
+        return isPad || screenInches >= 7.0;
+    }
 
     /**
      * 获取当前手机系统版本号
@@ -48,6 +79,99 @@ public class SystemUtil {
         return android.os.Build.MODEL;
     }
 
+    /**
+     * 获取屏幕分辨率x
+     */
+    public static String getAppResolX(Context context) {
+        return getScreenSize(context)[0] + "";
+    }
+
+    /**
+     * 获取屏幕分辨率y
+     */
+    public static String getAppResolY(Context context) {
+        return getScreenSize(context)[1] + "";
+    }
+
+    /**
+     * 获取屏幕尺寸
+     *
+     * @return 屏幕尺寸像素值，下标为0的值为宽，下标为1的值为高
+     */
+    public static int[] getScreenSize(Context context) {
+        if (context == null) return new int[]{0, 0};
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        if (context instanceof Activity) {
+            ((Activity) context).getWindowManager().getDefaultDisplay().getRealMetrics(dm);
+        }
+        return new int[]{dm.widthPixels, dm.heightPixels};
+    }
+
+    //用于设置app字体不受系统影响
+    public static Resources setAppFont(Resources resources) {
+        if (resources != null) {
+            Configuration config = resources.getConfiguration();
+            if (config != null && config.fontScale != 1.0f) {
+                config.fontScale = 1.0f;
+                resources.updateConfiguration(config, resources.getDisplayMetrics());
+            }
+        }
+        return resources;
+    }
+
+    //获取app sha1值
+    private static String getAppSha1(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : publicKey) {
+                String appendString = Integer.toHexString(0xFF & b)
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1) {
+                    hexString.append("0");
+                }
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length() - 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static int dp2px(int dpValue) {
+        return dp2px(ContextProvider.getAppContext(), dpValue);
+    }
+
+    public static int dp2px(Context context, int dpValue) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * density + 0.5f);
+    }
+
+    //判断是否是小米三手机，原因是小米三手机进行音频的压缩的时候，会莫名其妙崩溃，原因未知
+    public static boolean isMi3() {
+        String phoneName = android.os.Build.MODEL;
+        return !TextUtils.isEmpty(phoneName) && (phoneName.contains("MI") || phoneName.contains("mi")) && phoneName.contains("3");
+    }
+
+    public static int getStatusBarHeightCompat(Context context) {
+        int result = dp2px(ContextProvider.getAppContext(), 25);
+        if (context == null) return result;
+        int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resId > 0) {
+            result = context.getResources().getDimensionPixelOffset(resId);
+        }
+
+        return result;
+    }
+
+
     public static boolean isWifi() {
         ConnectivityManager connectivityManager = (ConnectivityManager) ContextProvider.getAppContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -65,6 +189,10 @@ public class SystemUtil {
         NetworkInfo info = connectivityManager.getActiveNetworkInfo();
         return info != null
                 && info.getType() == ConnectivityManager.TYPE_WIFI;
+    }
+
+    public static boolean isNetConnected() {
+        return isNetworkAvailable(ContextProvider.getAppContext());
     }
 
     /**
@@ -88,6 +216,10 @@ public class SystemUtil {
     /**
      * 获取当前网络连接类型
      */
+    public static String getNetworkState() {
+        return getNetworkState(ContextProvider.getAppContext());
+    }
+
     public static String getNetworkState(Context context) {
         // 获取系统的网络服务
         ConnectivityManager connManager = (ConnectivityManager) context
@@ -162,101 +294,44 @@ public class SystemUtil {
     }
 
     /**
-     * 获取屏幕分辨率x
+     * 获取信号连接状态 :无连接，wifi,mobile
      */
-    public static String getAppResolX(Context context) {
-        DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        return dm.widthPixels + "";
+    public static int getNetWorkType() {
+        return getNetWorkType(ContextProvider.getAppContext());
     }
 
-    /**
-     * 获取屏幕分辨率y
-     */
-    public static String getAppResolY(Context context) {
-        DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        return dm.heightPixels + "";
-    }
+    public static int getNetWorkType(Context context) {
+        // 得到连接管理器对象
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
 
-    //用于设置app字体不受系统影响
-    public static Resources setAppFont(Resources resources) {
-        if (resources != null) {
-            Configuration config = resources.getConfiguration();
-            if (config != null && config.fontScale != 1.0f) {
-                config.fontScale = 1.0f;
-                resources.updateConfiguration(config, resources.getDisplayMetrics());
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+            if (activeNetworkInfo.getType() == (ConnectivityManager.TYPE_WIFI)) {
+                LogUtils.d("NetUtil==", "NETWORK_WIFI==");
+                return NETWORK_WIFI;
+            } else if (activeNetworkInfo.getType() == (ConnectivityManager.TYPE_MOBILE)) {
+                LogUtils.d("NetUtil==", "TYPE_MOBILE==");
+
+                return NETWORK_MOBILE;
             }
+        } else {
+            return NETWORK_NONE;
         }
-        return resources;
+        return NETWORK_NONE;
     }
 
-    /**
-     * 获取屏幕尺寸
-     *
-     * @return 屏幕尺寸像素值，下标为0的值为宽，下标为1的值为高
-     */
-    public static int[] getScreenSize(Context context) {
-        DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        return new int[]{dm.widthPixels, dm.heightPixels};
-    }
-
-    /**
-     * 获取屏幕尺寸
-     *
-     * @param activity Activity
-     * @return 屏幕尺寸像素值，下标为0的值为宽，下标为1的值为高
-     */
-    public static int[] getScreenSize(Activity activity) {
-        DisplayMetrics metrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        return new int[]{metrics.widthPixels, metrics.heightPixels};
-    }
-
-    //获取app sha1值
-    private static String getAppSha1(Context context) {
-        try {
-            PackageInfo info = context.getPackageManager().getPackageInfo(
-                    context.getPackageName(), PackageManager.GET_SIGNATURES);
-            byte[] cert = info.signatures[0].toByteArray();
-            MessageDigest md = MessageDigest.getInstance("SHA1");
-            byte[] publicKey = md.digest(cert);
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : publicKey) {
-                String appendString = Integer.toHexString(0xFF & b)
-                        .toUpperCase(Locale.US);
-                if (appendString.length() == 1) {
-                    hexString.append("0");
-                }
-                hexString.append(appendString);
-                hexString.append(":");
-            }
-            String result = hexString.toString();
-            return result.substring(0, result.length() - 1);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void isMobileNetWorkToast(Context context) {
+        if (getNetWorkType(context) == NETWORK_MOBILE) {
+            ToastUtil.showToast(CommonUtils.getString(R.string.msg_info_network));
         }
-        return null;
     }
 
-    public static int dp2px(Context context, int dpValue) {
-        float density = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * density + 0.5f);
+    public static void isMobileNetWorkToast() {
+
+        isMobileNetWorkToast(ContextProvider.getAppContext());
+
     }
 
-    //判断是否是小米三手机，原因是小米三手机进行音频的压缩的时候，会莫名其妙崩溃，原因未知
-    public static boolean isMi3() {
-        String phoneName = android.os.Build.MODEL;
-        return !TextUtils.isEmpty(phoneName) && (phoneName.contains("MI") || phoneName.contains("mi")) && phoneName.contains("3");
-    }
-
-    public static int getStatusBarHeightCompat(Context context) {
-        int result = 0;
-        int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resId > 0) {
-            result = context.getResources().getDimensionPixelOffset(resId);
-        }
-        if (result <= 0) {
-            result = dp2px(ContextProvider.getAppContext(), 25);
-        }
-        return result;
-    }
 }

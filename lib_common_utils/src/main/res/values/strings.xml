@@ -5,11 +5,13 @@
     <string name="lib_utils_perm_audio_des">该功能需要申请您的录音权限，用于正常录音和上传，请允许访问。</string>
     <string name="lib_utils_perm_video_des">该功能需要申请您的录音、相机权限，用于正常视频拍摄，请允许访问。</string>
     <string name="lib_utils_perm_storage_des">该功能需要申请您的存储权限，用于访问手机文件，请允许访问。</string>
+    <string name="lib_utils_perm_location_des">该功能需要申请您的位置权限，用于获取位置信息，请允许访问。</string>
     <string name="lib_utils_perm_common_des">该功能需要申请相应的权限，请允许访问。</string>
     <string name="lib_utils_camera_des">相机和存储</string>
     <string name="lib_utils_audio_des">麦克风和存储</string>
     <string name="lib_utils_video_des">相机、麦克风和存储</string>
     <string name="lib_utils_storage_des">存储</string>
+    <string name="lib_utils_location_des">位置</string>
     <string name="lib_utils_confirm">确定</string>
     <string name="lib_utils_cancel">取消</string>
     <string name="lib_utils_exit">退出</string>
@@ -18,5 +20,5 @@
     <string name="lib_utils_select_album">从手机相册选择</string>
     <string name="lib_utils_img_save_sucess">保存成功！</string>
     <string name="lib_utils_img_save_failure">保存失败！</string>
-
+    <string name="msg_info_network">检测到您正处于手机网络环境下，建议切换到WiFi环境下使用</string>
 </resources>

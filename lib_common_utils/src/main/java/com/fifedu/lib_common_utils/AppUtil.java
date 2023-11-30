@@ -1,9 +1,13 @@
 package com.fifedu.lib_common_utils;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.text.TextUtils;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by gaolei on 2023/5/27.
@@ -13,11 +17,18 @@ public class AppUtil {
     /**
      * 获取当前程序包名
      *
-     * @param context 上下文
      * @return 程序包名
      */
+    public static String getPackageName() {
+        return ContextProvider.getAppContext().getPackageName();
+    }
+
     public static String getPackageName(Context context) {
         return context.getPackageName();
+    }
+
+    public static String getAppProvider(String provider) {
+        return ContextProvider.getAppContext().getPackageName() + "." + provider;
     }
 
     public static String getAppProvider(Context context, String provider) {
@@ -27,9 +38,12 @@ public class AppUtil {
     /**
      * 获取程序版本信息
      *
-     * @param context 上下文
      * @return 版本名称
      */
+    public static String getVersionName() {
+        return getVersionName(ContextProvider.getAppContext());
+    }
+
     public static String getVersionName(Context context) {
         String versionName = "";
         String pkName = context.getPackageName();
@@ -43,9 +57,12 @@ public class AppUtil {
     /**
      * 获取程序版本号
      *
-     * @param context 上下文
      * @return 版本号
      */
+    public static int getVersionCode() {
+        return getVersionCode(ContextProvider.getAppContext());
+    }
+
     public static int getVersionCode(Context context) {
         int versionCode = -1;
         String pkName = context.getPackageName();
@@ -81,5 +98,18 @@ public class AppUtil {
         return checkApkExist(context, "com.tencent.mm");
     }
 
+    public static Handler getMainHandler() {
+        return new Handler(ContextProvider.getAppContext().getMainLooper());
+    }
 
+    public static Application currentApplication() {
+        try {
+            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+            Method application = activityThreadClass.getDeclaredMethod("currentApplication");
+            application.setAccessible(true);
+            return (Application) application.invoke(null);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

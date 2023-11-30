@@ -117,11 +117,13 @@ public class LoggerInterceptor implements Interceptor {
     }
 
     private boolean isText(MediaType mediaType) {
-        String subtype = mediaType.type();
-        if ("text".equals(subtype)) {
+        if (mediaType == null) return true;
+        String type = mediaType.type();
+        if ("text".equals(type)) {
             return true;
         }
-        if (mediaType.subtype() != null) {
+        String subtype = mediaType.subtype();
+        if (subtype != null) {
             return subtype.equals("json") ||
                     subtype.equals("xml") ||
                     subtype.equals("html") ||
