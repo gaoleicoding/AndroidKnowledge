@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         groups.add("四大组件之Service")
         groups.add("四大组件之Broadcast")
         groups.add("多媒体之图片")
+        groups.add("多媒体之音视频")
         groups.add("安卓组件")
         groups.add("Jetpack")
         groups.add("安全")
@@ -87,13 +88,21 @@ class MainActivity : AppCompatActivity() {
         )
         children.add(ArrayList(items))
         items.clear()
+
+        items.add(
+            ChildBean(
+                "AudioActivity",
+                "com.example.knowledge.audio.AudioActivity"
+            )
+        )
         items.add(
             ChildBean(
                 "VideoPlayActivity",
-                "com.example.knowledge.component.video.VideoPlayActivity"
+                "com.example.knowledge.video.VideoPlayActivity"
             )
         )
-
+        children.add(ArrayList(items))
+        items.clear()
         items.add(
             ChildBean(
                 "WebViewActivity",

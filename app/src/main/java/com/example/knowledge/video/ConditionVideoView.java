@@ -1,4 +1,4 @@
-package com.example.knowledge.component.video;
+package com.example.knowledge.video;
 
 import android.content.Context;
 import android.util.AttributeSet;

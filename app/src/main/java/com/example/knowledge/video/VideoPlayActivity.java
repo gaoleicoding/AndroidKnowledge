@@ -1,4 +1,4 @@
-package com.example.knowledge.component.video;
+package com.example.knowledge.video;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
