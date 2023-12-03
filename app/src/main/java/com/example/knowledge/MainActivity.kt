@@ -95,6 +95,12 @@ class MainActivity : AppCompatActivity() {
                 "com.example.knowledge.audio.AudioActivity"
             )
         )
+        items . add (
+                ChildBean(
+                    "AudioRecordActivity",
+                    "com.example.knowledge.audio.AudioRecordActivity"
+                )
+                )
         items.add(
             ChildBean(
                 "VideoPlayActivity",

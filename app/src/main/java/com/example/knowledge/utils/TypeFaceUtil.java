@@ -7,9 +7,9 @@ import android.widget.TextView;
 import androidx.collection.SimpleArrayMap;
 
 import com.example.knowledge.AppApplication;
+import com.fifedu.lib_common_utils.log.LogUtils;
 
 import java.lang.reflect.Field;
-
 
 public class TypeFaceUtil {
     private static final String TAG = "TypeFaceUtils";
@@ -29,7 +29,7 @@ public class TypeFaceUtil {
                     Typeface t = Typeface.createFromAsset(context.getAssets(), name);
                     TYPEFACE_CACHE.put(name, t);
                 } catch (Exception e) {
-                    LogUtil.e(TAG, "Could not get typeface '" + name
+                    LogUtils.e(TAG, "Could not get typeface '" + name
                             + "' because " + e.getMessage());
                     return null;
                 }

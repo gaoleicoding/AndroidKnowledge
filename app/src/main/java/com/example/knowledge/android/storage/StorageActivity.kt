@@ -8,7 +8,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.example.knowledge.R
 import com.example.knowledge.activity.BaseActivity
-import com.example.knowledge.utils.LogUtil
+import com.fifedu.lib_common_utils.log.LogUtils
 
 class StorageActivity : BaseActivity() {
     lateinit var sharedPreferences: SharedPreferences
@@ -26,7 +26,7 @@ class StorageActivity : BaseActivity() {
         findViewById<Button>(R.id.bt_get).setOnClickListener {
             val result = getEncryptSP("test_key")
             findViewById<TextView>(R.id.tv_result).text = result
-            LogUtil.e(TAG, "result:" + result)
+            LogUtils.e(TAG, "result:" + result)
         }
     }
 

@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.knowledge.R;
-import com.example.knowledge.utils.FileUtils;
-import com.example.knowledge.utils.LogUtil;
-import com.example.knowledge.utils.PermissionUtils;
+import com.fifedu.lib_common_utils.BitmapUtil;
+import com.fifedu.lib_common_utils.FileUtils;
+import com.fifedu.lib_common_utils.log.LogUtils;
+import com.fifedu.lib_common_utils.permission.PermissionCallBack;
+import com.fifedu.lib_common_utils.permission.PermissionUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ public class PhotoSelectActivity extends AppCompatActivity {
 
     private void requestCameraPermission() {
         //判断是否有读取sdcard权限
-        PermissionUtils.requestPermissions(PhotoSelectActivity.this, false, new PermissionUtils.PermissionCallBack() {
+        PermissionUtils.requestPermissions(PhotoSelectActivity.this, false, new PermissionCallBack() {
             @Override
             public void onGranted() {
                 //允许了
@@ -64,7 +66,7 @@ public class PhotoSelectActivity extends AppCompatActivity {
             File file = new File(imagePath);
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-            imageUri = FileUtils.geCameraImgUri(cameraIntent, file);
+            imageUri = FileUtils.getIntentFileUri(cameraIntent, file);
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 
             if (!isExam) {
@@ -80,7 +82,7 @@ public class PhotoSelectActivity extends AppCompatActivity {
                 startActivityForResult(cameraIntent, requestCode);
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, e.getMessage());
+            LogUtils.e(TAG, e.getMessage());
         }
     }
 
@@ -91,7 +93,7 @@ public class PhotoSelectActivity extends AppCompatActivity {
             Uri resultUri = intent == null || resultCode != RESULT_OK ? null : intent.getData();
             if (resultUri != null) {
                 // 选择图片结果回调
-                imagePath = FileUtils.getPath(getApplicationContext(), resultUri);
+                imagePath = FileUtils.getRealPathFromUri(getApplicationContext(), resultUri);
                 if (TextUtils.isEmpty(imagePath)) {
                     return;
                 }
@@ -99,9 +101,9 @@ public class PhotoSelectActivity extends AppCompatActivity {
             }
             if (imageUri != null) {
                 try {
-                    int degree = FileUtils.readPicRotate(imagePath);
+                    int degree = BitmapUtil.readPictureDegree(imagePath);
                     Bitmap bitMap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                    Bitmap rotatedBitmap = FileUtils.rotatePic(bitMap, degree);
+                    Bitmap rotatedBitmap = BitmapUtil.rotateBitmap(bitMap, degree);
                     ivCamera.setImageBitmap(rotatedBitmap);
                 } catch (Exception e) {
                     e.printStackTrace();

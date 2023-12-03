@@ -16,7 +16,7 @@ import com.example.knowledge.activity.BaseActivity;
 import com.example.knowledge.android.LBS.LocationUtil;
 import com.example.knowledge.bean.HybridEntity;
 import com.example.knowledge.image.glide.GlideSvgUtil;
-import com.example.knowledge.utils.LogUtil;
+import com.fifedu.lib_common_utils.log.LogUtils;
 import com.google.gson.Gson;
 
 
@@ -137,7 +137,7 @@ public class WebViewActivity extends BaseActivity {
     public class CommonJSInterface {
         @JavascriptInterface
         public void webCallNative(final String json) {
-            LogUtil.d(TAG, "webCallNative: " + json);
+            LogUtils.d(TAG, "webCallNative: " + json);
             final Gson gson = new Gson();
             final HybridEntity h5CallAppData = gson.fromJson(json, HybridEntity.class);
             final String callNativeAction = h5CallAppData.getAppAction();

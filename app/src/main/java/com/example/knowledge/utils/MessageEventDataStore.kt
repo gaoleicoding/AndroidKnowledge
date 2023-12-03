@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.createDataStore
 import com.example.knowledge.MessageEvent
+import com.fifedu.lib_common_utils.ContextProvider
 import com.google.protobuf.InvalidProtocolBufferException
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -36,7 +37,7 @@ class MessageEventDataStore private constructor() {
     }
 
     val messageEventDataStore: DataStore<MessageEvent>? by lazy {
-        ContextProvider.appContext?.createDataStore(
+        ContextProvider.getAppContext()?.createDataStore(
                 fileName = "message_event_datastore",
                 serializer = SettingsSerializer
         )

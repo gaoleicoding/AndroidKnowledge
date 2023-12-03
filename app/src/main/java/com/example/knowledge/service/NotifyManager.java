@@ -8,7 +8,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.example.knowledge.R;
-import com.example.knowledge.utils.LogUtil;
+import com.fifedu.lib_common_utils.log.LogUtils;
 
 public class NotifyManager {
 
@@ -44,7 +44,7 @@ public class NotifyManager {
             //Android 10 java.lang.SecurityException:不允许删除前台服务的频道MyNotificationChannel
             mNotificationManager.deleteNotificationChannel(NOTIFICATION_CHANNEL_ID);
         } catch (Exception e) {
-            LogUtil.d("NotifyManager", e.getMessage());
+            LogUtils.d("NotifyManager", e.getMessage());
         }
     }
 }

@@ -3,6 +3,7 @@ package com.fifedu.lib_common_utils;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -11,6 +12,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
 
 import java.io.File;
@@ -20,6 +22,26 @@ import java.io.File;
  */
 public class Uri2PathUtil {
 
+    public static Uri getIntentFileUri(Intent cameraIntent, File file) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //这一句非常重要
+            cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+        return geFileUri(file);
+    }
+
+    public static Uri geFileUri(File file) {
+        Uri imageUri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            imageUri = getFileProviderUri(file);
+        } else {
+            imageUri = Uri.fromFile(file);
+        }
+        return imageUri;
+    }
+    public static Uri getFileProviderUri(File file) {
+        return FileProvider.getUriForFile(ContextProvider.getAppContext(), ContextProvider.getAppContext().getPackageName() + ".fileProvider", file);
+    }
     //复杂版处理  (适配多种API)
     public static String getRealPathFromUri(Context context, Uri uri) {
         int sdkVersion = Build.VERSION.SDK_INT;

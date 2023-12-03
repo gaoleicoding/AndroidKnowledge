@@ -82,15 +82,15 @@ public class SystemUtil {
     /**
      * 获取屏幕分辨率x
      */
-    public static String getAppResolX(Context context) {
-        return getScreenSize(context)[0] + "";
+    public static int getAppResolX(Context context) {
+        return getScreenSize(context)[0];
     }
 
     /**
      * 获取屏幕分辨率y
      */
-    public static String getAppResolY(Context context) {
-        return getScreenSize(context)[1] + "";
+    public static int getAppResolY(Context context) {
+        return getScreenSize(context)[1];
     }
 
     /**

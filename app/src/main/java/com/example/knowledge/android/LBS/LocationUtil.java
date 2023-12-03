@@ -13,15 +13,15 @@ import android.webkit.WebView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.knowledge.AppApplication;
 import com.example.knowledge.R;
 import com.example.knowledge.bean.HybridEntity;
 import com.example.knowledge.bean.LocationData;
 import com.example.knowledge.dialog.PermissionDialog;
-import com.example.knowledge.utils.LogUtil;
-import com.example.knowledge.utils.PermissionUtils;
-import com.example.knowledge.utils.ToastUtil;
-import com.example.knowledge.utils.Utils;
+import com.fifedu.lib_common_utils.SystemUtil;
+import com.fifedu.lib_common_utils.ToastUtil;
+import com.fifedu.lib_common_utils.log.LogUtils;
+import com.fifedu.lib_common_utils.permission.PermissionCallBack;
+import com.fifedu.lib_common_utils.permission.PermissionUtils;
 import com.google.gson.Gson;
 import com.tencent.smtt.sdk.ValueCallback;
 
@@ -54,7 +54,7 @@ public class LocationUtil {
 
     public void requestLocation(LocationCallBack callBack) {
 
-        PermissionUtils.requestPermissions(mActivity, false, new PermissionUtils.PermissionCallBack() {
+        PermissionUtils.requestPermissions(mActivity, false, new PermissionCallBack() {
             @Override
             public void onGranted() {
                 getLocation(callBack);
@@ -93,7 +93,7 @@ public class LocationUtil {
                     if (callBack != null) {
                         callBack.onLocation(locationData);
                     }
-                    LogUtil.d(TAG, "uploadLocation：" + longitude + "   " + latitude);
+                    LogUtils.d(TAG, "uploadLocation：" + longitude + "   " + latitude);
                 }
 
             }
@@ -112,21 +112,21 @@ public class LocationUtil {
                 return;
             }
 
-            if (providers.contains(LocationManager.NETWORK_PROVIDER) && Utils.isNetConnected(AppApplication.getContext())) {
+            if (providers.contains(LocationManager.NETWORK_PROVIDER) && SystemUtil.isNetConnected()) {
                 //首先Network，定位精度高
                 locationProvider = LocationManager.NETWORK_PROVIDER;
-                LogUtil.d(TAG, "网络定位方式");
+                LogUtils.d(TAG, "网络定位方式");
             } else if (providers.contains(LocationManager.GPS_PROVIDER)) {
                 // 次选GPS，因为偏差较大，直线距离偏差大概有600-700米
                 locationProvider = LocationManager.GPS_PROVIDER;
-                LogUtil.d(TAG, "GPS定位方式");
+                LogUtils.d(TAG, "GPS定位方式");
             }
             if (locationProvider != null) {
                 location = mLocationManager.getLastKnownLocation(locationProvider);
             }
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "getLastLocation-e:" + e.getMessage());
+            LogUtils.e(TAG, "getLastLocation-e:" + e.getMessage());
         }
     }
 
@@ -139,7 +139,7 @@ public class LocationUtil {
 
         Gson gson = new Gson();
         String json = gson.toJson(h5CallAppData);
-        LogUtil.d(TAG, "nativeCallWeb: " + json);
+        LogUtils.d(TAG, "nativeCallWeb: " + json);
         mWebView.evaluateJavascript("javascript:nativeCallWeb(" + json + ")", new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String s) {

@@ -5,13 +5,14 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
+import com.fifedu.lib_common_utils.ContextProvider
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class PrefDataStoreUtil private constructor() {
 
     val mPrefDataStore: DataStore<Preferences>? by lazy {
-        ContextProvider.appContext!!.createDataStore("user_info_datastore")
+        ContextProvider.getAppContext()!!.createDataStore("user_info_datastore")
     }
 
     companion object {

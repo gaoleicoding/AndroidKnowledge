@@ -747,4 +747,24 @@ public class FileUtils {
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
+    public static Uri getIntentFileUri(Intent cameraIntent, File file) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //这一句非常重要
+            cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+        return geFileUri(file);
+    }
+
+    public static Uri geFileUri(File file) {
+        Uri imageUri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            imageUri = getFileProviderUri(file);
+        } else {
+            imageUri = Uri.fromFile(file);
+        }
+        return imageUri;
+    }
+    public static Uri getFileProviderUri(File file) {
+        return FileProvider.getUriForFile(ContextProvider.getAppContext(), ContextProvider.getAppContext().getPackageName() + ".fileProvider", file);
+    }
 }

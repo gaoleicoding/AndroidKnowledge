@@ -13,9 +13,8 @@ import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 
-import com.example.knowledge.utils.LogUtil;
+import com.fifedu.lib_common_utils.log.LogUtils;
 import com.example.knowledge.utils.TypeFaceUtil;
-import com.tencent.smtt.sdk.QbSdk;
 
 public class AppApplication extends Application {
     public static Context context;
@@ -71,12 +70,12 @@ public class AppApplication extends Application {
         // 方法名随便取，注解才是重点
         @OnLifecycleEvent(Lifecycle.Event.ON_START)
         void onForeground() {
-            LogUtil.d("LifecycleObserver", "应用回到前台");
+            LogUtils.d("LifecycleObserver", "应用回到前台");
         }
 
         @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
         void onBackground() {
-            LogUtil.d("LifecycleObserver", "应用退到后台");
+            LogUtils.d("LifecycleObserver", "应用退到后台");
         }
     }
 }

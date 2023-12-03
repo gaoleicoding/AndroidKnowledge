@@ -73,6 +73,7 @@
         <activity android:name=".android.font.FontActivity" />
         <activity android:name=".video.VideoPlayActivity" />
         <activity android:name=".audio.AudioActivity" />
+        <activity android:name=".audio.AudioRecordActivity" />
         <activity
             android:name=".component.webview.WebViewActivity"
             android:process=":webviewProcess" />
@@ -89,11 +90,6 @@
                 android:name="com.example.knowledge.utils.StartUpInitializer"
                 android:value="androidx.startup" />
         </provider>
-        <provider
-            android:name=".utils.ContextProvider"
-            android:authorities="${applicationId}.ContextProvider"
-            android:enabled="true"
-            android:exported="false" />
         <provider
             android:name=".provider.BookProvider"
             android:authorities="${applicationId}.BookProvider"
