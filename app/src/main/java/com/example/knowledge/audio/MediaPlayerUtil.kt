@@ -70,8 +70,6 @@ object MediaPlayerUtil {
 
     fun playMedia() {
         if (mPlayer != null && !mPlayer!!.isPlaying) {
-            // 准备音频文件
-            mPlayer!!.prepare()
             // 开始播放音频
             mPlayer!!.start()
         }

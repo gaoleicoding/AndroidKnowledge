@@ -16,29 +16,28 @@ import com.fifedu.lib_common_utils.ContextProvider;
 import java.io.File;
 import java.io.IOException;
 
-public class AudioRecordUtil {
-    private MediaRecorder mediaRecorder;
+public class MediaRecorderUtil {
+    public MediaRecorder mediaRecorder;
     public String outputFilePath;
 
-    private AudioRecordUtil() {
+    private MediaRecorderUtil() {
         outputFilePath = ContextProvider.getAppContext().getExternalFilesDir("audio") + "/recorded_audio.3gp";
     }
 
-    public static AudioRecordUtil instance() {
+    public static MediaRecorderUtil instance() {
         return SingletonHolder.instance;
     }
 
     private static class SingletonHolder {
-        private final static AudioRecordUtil instance = new AudioRecordUtil();
+        private final static MediaRecorderUtil instance = new MediaRecorderUtil();
     }
 
     public void startRecording() {
         if (mediaRecorder == null) {
             mediaRecorder = new MediaRecorder();
             // 设置MediaRecorder的音频源为MediaRecorder.AudioSource.REMOTE_SUBMIX，这样就可以只录制手机播放的声音，而不录制话筒的声音。
-            //设置了音频源为麦克风（MediaRecorder.AudioSource.MIC）
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
-//            mediaRecorder.setAudioSamplingRate(44100); // 设置采样率，可以调整为其他值
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            mediaRecorder.setAudioSamplingRate(44100); // 设置采样率，可以调整为其他值
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
@@ -64,6 +63,8 @@ public class AudioRecordUtil {
             mediaRecorder = null;
         }
     }
+
+
 
     public void getAudioFocus(Context context) {
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -109,11 +110,11 @@ public class AudioRecordUtil {
 
         if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             // 音频焦点请求成功，执行相应逻辑
-            AudioRecordUtil.instance().startRecording();
+            MediaRecorderUtil.instance().startRecording();
 
         } else {
             // 音频焦点请求失败，执行相应逻辑
-            AudioRecordUtil.instance().startRecording();
+            MediaRecorderUtil.instance().startRecording();
         }
 
     }
@@ -141,14 +142,14 @@ public class AudioRecordUtil {
         synchronized (focusLock) {
             if (res == AudioManager.AUDIOFOCUS_REQUEST_FAILED) {
                 playbackNowAuthorized = false;
-                AudioRecordUtil.instance().startRecording();
+                MediaRecorderUtil.instance().startRecording();
             } else if (res == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                 playbackNowAuthorized = true;
-                AudioRecordUtil.instance().startRecording();
+                MediaRecorderUtil.instance().startRecording();
             } else if (res == AudioManager.AUDIOFOCUS_REQUEST_DELAYED) {
                 playbackDelayed = true;
                 playbackNowAuthorized = false;
-                AudioRecordUtil.instance().startRecording();
+                MediaRecorderUtil.instance().startRecording();
             }
         }
 

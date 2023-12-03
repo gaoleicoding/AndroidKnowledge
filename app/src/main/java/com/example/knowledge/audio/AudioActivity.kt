@@ -4,10 +4,14 @@ import android.content.Context
 import android.media.AudioManager
 import android.media.AudioManager.OnAudioFocusChangeListener
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.knowledge.R
 import com.example.knowledge.databinding.ActivityAudioBinding
-import com.example.knowledge.utils.PermissionUtils
+import com.fifedu.lib_common_utils.permission.PermissionCallBack
+import com.fifedu.lib_common_utils.permission.PermissionUtils
+
 
 class AudioActivity : AppCompatActivity() {
     var binding: ActivityAudioBinding? = null
@@ -33,14 +37,15 @@ class AudioActivity : AppCompatActivity() {
             PermissionUtils.requestPermissions(
                 this@AudioActivity,
                 false,
-                object : PermissionUtils.PermissionCallBack() {
+                object : PermissionCallBack() {
                     override fun onGranted() {
 //                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
 //                            AudioRecordUtil.instance().getAudioFocus(this@AudioActivity)
 //                        } else {
 //                            AudioRecordUtil.instance().getAudioFocus2(this@AudioActivity)
 //                        }
-                        AudioRecordUtil.instance().startRecording()
+                        MediaRecorderUtil.instance().startRecording()
+                        updateMicStatus()
                     }
 
                     override fun onDenied() {
@@ -49,7 +54,10 @@ class AudioActivity : AppCompatActivity() {
                 *PermissionUtils.PERMISSIONS_RECORD
             )
         }
-        binding!!.tvRecordStop.setOnClickListener { AudioRecordUtil.instance().stopRecording() }
+        binding!!.tvRecordStop.setOnClickListener {
+            MediaRecorderUtil.instance().stopRecording()
+            mHandler.removeCallbacks(mUpdateMicStatusTimer)
+        }
         binding!!.tvRecordPlay.setOnClickListener {
             playStorageAudio()
         }
@@ -72,7 +80,7 @@ class AudioActivity : AppCompatActivity() {
     }
 
     private fun playStorageAudio() {
-        MediaPlayerUtil.initMedia(this, AudioRecordUtil.instance().outputFilePath)
+        MediaPlayerUtil.initMedia(this, MediaRecorderUtil.instance().outputFilePath)
         MediaPlayerUtil.setMediaListener(object : MediaPlayerListener {
             override fun onErr(messageCode: Int) {
             }
@@ -120,10 +128,30 @@ class AudioActivity : AppCompatActivity() {
         )
         if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             // 音频焦点请求成功，执行相应逻辑
-            AudioRecordUtil.instance().startRecording()
+            MediaRecorderUtil.instance().startRecording()
         } else {
             // 音频焦点请求失败，执行相应逻辑
-            AudioRecordUtil.instance().startRecording()
+            MediaRecorderUtil.instance().startRecording()
         }
     }
+
+    private val mHandler = Handler()
+
+    fun updateMicStatus() {
+        if (MediaRecorderUtil.instance().mediaRecorder != null) {
+            val ratio: Double =
+                MediaRecorderUtil.instance().mediaRecorder.getMaxAmplitude().toDouble() / 1 // 参考振幅为 1
+            var db = 0.0 // 分贝
+            if (ratio > 1) {
+                db = 20 * Math.log10(ratio)
+            }
+            Log.d("AudioRecordUtil", "分贝值 = " + db + "dB")
+            binding!!.tvRecordVolume.text = "分贝值 = " + db + "dB"
+            mHandler.postDelayed(mUpdateMicStatusTimer, 100) // 间隔取样时间为100秒
+        }
+    }
+
+    private val mUpdateMicStatusTimer = Runnable { updateMicStatus() }
+
+
 }
