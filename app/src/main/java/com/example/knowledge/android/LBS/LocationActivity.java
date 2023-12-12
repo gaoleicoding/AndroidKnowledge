@@ -1,17 +1,18 @@
 package com.example.knowledge.android.LBS;
 
 import android.view.View;
-import android.widget.Button;
 
 import com.example.knowledge.R;
 import com.example.knowledge.activity.BaseActivity;
 import com.example.knowledge.bean.LocationData;
 import com.example.knowledge.databinding.ActivityLocationBinding;
-import com.example.knowledge.dialog.DialogUtils;
+import com.fifedu.lib_common_utils.dialog.BaseDialogCallBack;
+import com.fifedu.lib_common_utils.dialog.BaseDialogUtils;
 
 public class LocationActivity extends BaseActivity {
     private final String TAG = "LocationActivity";
     ActivityLocationBinding locationBinding;
+
     @Override
 
     public int getLayoutId() {
@@ -44,7 +45,7 @@ public class LocationActivity extends BaseActivity {
     public void showAddressDialog(LocationData locationData) {
         if (locationData == null) return;
         String title = locationData.getLoacationStyle();
-        DialogUtils.createCommonDialog(this, title, locationData.getAddress(), "知道了", "取消", DialogUtils.DIALOG_SHOWTYPE_ONE, true, new DialogUtils.DialogCallBack() {
+        BaseDialogUtils.createCommonDialog(this, title, locationData.getAddress(), "知道了", "取消", BaseDialogUtils.DIALOG_SHOWTYPE_ONE, true, new BaseDialogCallBack() {
             @Override
             public void onConfirm() {
             }

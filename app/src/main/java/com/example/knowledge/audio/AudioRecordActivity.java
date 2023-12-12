@@ -17,8 +17,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.knowledge.R;
 import com.example.knowledge.audio.xf.XunFeiUtil;
-import com.example.knowledge.dialog.PermissionDialog;
 import com.fifedu.lib_common_utils.permission.PermissionCallBack;
+import com.fifedu.lib_common_utils.permission.PermissionDialog;
 import com.fifedu.lib_common_utils.permission.PermissionUtils;
 
 import java.io.BufferedInputStream;

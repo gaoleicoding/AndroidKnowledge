@@ -162,6 +162,8 @@ public class PermissionUtils {
                                         content = AUDIO;
                                     } else if (permissionList.contains(PERMISSION_STORAGE)) {
                                         content = STORAGE;
+                                    } else if (permissionList.contains(PERMISSION_LOCATION)) {
+                                        content = LOCATION;
                                     }
                                     //不是首页
                                     PermissionDialog.showPermissionDialog(activity, content, isExit);
