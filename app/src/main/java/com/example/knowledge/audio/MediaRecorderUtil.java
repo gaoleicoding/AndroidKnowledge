@@ -36,7 +36,7 @@ public class MediaRecorderUtil {
         if (mediaRecorder == null) {
             mediaRecorder = new MediaRecorder();
             // 设置MediaRecorder的音频源为MediaRecorder.AudioSource.REMOTE_SUBMIX，这样就可以只录制手机播放的声音，而不录制话筒的声音。
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.VOICE_COMMUNICATION);
             mediaRecorder.setAudioSamplingRate(44100); // 设置采样率，可以调整为其他值
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);

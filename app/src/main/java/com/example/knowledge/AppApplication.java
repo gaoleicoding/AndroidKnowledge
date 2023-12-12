@@ -15,6 +15,7 @@ import androidx.multidex.MultiDex;
 
 import com.fifedu.lib_common_utils.log.LogUtils;
 import com.example.knowledge.utils.TypeFaceUtil;
+import com.iflytek.cloud.SpeechUtility;
 
 public class AppApplication extends Application {
     public static Context context;
@@ -42,6 +43,8 @@ public class AppApplication extends Application {
         getApkMode();
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new MyLifecycleObserver());
         TypeFaceUtil.replaceSystemDefaultFont(this,TypeFaceUtil.fontPath_ARIAL);
+        //初始化讯飞语言识别
+        SpeechUtility.createUtility(this, "appid=" + "c2453831");
 
     }
 

@@ -76,7 +76,7 @@ class AudioActivity : AppCompatActivity() {
             }
         })
 
-        MediaPlayerUtil.playMedia()
+        MediaPlayerUtil.playMedia(false)
     }
 
     private fun playStorageAudio() {
@@ -92,7 +92,7 @@ class AudioActivity : AppCompatActivity() {
             }
         })
 
-        MediaPlayerUtil.playMedia()
+        MediaPlayerUtil.playMedia(true)
     }
 
     fun getAudioFocus(context: Context) {
@@ -140,7 +140,8 @@ class AudioActivity : AppCompatActivity() {
     fun updateMicStatus() {
         if (MediaRecorderUtil.instance().mediaRecorder != null) {
             val ratio: Double =
-                MediaRecorderUtil.instance().mediaRecorder.getMaxAmplitude().toDouble() / 1 // 参考振幅为 1
+                MediaRecorderUtil.instance().mediaRecorder.getMaxAmplitude()
+                    .toDouble() / 1 // 参考振幅为 1
             var db = 0.0 // 分贝
             if (ratio > 1) {
                 db = 20 * Math.log10(ratio)
@@ -152,6 +153,5 @@ class AudioActivity : AppCompatActivity() {
     }
 
     private val mUpdateMicStatusTimer = Runnable { updateMicStatus() }
-
 
 }

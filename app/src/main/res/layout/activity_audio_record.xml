@@ -4,6 +4,24 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_play_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/item_bg_selector"
+        android:padding="10dp"
+        android:text="开始播放" />
+
+    <TextView
+        android:id="@+id/tv_stop_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/item_bg_selector"
+        android:padding="10dp"
+        android:text="停止播放" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +31,7 @@
             android:id="@+id/start_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Record Start"
+            android:text="录音开始"
             android:textColor="#DC143C"
             android:textStyle="bold" />
 
@@ -28,7 +46,7 @@
         android:id="@+id/end_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Record_Stop"
+        android:text="录音结束"
         android:textColor="#00008B"
         android:textStyle="bold" />
 
@@ -36,16 +54,29 @@
         android:id="@+id/play_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play Record"
+        android:text="播放录音"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/thread_recorder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="线程中录音"
-        android:textStyle="bold"
+        android:textStyle="bold" />
 
-        />
+    <Button
+        android:id="@+id/bt_start_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="启动讯飞语音识别"
+        android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/et_voice_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@null"
+        android:padding="10dp" />
 </LinearLayout>

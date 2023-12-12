@@ -18,7 +18,7 @@ object MediaPlayerUtil {
     private var mContext: Context? = null
     var mPlayer: MediaPlayer? = null
 
-    public var isPause = false
+    var isPause = false
 
     private var isPlaying = false
 
@@ -68,8 +68,11 @@ object MediaPlayerUtil {
         }
     }
 
-    fun playMedia() {
+    fun playMedia(isPrepare:Boolean) {
         if (mPlayer != null && !mPlayer!!.isPlaying) {
+            if(isPrepare) {
+                mPlayer!!.prepare()
+            }
             // 开始播放音频
             mPlayer!!.start()
         }

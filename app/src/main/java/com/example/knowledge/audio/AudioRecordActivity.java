@@ -1,20 +1,25 @@
 package com.example.knowledge.audio;
 
-import android.app.Activity;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.media.MediaRecorder;
-import android.media.audiofx.NoiseSuppressor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.knowledge.R;
+import com.example.knowledge.audio.xf.XunFeiUtil;
+import com.example.knowledge.dialog.PermissionDialog;
+import com.fifedu.lib_common_utils.permission.PermissionCallBack;
+import com.fifedu.lib_common_utils.permission.PermissionUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -27,7 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class AudioRecordActivity extends Activity {
+public class AudioRecordActivity extends FragmentActivity {
     private final String TAG = "AudioRecordActivity";
     private boolean isRecording = false;
     private boolean isGetVoiceRun = false;
@@ -39,23 +44,46 @@ public class AudioRecordActivity extends Activity {
     final int SAMPLE_RATE = 44100;
     int CHANNEL_CONFIG = AudioFormat.CHANNEL_CONFIGURATION_MONO;
     int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
+    EditText et_voice_result;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_record);
-        outputFilePath = getExternalFilesDir("AudioRecord") + "/reverseme.pcm";
+
+        outputFilePath = getExternalFilesDir("AudioRecord") + "/audio_record.pcm";
         thread_recorder = findViewById(R.id.thread_recorder);
-        Button play = findViewById(R.id.play_bt);
+        TextView tv_play_audio = findViewById(R.id.tv_play_audio);
+        TextView tv_stop_audio = findViewById(R.id.tv_stop_audio);
         Button start = findViewById(R.id.start_bt);
         Button stop = findViewById(R.id.end_bt);
+        Button play = findViewById(R.id.play_bt);
+        Button bt_start_voice = findViewById(R.id.bt_start_voice);
+        et_voice_result = findViewById(R.id.et_voice_result);
         tv_record_volume = findViewById(R.id.tv_record_volume);
+        tv_play_audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playRawAudio();
+            }
+        });
+        tv_stop_audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!MediaPlayerUtil.INSTANCE.isPause()) {
+                    MediaPlayerUtil.INSTANCE.pause();
+                    tv_stop_audio.setText("继续播放");
+                } else {
+                    MediaPlayerUtil.INSTANCE.resume();
+                    tv_stop_audio.setText("停止播放");
+                }
+            }
+        });
 
         start.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
                 Thread thread = new Thread(new Runnable() {
                     public void run() {
                         record();
@@ -72,7 +100,6 @@ public class AudioRecordActivity extends Activity {
         stop.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 isRecording = false;
                 isGetVoiceRun = false;
                 findViewById(R.id.start_bt).setEnabled(true);
@@ -83,7 +110,6 @@ public class AudioRecordActivity extends Activity {
         play.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 play();
             }
         });
@@ -93,12 +119,51 @@ public class AudioRecordActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 AudioRecordThread rthread = new AudioRecordThread();
                 rthread.start();
             }
         });
+        bt_start_voice.setOnClickListener(new OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                PermissionUtils.requestPermissions(AudioRecordActivity.this, false, new PermissionCallBack() {
+                    @Override
+                    public void onGranted() {
+                        XunFeiUtil xunFeiUtil = new XunFeiUtil();
+                        xunFeiUtil.init(AudioRecordActivity.this, et_voice_result);
+                    }
+
+                    @Override
+                    public void onDenied() {
+                        PermissionDialog.showPermissionDialog(AudioRecordActivity.this, "录音", false);
+                    }
+
+                }, PermissionUtils.PERMISSIONS_RECORD);
+            }
+        });
+    }
+
+    private void playRawAudio() {
+        MediaPlayerUtil.INSTANCE.initMedia(this, R.raw.iflytek_audio);
+        MediaPlayerUtil.INSTANCE.setMediaListener(new MediaPlayerListener() {
+
+            @Override
+            public void prepare() {
+            }
+
+            @Override
+            public void onErr(int what) {
+
+            }
+
+            @Override
+            public void finish() {
+                playRawAudio();
+            }
+        });
+
+        MediaPlayerUtil.INSTANCE.playMedia(false);
     }
 
     public void record() {
@@ -129,7 +194,6 @@ public class AudioRecordActivity extends Activity {
             AudioRecord audioRecord = new AudioRecord(
                     MediaRecorder.AudioSource.VOICE_COMMUNICATION, SAMPLE_RATE,
                     CHANNEL_CONFIG, AUDIO_FORMAT, bufferSize);
-//
 //            NoiseSuppressor noiseSuppressor = NoiseSuppressor.create(audioRecord.getAudioSessionId());
 //            noiseSuppressor.setEnabled(true);
             short[] buffer = new short[bufferSize];
@@ -237,22 +301,15 @@ public class AudioRecordActivity extends Activity {
                 // 处理音量大小
                 int volume = (int) (20 * Math.log10(amplitude));
                 Log.d(TAG, "分贝值 = " + volume + "dB");
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        tv_record_volume.setText("分贝值 = " + volume + "dB");
-//                    }
-//                });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv_record_volume.setText("分贝值 = " + volume + "dB");
+                    }
+                });
 
             }
-//            if (readSize > 0) {
-//                int amplitude = (int) (sum / readSize);
-//                // 处理音量大小
-//                int volume = (int) (20 * Math.log10(amplitude));
-//            }
-//                mAudioRecord.stop();
-//                mAudioRecord.release();
-//            }
+
         }
     }
 }
