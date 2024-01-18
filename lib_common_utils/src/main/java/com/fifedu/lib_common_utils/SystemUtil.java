@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -58,7 +59,7 @@ public class SystemUtil {
      * @return 系统版本号
      */
     public static String getSystemVersion() {
-        return android.os.Build.VERSION.RELEASE;
+        return Build.VERSION.RELEASE;
     }
 
     /**
@@ -67,7 +68,7 @@ public class SystemUtil {
      * @return 手机厂商
      */
     public static String getDeviceBrand() {
-        return android.os.Build.BRAND;
+        return Build.BRAND;
     }
 
     /**
@@ -76,21 +77,21 @@ public class SystemUtil {
      * @return 手机型号
      */
     public static String getSystemModel() {
-        return android.os.Build.MODEL;
+        return Build.MODEL;
     }
 
     /**
      * 获取屏幕分辨率x
      */
-    public static int getAppResolX(Context context) {
-        return getScreenSize(context)[0];
+    public static String getAppResolX(Context context) {
+        return getScreenSize(context)[0] + "";
     }
 
     /**
      * 获取屏幕分辨率y
      */
-    public static int getAppResolY(Context context) {
-        return getScreenSize(context)[1];
+    public static String getAppResolY(Context context) {
+        return getScreenSize(context)[1] + "";
     }
 
     /**
@@ -149,6 +150,10 @@ public class SystemUtil {
         return dp2px(ContextProvider.getAppContext(), dpValue);
     }
 
+    public static boolean isEqualOrAboveVersion(int targetVersion) {
+        return Build.VERSION.SDK_INT >= targetVersion;
+    }
+
     public static int dp2px(Context context, int dpValue) {
         float density = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * density + 0.5f);
@@ -156,7 +161,7 @@ public class SystemUtil {
 
     //判断是否是小米三手机，原因是小米三手机进行音频的压缩的时候，会莫名其妙崩溃，原因未知
     public static boolean isMi3() {
-        String phoneName = android.os.Build.MODEL;
+        String phoneName = Build.MODEL;
         return !TextUtils.isEmpty(phoneName) && (phoneName.contains("MI") || phoneName.contains("mi")) && phoneName.contains("3");
     }
 

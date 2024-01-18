@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -39,4 +40,6 @@ dependencies {
     api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
     api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid"
     api "com.github.tbruyelle:rxpermissions:$rootProject.rxpermissions"
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+
 }

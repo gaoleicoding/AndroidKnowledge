@@ -1,6 +1,7 @@
 package com.fifedu.lib_common_utils.permission;
 
 import android.Manifest;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.fifedu.lib_common_utils.ContextProvider;
 import com.fifedu.lib_common_utils.R;
+import com.fifedu.lib_common_utils.SystemUtil;
 import com.fifedu.lib_common_utils.dialog.BaseDialogCallBack;
 import com.fifedu.lib_common_utils.dialog.BaseDialogUtils;
 import com.fifedu.lib_common_utils.log.LogUtils;
@@ -41,6 +43,9 @@ public class PermissionUtils {
     public static final String[] PERMISSIONS_VIDEO = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     public static final String[] PERMISSIONS_CAMERA = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     public static final String[] PERMISSIONS_FILE = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    public static final String[] PERMISSIONS_FILE_R = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MANAGE_EXTERNAL_STORAGE};
+    private static final boolean isEqualOrAboveVersion = SystemUtil.isEqualOrAboveVersion(Build.VERSION_CODES.R);
+    public static final String[] PERMISSIONS_MANAGE_FILE = !isEqualOrAboveVersion ? PERMISSIONS_FILE : PERMISSIONS_FILE_R;
     public static final String[] PERMISSIONS_RECORD = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     public static String[] PERMISIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.CHANGE_WIFI_STATE};

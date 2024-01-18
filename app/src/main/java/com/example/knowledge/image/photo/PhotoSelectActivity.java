@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.knowledge.R;
 import com.fifedu.lib_common_utils.BitmapUtil;
 import com.fifedu.lib_common_utils.FileUtils;
+import com.fifedu.lib_common_utils.Uri2PathUtil;
 import com.fifedu.lib_common_utils.log.LogUtils;
 import com.fifedu.lib_common_utils.permission.PermissionCallBack;
 import com.fifedu.lib_common_utils.permission.PermissionUtils;
@@ -93,11 +94,11 @@ public class PhotoSelectActivity extends AppCompatActivity {
             Uri resultUri = intent == null || resultCode != RESULT_OK ? null : intent.getData();
             if (resultUri != null) {
                 // 选择图片结果回调
-                imagePath = FileUtils.getRealPathFromUri(getApplicationContext(), resultUri);
+                imagePath = Uri2PathUtil.getRealPathFromUri(getApplicationContext(), resultUri);
                 if (TextUtils.isEmpty(imagePath)) {
                     return;
                 }
-                imageUri = FileUtils.geFileUri(new File(imagePath));
+                imageUri = FileUtils.getFileUri(new File(imagePath));
             }
             if (imageUri != null) {
                 try {
