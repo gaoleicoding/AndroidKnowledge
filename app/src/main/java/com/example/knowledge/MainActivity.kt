@@ -95,12 +95,12 @@ class MainActivity : AppCompatActivity() {
                 "com.example.knowledge.audio.AudioActivity"
             )
         )
-        items . add (
-                ChildBean(
-                    "AudioRecordActivity",
-                    "com.example.knowledge.audio.AudioRecordActivity"
-                )
-                )
+        items.add(
+            ChildBean(
+                "AudioRecordActivity",
+                "com.example.knowledge.audio.AudioRecordActivity"
+            )
+        )
         items.add(
             ChildBean(
                 "VideoPlayActivity",
@@ -157,6 +157,12 @@ class MainActivity : AppCompatActivity() {
             ChildBean(
                 "AnnotationActivity",
                 "com.example.knowledge.android.annotation.AnnotationActivity"
+            )
+        )
+        items.add(
+            ChildBean(
+                "FileSelectActivity",
+                "com.example.knowledge.android.FileSelectActivity"
             )
         )
         children.add(ArrayList(items))

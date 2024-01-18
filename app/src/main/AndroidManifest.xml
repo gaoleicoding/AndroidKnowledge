@@ -82,6 +82,7 @@
         <activity android:name=".image.photo.PhotoSelectActivity" />
         <activity android:name=".activity.TestAndroidActivity" />
         <activity android:name=".activity.TestKotlinActivity" />
+        <activity android:name=".android.FileSelectActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
