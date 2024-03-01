@@ -1,9 +1,13 @@
 package com.fifedu.lib_common_utils.glide;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+import androidx.annotation.DrawableRes;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
@@ -27,20 +31,15 @@ public class GlideUtil {
                 .into(imageView);
     }
 
-    public static void loadImg(String url, ImageView imageView) {
-        Glide.with(imageView.getContext())
-                .load(url)
-                .into(imageView);
-    }
-
     /**
+     * load 网络资源load(url)
      * load SD卡资源：load("file://"+Environment.getExternalStorageDirectory().getPath()+"/test.jpg")
      * load ContentProvider资源：load("content://media/external/images/media/139469")
      * load assets资源：load("file:///android_asset/f003.gif")
      */
-    public static void loadDrawableFromLocal(String path, ImageView imageView) {
+    public static void loadImg(String url, ImageView imageView) {
         Glide.with(imageView.getContext())
-                .load(path)
+                .load(url)
                 .into(imageView);
     }
 
@@ -63,6 +62,27 @@ public class GlideUtil {
                 .asGif()
                 .load(resId)
                 .into(imageView);
+    }
+
+    //Glide设置图片圆角角度和默认
+    public static void loadImgWithCornerDefault(ImageView imageView, String url, int radius, int defaultRes) {
+        RoundedCorners roundedCorners = new RoundedCorners(radius);
+        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
+        Glide.with(imageView.getContext())
+                .load(url)
+                .apply(options)
+                .thumbnail(loadTransform(imageView.getContext(), defaultRes, radius))
+                .placeholder(defaultRes)
+                .into(imageView);
+    }
+
+    private static RequestBuilder<Drawable> loadTransform(Context context, @DrawableRes int placeholderId, int radius) {
+
+        return Glide.with(context)
+                .load(placeholderId)
+                .apply(new RequestOptions().centerCrop()
+                        .transform(new RoundedCorners(radius)));
+
     }
 
     //Glide设置图片圆角角度

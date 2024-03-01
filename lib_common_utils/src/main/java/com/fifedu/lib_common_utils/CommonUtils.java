@@ -30,12 +30,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -245,66 +242,10 @@ public class CommonUtils {
     }
 
     /**
-     * 获取外置SD卡路径
-     */
-    public static String getSDCardPath() {
-        String cmd = "cat /proc/mounts";
-        Runtime run = Runtime.getRuntime();// 返回与当前 Java 应用程序相关的运行时对象
-        try {
-            Process p = run.exec(cmd);// 启动另一个进程来执行命令
-            BufferedInputStream in = new BufferedInputStream(p.getInputStream());
-            BufferedReader inBr = new BufferedReader(new InputStreamReader(in));
-
-            String lineStr;
-            while ((lineStr = inBr.readLine()) != null) {
-                // 获得命令执行后在控制台的输出信息
-                if (lineStr.contains("sdcard")
-                        && lineStr.contains(".android_secure")) {
-                    String[] strArray = lineStr.split(" ");
-                    if (strArray != null && strArray.length >= 5) {
-                        return strArray[1].replace("/.android_secure",
-                                "");
-                    }
-                }
-                // 检查命令是否执行失败。
-                if (p.waitFor() != 0 && p.exitValue() == 1) {
-                    // p.exitValue()==0表示正常结束，1：非正常结束
-                }
-            }
-            inBr.close();
-            in.close();
-        } catch (Exception e) {
-
-            return Environment.getExternalStorageDirectory().getPath();
-        }
-        return Environment.getExternalStorageDirectory().getPath();
-    }
-
-    /**
-     * 获取data目录
-     * 目前已知，努比亚手机无法获取data目录
+     * 设置默认资源下载目录
      */
     public static String getDataPath() {
-        String directoryPath = "";
-        try {
-            if (SystemUtil.getDeviceBrand().equalsIgnoreCase("nubia")) {
-                //努比亚手机无法获取文件路径，存入缓存路径
-                directoryPath = ContextProvider
-                        .getAppContext().getCacheDir().getAbsolutePath();
-            } else {
-                //其他手机
-                directoryPath = ContextProvider
-                        .getAppContext().getFilesDir().getAbsolutePath();
-            }
-        } catch (Exception e) {
-            directoryPath = ContextProvider
-                    .getAppContext().getFilesDir().getAbsolutePath();
-        }
-        File file = new File(directoryPath);
-        if (!file.exists()) {//判断文件目录是否存在
-            file.mkdirs();
-        }
-        return directoryPath;
+        return ContextProvider.getAppContext().getExternalFilesDir("download").getAbsolutePath();
     }
 
     /**

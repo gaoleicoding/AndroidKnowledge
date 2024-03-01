@@ -3,7 +3,6 @@ package com.fifedu.lib_common_utils.log;
 import android.util.Log;
 
 import com.fifedu.lib_common_utils.AppUtil;
-import com.fifedu.lib_common_utils.BuildConfig;
 
 /**
  * @author bff007

@@ -5,9 +5,6 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.fifedu.lib_common_utils.okhttp.cookie.store.CookieStore;
-import com.fifedu.lib_common_utils.okhttp.cookie.store.SerializableHttpCookie;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

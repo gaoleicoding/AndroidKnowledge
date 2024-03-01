@@ -1,7 +1,5 @@
 package com.fifedu.lib_common_utils.okhttp.builder;
 
-import android.net.Uri;
-
 import com.fifedu.lib_common_utils.okhttp.request.GetRequest;
 import com.fifedu.lib_common_utils.okhttp.request.RequestCall;
 

@@ -15,7 +15,6 @@
  */
 package com.fifedu.lib_common_utils.okhttp.utils;
 
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 

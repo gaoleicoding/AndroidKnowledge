@@ -83,15 +83,15 @@ public class SystemUtil {
     /**
      * 获取屏幕分辨率x
      */
-    public static String getAppResolX(Context context) {
-        return getScreenSize(context)[0] + "";
+    public static int getScreenWidth(Context context) {
+        return getScreenSize(context)[0];
     }
 
     /**
      * 获取屏幕分辨率y
      */
-    public static String getAppResolY(Context context) {
-        return getScreenSize(context)[1] + "";
+    public static int getScreenHeight(Context context) {
+        return getScreenSize(context)[1];
     }
 
     /**
@@ -329,7 +329,7 @@ public class SystemUtil {
 
     public static void isMobileNetWorkToast(Context context) {
         if (getNetWorkType(context) == NETWORK_MOBILE) {
-            ToastUtil.showToast(CommonUtils.getString(R.string.msg_info_network));
+            ToastUtil.showToast(CommonUtils.getString(R.string.lib_utils_msg_info_network));
         }
     }
 

@@ -41,14 +41,18 @@ public class PermissionUtils {
             AUTHORITY_NOTICE
     };
     public static final String[] PERMISSIONS_VIDEO = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    public static final String[] PERMISSIONS_VIDEO_SIMPLE = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
     public static final String[] PERMISSIONS_CAMERA = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    public static final String[] PERMISSIONS_CAMERA_SIMPLE = {Manifest.permission.CAMERA};
     public static final String[] PERMISSIONS_FILE = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     public static final String[] PERMISSIONS_FILE_R = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MANAGE_EXTERNAL_STORAGE};
     private static final boolean isEqualOrAboveVersion = SystemUtil.isEqualOrAboveVersion(Build.VERSION_CODES.R);
     public static final String[] PERMISSIONS_MANAGE_FILE = !isEqualOrAboveVersion ? PERMISSIONS_FILE : PERMISSIONS_FILE_R;
     public static final String[] PERMISSIONS_RECORD = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    public static final String[] PERMISSIONS_RECORD_SIMPLE = {Manifest.permission.RECORD_AUDIO};
     public static String[] PERMISIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.CHANGE_WIFI_STATE};
+    public static String[] PERMISIONS_LOCATION_SIMPLE = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     public static String PERMISSION_CAMERA_DES = ContextProvider.getAppContext().getString(R.string.lib_utils_perm_camera_des);
     public static String PERMISSION_AUDIO_DES = ContextProvider.getAppContext().getString(R.string.lib_utils_perm_audio_des);
     public static String PERMISSION_VIDEO_DES = ContextProvider.getAppContext().getString(R.string.lib_utils_perm_video_des);

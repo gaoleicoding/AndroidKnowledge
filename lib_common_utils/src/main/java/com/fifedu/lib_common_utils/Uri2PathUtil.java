@@ -63,15 +63,18 @@ public class Uri2PathUtil {
                 final String[] selectionArgs = new String[]{split[1]};
                 path = getDataColumn(context, contentUri, selection, selectionArgs);
             } else if (isExternalStorageDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
-                if ("primary".equalsIgnoreCase(type)) {
-                    path = Environment.getExternalStorageDirectory() + "/" + split[1];
+                // 安卓11及以上，则不走这里逻辑，走下面的copy，因为这个目录下不能获取到真实的path
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String[] split = docId.split(":");
+                    final String type = split[0];
+                    if ("primary".equalsIgnoreCase(type)) {
+                        path = Environment.getExternalStorageDirectory() + "/" + split[1];
+                    }
                 }
             }
         }
-        // 处理安卓11及以上通过uri不能直接拿到下载、文档目录下文件path，我们通过copy到私有目录的方式拿到
+        // 处理安卓11及以上通过uri不能直接拿到下载、文档、手机存储目录下文件path，我们通过copy到私有目录的方式拿到
         if (TextUtils.isEmpty(path)) {
             try {
                 DocumentFile documentFile = DocumentFile.fromSingleUri(context, uri);

@@ -20,5 +20,5 @@
     <string name="lib_utils_select_album">从手机相册选择</string>
     <string name="lib_utils_img_save_sucess">保存成功！</string>
     <string name="lib_utils_img_save_failure">保存失败！</string>
-    <string name="msg_info_network">检测到您正处于手机网络环境下，建议切换到WiFi环境下使用</string>
+    <string name="lib_utils_msg_info_network">检测到您正处于手机网络环境下，建议切换到WiFi环境下使用</string>
 </resources>
