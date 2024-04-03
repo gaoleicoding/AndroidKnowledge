@@ -83,6 +83,7 @@
         <activity android:name=".activity.TestAndroidActivity" />
         <activity android:name=".activity.TestKotlinActivity" />
         <activity android:name=".android.FileSelectActivity" />
+        <activity android:name=".android.jni.JNIActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

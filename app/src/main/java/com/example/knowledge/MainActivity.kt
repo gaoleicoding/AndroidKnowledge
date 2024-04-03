@@ -165,6 +165,12 @@ class MainActivity : AppCompatActivity() {
                 "com.example.knowledge.android.FileSelectActivity"
             )
         )
+        items.add(
+            ChildBean(
+                "JNI",
+                "com.example.knowledge.android.jni.JNIActivity"
+            )
+        )
         children.add(ArrayList(items))
         items.clear()
     }

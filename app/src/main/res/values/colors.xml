@@ -15,6 +15,8 @@
     <color name="base_txt_grey2">#33000000</color>
     <color name="base_normal_black">#4A4A4A</color>
     <color name="base_line_blue">#FF5BC1F8</color>
+    <!--背景色 灰-->
+    <color name="base_bg_grey">#F8F8F8</color>
     <!--线颜色 灰-->
     <color name="base_line_grey">#1A000000</color>
     <color name="bg_line_grey">#DFDFDF</color>
