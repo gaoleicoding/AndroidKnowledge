@@ -19,8 +19,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class XunFeiUtil {
-    private String TAG = "XunFeiUtil";
+public class IflytekUtil {
+    private final String TAG = "IflytekUtil";
     private SpeechRecognizer mIat;
     private RecognizerDialog mIatDialog;
     // 用HashMap存储听写结果

@@ -75,7 +75,7 @@
         <activity android:name=".android.font.FontActivity" />
         <activity android:name=".video.VideoPlayActivity" />
         <activity android:name=".audio.AudioActivity" />
-        <activity android:name=".audio.AudioRecordActivity" />
+        <activity android:name=".audio.AudioRecognizeActivity" />
         <activity
             android:name=".component.webview.WebViewActivity"
             android:process=":webviewProcess" />

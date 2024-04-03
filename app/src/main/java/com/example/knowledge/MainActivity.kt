@@ -97,8 +97,8 @@ class MainActivity : AppCompatActivity() {
         )
         items.add(
             ChildBean(
-                "AudioRecordActivity",
-                "com.example.knowledge.audio.AudioRecordActivity"
+                "AudioRecognizeActivity",
+                "com.example.knowledge.audio.AudioRecognizeActivity"
             )
         )
         items.add(

@@ -1,5 +1,7 @@
 package com.example.knowledge.audio;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
@@ -13,10 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.knowledge.R;
-import com.example.knowledge.audio.xf.XunFeiUtil;
+import com.example.knowledge.audio.xf.IflytekUtil;
 import com.fifedu.lib_common_utils.permission.PermissionCallBack;
 import com.fifedu.lib_common_utils.permission.PermissionDialog;
 import com.fifedu.lib_common_utils.permission.PermissionUtils;
@@ -32,7 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class AudioRecordActivity extends FragmentActivity {
+public class AudioRecognizeActivity extends FragmentActivity {
     private final String TAG = "AudioRecordActivity";
     private boolean isRecording = false;
     private boolean isGetVoiceRun = false;
@@ -127,16 +130,16 @@ public class AudioRecordActivity extends FragmentActivity {
 
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(AudioRecordActivity.this, false, new PermissionCallBack() {
+                PermissionUtils.requestPermissions(AudioRecognizeActivity.this, false, new PermissionCallBack() {
                     @Override
                     public void onGranted() {
-                        XunFeiUtil xunFeiUtil = new XunFeiUtil();
-                        xunFeiUtil.init(AudioRecordActivity.this, et_voice_result);
+                        IflytekUtil xunFeiUtil = new IflytekUtil();
+                        xunFeiUtil.init(AudioRecognizeActivity.this, et_voice_result);
                     }
 
                     @Override
                     public void onDenied() {
-                        PermissionDialog.showPermissionDialog(AudioRecordActivity.this, "录音", false);
+                        PermissionDialog.showPermissionDialog(AudioRecognizeActivity.this, "录音", false);
                     }
 
                 }, PermissionUtils.PERMISSIONS_RECORD);
@@ -191,6 +194,17 @@ public class AudioRecordActivity extends FragmentActivity {
             // Create a new AudioRecord object to record the audio.
             int bufferSize = AudioRecord.getMinBufferSize(SAMPLE_RATE, CHANNEL_CONFIG, AUDIO_FORMAT);
 
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            //通过VOICE_COMMUNICATION模式进行录音，自动实现回声消除；
             AudioRecord audioRecord = new AudioRecord(
                     MediaRecorder.AudioSource.VOICE_COMMUNICATION, SAMPLE_RATE,
                     CHANNEL_CONFIG, AUDIO_FORMAT, bufferSize);

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.AssetFileDescriptor
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.media.audiofx.AcousticEchoCanceler
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -40,6 +41,13 @@ object MediaPlayerUtil {
     fun initMedia(mContext: Context, path: String) {
         try {
             mPlayer = MediaPlayer()
+            //设置音频降噪
+            if (AcousticEchoCanceler.isAvailable()) {
+                val echoCancler: AcousticEchoCanceler =
+                    AcousticEchoCanceler.create(mPlayer!!.audioSessionId)
+                echoCancler.setEnabled(true)
+            }
+            mPlayer!!.setAudioStreamType(AudioManager.STREAM_VOICE_CALL)
             mPlayer!!.setDataSource(path)
 
         } catch (e: Exception) {
@@ -68,9 +76,9 @@ object MediaPlayerUtil {
         }
     }
 
-    fun playMedia(isPrepare:Boolean) {
+    fun playMedia(isPrepare: Boolean) {
         if (mPlayer != null && !mPlayer!!.isPlaying) {
-            if(isPrepare) {
+            if (isPrepare) {
                 mPlayer!!.prepare()
             }
             // 开始播放音频
