@@ -92,7 +92,7 @@ class AudioActivity : AppCompatActivity() {
             }
         })
 
-        MediaPlayerUtil.playMedia(true)
+        MediaPlayerUtil.playMedia(false)
     }
 
     fun getAudioFocus(context: Context) {
