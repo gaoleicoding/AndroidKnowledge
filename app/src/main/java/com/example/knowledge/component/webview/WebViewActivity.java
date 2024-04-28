@@ -26,6 +26,7 @@ public class WebViewActivity extends BaseActivity {
     ImageView mSvgIV;
     String localURL = "file:///android_asset/index.html";
     String baiduURL = "http://www.baidu.com/";
+    String wakeURL = "https://hecs.fifedu.com/iplat/app_link/learning.html?a=2";
     String noteURL = "https://notecs.fifedu.com/note-center-static/v100/app/index.html#/noteData/detailPage?id=e9d4c728bb7347f791cc92b51a0844c2&userId=e79d688684964b35a9ab96abe4d5f155&schoolId=2000000026000000001&jtzy=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFsTmFtZSI6IuadjueOuiIsInNjaG9vbElkIjoiMjAwMDAwMDAyNjAwMDAwMDAwMSIsImlzcyI6ImZpZmFjIiwiaWQiOiIyODExMDAwMjI2MDAwNTc3MTY1IiwiZXhwIjoxNjY5MDIzNzIxLCJ1c2VybmFtZSI6ImJmc3VsaXhpIiwibWVtYmVySWQiOiJlNzlkNjg4Njg0OTY0YjM1YTlhYjk2YWJlNGQ1ZjE1NSJ9.LjEt-L1C6kGzH-tsseShJGiwraCBUyDl0sFdaqytQlU%3D%3D";
     String svgUrl = "https://test.fifedu.com/static/fiftest//upload/image/20220426/86fde1bb67924d339c2de7d17b55e7b5.svg";
 
@@ -43,7 +44,7 @@ public class WebViewActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
         initSetting(mWebview);
-        initWebViewClient();
+//        initWebViewClient();
         initChromeClient();
         mWebview.loadUrl(localURL);
         mWebview.addJavascriptInterface(new CommonJSInterface(), "androidInjected");
@@ -78,6 +79,7 @@ public class WebViewActivity extends BaseActivity {
         mWebSettings.setAllowUniversalAccessFromFileURLs(true);
         mWebSettings.setAllowFileAccessFromFileURLs(true);
         mWebSettings.setFixedFontFamily("cursive");
+        mWebSettings.setDefaultTextEncodingName("UTF-8");
     }
 
     private void initWebViewClient() {
@@ -98,7 +100,7 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //设置不用系统浏览器打开,直接显示在当前Webview
-                view.loadUrl(url);
+//                view.loadUrl(url);
                 return true;
             }
         });
