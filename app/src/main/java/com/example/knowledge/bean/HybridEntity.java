@@ -1,5 +1,7 @@
 package com.example.knowledge.bean;
 
+import com.google.gson.Gson;
+
 /**
  * H5 和原生交互传输数据实体
  */
@@ -30,6 +32,11 @@ public class HybridEntity {
 
     public void setData(Object data) {
         this.data = data;
+    }
+    public TopBarData getTopBarData() {
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
+        return gson.fromJson(json, TopBarData.class);
     }
 
 }

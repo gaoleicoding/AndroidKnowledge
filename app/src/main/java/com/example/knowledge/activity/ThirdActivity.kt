@@ -21,10 +21,6 @@ class ThirdActivity : AppCompatActivity() {
         }
     }
 
-    fun onBack(view: View) {
-        finish()
-    }
-
     override fun onStart() {
         super.onStart()
         LogUtils.d(TAG, "ThirdActivity--onStart()")

@@ -18,10 +18,6 @@ class SecondActivity : AppCompatActivity() {
         }
     }
 
-    fun onBack(view: View) {
-        finish()
-    }
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         //must store the new intent unless getIntent() will return the old one

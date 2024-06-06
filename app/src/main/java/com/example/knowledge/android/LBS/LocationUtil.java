@@ -29,8 +29,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class LocationUtil {
-    private final String TAG = "JSCallAppLocationUtil";
-    public static final String getUserCurrentLocation = "getUserCurrentLocation";
+    private final String TAG = "LocationUtil";
 
     private final AppCompatActivity mActivity;
     private WebView mWebView;
@@ -107,7 +106,7 @@ public class LocationUtil {
                 mLocationManager = (LocationManager) mActivity.getSystemService(Context.LOCATION_SERVICE);
             }
             List<String> providers = mLocationManager.getProviders(true);
-            if (providers.size() == 0) {
+            if (providers.isEmpty()) {
                 ToastUtil.showToast(mActivity, mActivity.getString(R.string.no_location_provider));
                 return;
             }

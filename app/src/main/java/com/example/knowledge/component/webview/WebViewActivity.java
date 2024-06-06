@@ -1,5 +1,7 @@
 package com.example.knowledge.component.webview;
 
+import static android.view.View.GONE;
+
 import android.graphics.Bitmap;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import com.example.knowledge.R;
 import com.example.knowledge.activity.BaseActivity;
 import com.example.knowledge.android.LBS.LocationUtil;
 import com.example.knowledge.bean.HybridEntity;
+import com.example.knowledge.bean.TopBarData;
 import com.example.knowledge.image.glide.GlideSvgUtil;
 import com.fifedu.lib_common_utils.log.LogUtils;
 import com.google.gson.Gson;
@@ -39,6 +42,7 @@ public class WebViewActivity extends BaseActivity {
     public void initView() {
         mWebview = findViewById(R.id.webview);
         mSvgIV = findViewById(R.id.iv_svg);
+        mWebview.addJavascriptInterface(new CommonJSInterface(), "androidInjected");
     }
 
     public void onResume() {
@@ -47,7 +51,6 @@ public class WebViewActivity extends BaseActivity {
 //        initWebViewClient();
         initChromeClient();
         mWebview.loadUrl(localURL);
-        mWebview.addJavascriptInterface(new CommonJSInterface(), "androidInjected");
     }
 
     @Override
@@ -109,13 +112,11 @@ public class WebViewActivity extends BaseActivity {
     private void initChromeClient() {
         //设置WebChromeClient类
         mWebview.setWebChromeClient(new WebChromeClient() {
-
             //获取网站标题
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 mTitleTv.setText(title);
             }
-
 
             //获取加载进度
             @Override
@@ -125,14 +126,12 @@ public class WebViewActivity extends BaseActivity {
         });
     }
 
-    //点击返回上一页面而不是退出浏览器
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && mWebview.canGoBack()) {
             mWebview.goBack();
             return true;
         }
-
         return super.onKeyDown(keyCode, event);
     }
 
@@ -141,34 +140,40 @@ public class WebViewActivity extends BaseActivity {
         public void webCallNative(final String json) {
             LogUtils.d(TAG, "webCallNative: " + json);
             final Gson gson = new Gson();
-            final HybridEntity h5CallAppData = gson.fromJson(json, HybridEntity.class);
-            final String callNativeAction = h5CallAppData.getAppAction();
-            final String callWebAction = h5CallAppData.getWebAction();
+            final HybridEntity hybridEntity = gson.fromJson(json, HybridEntity.class);
+            final String callNativeAction = hybridEntity.getAppAction();
+            final String callWebAction = hybridEntity.getWebAction();
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
-                    if (LocationUtil.getUserCurrentLocation.equals(callNativeAction)) {
-                        final LocationUtil jsCallAppUtil = new LocationUtil(WebViewActivity.this);
-                        jsCallAppUtil.handleLocation(mWebview, callNativeAction, callWebAction);
+                    if (JSUtil.getUserCurrentLocation.equals(callNativeAction)) {
+                        final LocationUtil locationUtil = new LocationUtil(WebViewActivity.this);
+                        locationUtil.handleLocation(mWebview, callNativeAction, callWebAction);
+                    } else if (JSUtil.modifyNavigationBarStyle.equals(callNativeAction)) {
+                        TopBarData data = hybridEntity.getTopBarData();
+                        if (Integer.parseInt(data.navigationBarType) == 2) {
+                            rl_title.setVisibility(GONE);
+                        }
                     }
                 }
             });
         }
     }
 
-    //销毁Webview
     @Override
     protected void onDestroy() {
+        super.onDestroy();
+        destroyWebView();
+    }
+
+    private void destroyWebView() {
         if (mWebview != null) {
             mWebview.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
             mWebview.clearHistory();
-
             ((ViewGroup) mWebview.getParent()).removeView(mWebview);
             mWebview.destroy();
             mWebview = null;
         }
-        super.onDestroy();
     }
 
 }
